@@ -1,0 +1,5 @@
+package poof.core;
+
+public class Directory extends FileSystemEntitites {
+	private final int ENTRY_COST = 8; // cost of the each entry inside the directory
+}

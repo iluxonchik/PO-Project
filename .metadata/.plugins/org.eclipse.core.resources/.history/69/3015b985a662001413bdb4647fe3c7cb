@@ -1,0 +1,8 @@
+package poof;
+
+public abstract class FileSystemEntities {
+	private String name;
+	private int size;
+	private User owner;
+	
+}

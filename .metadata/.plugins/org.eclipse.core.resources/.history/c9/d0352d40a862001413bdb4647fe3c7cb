@@ -1,0 +1,48 @@
+package poof.core;
+
+public abstract class FileSystemEntities {
+	private String name;
+	private int size;
+	private User owner;
+	private PrivacyMode privacyMode;
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+
+	public PrivacyMode getPrivacyMode() {
+		return privacyMode;
+	}
+
+	public void setPrivacyMode(PrivacyMode privacyMode) {
+		this.privacyMode = privacyMode;
+	}
+
+
+	
+	public FileSystemEntities (String name, User owner) {
+		this.name = name;
+		this.owner = owner;
+	}
+	
+}

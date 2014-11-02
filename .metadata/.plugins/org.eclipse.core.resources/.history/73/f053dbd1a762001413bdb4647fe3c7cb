@@ -1,0 +1,5 @@
+package poof.core;
+
+public class Directory extends Directory{
+
+}
