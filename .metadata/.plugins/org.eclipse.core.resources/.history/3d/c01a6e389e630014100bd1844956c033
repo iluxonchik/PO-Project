@@ -13,6 +13,5 @@ public class User {
 	
 	// Getters
 	public String getName() { return name; }
-	public String getUsername() { return username; }
-	public Directory getHomeDirectory() { return this.homeDir; }
+	public String getUsername() {return username; }
 }

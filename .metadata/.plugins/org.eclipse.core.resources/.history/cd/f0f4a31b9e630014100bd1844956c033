@@ -10,9 +10,4 @@ public class User {
 		this.username = username;
 		// TODO: set user's home dir to /home/USERNAME/
 	}
-	
-	// Getters
-	public String getName() { return name; }
-	public String getUsername() { return username; }
-	public Directory getHomeDirectory() { return this.homeDir; }
 }

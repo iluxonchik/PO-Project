@@ -1,0 +1,11 @@
+package poof.core;
+
+public class User {
+	private String name;
+	private String username;
+	Directory homeDir; // user's home directory
+	
+	public User(String username, String name) {
+		this.name = name;
+	}
+}

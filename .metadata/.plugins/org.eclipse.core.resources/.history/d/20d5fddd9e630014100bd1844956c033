@@ -1,0 +1,19 @@
+package poof.core;
+
+public class FileSystemManager {
+	String fsName;
+	
+	//TODO: Complete methods
+	
+	public void appendDataToFile(String filename, String content) {
+		// TODO
+	}
+	
+	public void changeEntryPermissions(String entryName, PrivacyMode privacyMode) {
+		// TODO
+	}
+	
+	public void changeOwner(String entryName, String newOwnerUsername) {
+		// TODO
+	}
+}

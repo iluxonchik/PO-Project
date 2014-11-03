@@ -1,0 +1,13 @@
+package poof.core;
+
+public class FileSystemManager {
+	String fsName;
+	
+	public void appendDataToFile(String filename, String content) {
+		// TODO
+	}
+	
+	public changeEntryPermissions(String entryName, PrivacyMode privacyMode) {
+		// TODO
+	}
+}
