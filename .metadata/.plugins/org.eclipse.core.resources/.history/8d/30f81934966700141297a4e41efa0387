@@ -21,14 +21,15 @@ public class MenuOpenUserManagement extends Command<FileSystemManager> /* FIXME:
 	/**
 	 * @param receiver
 	 */
-	public MenuOpenUserManagement(final FileSystemManager receiver /*FIXME: add receiver declaration: type must agree with the above*/) {
-		super(MenuEntry.MENU_USER_MGT, receiver /*FIXME: receiver argument*/ , new ValidityPredicate<FileSystemManager>(receiver) {
+	public MenuOpenUserManagement(FileSystemManager reciever /*FIXME: add receiver declaration: type must agree with the above*/) {
+		super(MenuEntry.MENU_USER_MGT, reciever /*FIXME: receiver argument*/ , new ValidityPredicate<FileSystemManager>(reciever) {
 
 			@Override
 			public boolean isValid() {
 				// TODO Auto-generated method stub
-				return receiver.getActiveFileSystem() != null; // only show if there is an active FileSystem
+				return reciever.activeUser != null;
 			}
+			
 		} /*FIXME: validity argument*/);
 	}
 

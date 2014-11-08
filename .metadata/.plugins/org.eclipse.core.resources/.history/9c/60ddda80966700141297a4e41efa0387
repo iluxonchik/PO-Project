@@ -27,8 +27,8 @@ public class MenuOpenUserManagement extends Command<FileSystemManager> /* FIXME:
 			@Override
 			public boolean isValid() {
 				// TODO Auto-generated method stub
-				return receiver.getActiveFileSystem() != null; // only show if there is an active FileSystem
-			}
+				return receiver.getActiveUser() != null;
+			
 		} /*FIXME: validity argument*/);
 	}
 

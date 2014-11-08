@@ -11,8 +11,7 @@ public class FileSystemManager {
 	private FileSystem activeFileSystem;
 	
 	public FileSystemManager() {
-		activeFileSystem = null;
-		activeUser = null;
+	
 	}
 	
 	

@@ -18,9 +18,9 @@ public class Login extends Command<FileSystemManager> /* FIXME: select core type
 	/**
 	 * @param receiver
 	 */
-	public Login(final FileSystemManager receiver /*FIXME: add receiver declaration: type must agree with the above*/) {
+	public Login(final FileSystemManager reciever /*FIXME: add receiver declaration: type must agree with the above*/) {
 		
-		super(MenuEntry.LOGIN, receiver /*FIXME: receiver argument*/, new ValidityPredicate<FileSystemManager>(receiver) {
+		super(MenuEntry.LOGIN, reciever /*FIXME: receiver argument*/, new ValidityPredicate<FileSystemManager>(reciever) {
 
 			@Override
 			public boolean isValid() {

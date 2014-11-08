@@ -20,13 +20,13 @@ public class MenuOpenShell extends Command<FileSystemManager> /* FIXME: select c
 	/**
 	 * @param receiver
 	 */
-	public MenuOpenShell(final FileSystemManager receiver /*FIXME: add receiver declaration: type must agree with the above*/) {
+	public MenuOpenShell(FileSystemManager receiver /*FIXME: add receiver declaration: type must agree with the above*/) {
 		super(MenuEntry.MENU_SHELL, receiver /*FIXME: receiver argument*/ , new ValidityPredicate<FileSystemManager>(receiver) {
 
 			@Override
 			public boolean isValid() {
 				// TODO Auto-generated method stub
-				return receiver.getActiveFileSystem() != null; // only show if there is an active FileSystem
+				return false;
 			}
 			
 		} /*FIXME: validity argument*/);
