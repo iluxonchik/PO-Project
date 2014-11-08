@@ -27,7 +27,7 @@ public class FileSystem {
 	}
 	
 	public void changeOwner(FileSystemEntity entry, User newOwner) {
-		if (!entry.getOwner().equals(newOwner)) {
+		if (!entry.getOwner().equals(newOwner) {
 			entry.setOwner(newOwner);
 		}
 	}
