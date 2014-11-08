@@ -20,7 +20,7 @@ public class User {
 	public String getUsername() { return username; }
 	public Directory getMainDirectory() { return this.mainDir; }
 	
-	// TODO: toString
+	// TODO: equals
 	
 	@Override
 	public boolean equals(Object obj) {

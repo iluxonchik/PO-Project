@@ -6,11 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 
 public class FileSystem implements Serializable{
-	/**
-	 * Generated serialVersionUID
-	 */
-	private static final long serialVersionUID = -4205496443358977682L;
-	
 	String name;
 	Directory rootDirectory;
 	HashMap<String, User> users;
