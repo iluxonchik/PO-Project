@@ -15,4 +15,12 @@ public class User {
 	public String getName() { return name; }
 	public String getUsername() { return username; }
 	public Directory getHomeDirectory() { return this.homeDir; }
+	
+	// TODO: toString, equals
+	
+	public boolean equals(Object obj) {
+		if (obj.getClass() != this.getClass())
+			return false; // different classes
+		return this.username == ((User)obj).username;
+	}
 }

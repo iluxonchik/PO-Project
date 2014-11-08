@@ -1,0 +1,19 @@
+package poof.core;
+
+import java.util.HashMap;
+
+public class FileSystem {
+	String name;
+	Directory rootDirectory;
+	HashMap<String, User> users;
+	
+	public FileSystem(String name) {
+		this.name = name;
+		// TDODO: Create root user, etc
+	}
+	
+	public void addUser(User user) {
+		// TODO
+	}
+	
+}

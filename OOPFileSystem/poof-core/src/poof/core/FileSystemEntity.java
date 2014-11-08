@@ -28,5 +28,10 @@ public abstract class FileSystemEntity {
 		return privacyMode;
 	}
 	
+	// Setters
+	public void setOwner (User newOwner) {
+		this.owner = newOwner;
+	}
+	
 	
 }

@@ -1,0 +1,6 @@
+package poof.core;
+
+public class FileSystem {
+	String name;
+	
+}
