@@ -1,5 +1,7 @@
 package poof.core;
 
+import ist.po.ui.ValidityPredicate;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +9,11 @@ public class FileSystemManager {
 	private String fsName;
 	private User activeUser;
 	private FileSystem activeFileSystem;
+	
+	public FileSystemManager() {
+	
+	}
+	
 	
 	public void appendDataToFile(String filename, String content) {
 		// TODO
@@ -94,5 +101,7 @@ public class FileSystemManager {
 	public FileSystem getActiveFileSystem() {
 		return activeFileSystem;
 	}
+	
+	
 	
 }

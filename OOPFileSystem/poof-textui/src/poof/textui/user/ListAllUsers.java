@@ -9,16 +9,17 @@ import ist.po.ui.ValidityPredicate;
 import java.io.IOException;
 
 // FIXME: import project-specific classes
+import poof.core.FileSystemManager;
 
 /**
  * §2.3.2.
  */
-public class ListAllUsers extends Command<FIXME> /* FIXME: select core type for receiver */ {
+public class ListAllUsers extends Command<FileSystemManager> /* FIXME: select core type for receiver */ {
 	/**
 	 * @param receiver
 	 */
-	public ListAllUsers(FIXME /*FIXME: add receiver declaration: type must agree with the above*/) {
-		super(MenuEntry.LIST_USERS, FIXME /*FIXME: receiver argument*/);
+	public ListAllUsers(FileSystemManager reciever /*FIXME: add receiver declaration: type must agree with the above*/) {
+		super(MenuEntry.LIST_USERS, reciever /*FIXME: receiver argument*/);
 	}
 
 	/** @see ist.po.ui.Command#execute() */

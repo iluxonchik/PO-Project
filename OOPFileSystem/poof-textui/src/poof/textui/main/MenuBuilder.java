@@ -5,7 +5,7 @@ import ist.po.ui.Command;
 import ist.po.ui.Menu;
 
 // FIXME: import project-specific classes
-
+import poof.core.FileSystemManager;
 /**
  * Menu builder.
  */
@@ -14,14 +14,14 @@ public abstract class MenuBuilder {
 	/**
 	 * @param receiver
 	 */
-	public static void menuFor(FIXME /*FIXME: receiver declaration */) {
+	public static void menuFor(FileSystemManager fsManager /*FIXME: receiver declaration */) {
 		Menu menu = new Menu(MenuEntry.TITLE, new Command<?>[] {
-				new New(FIXME /*FIXME: receiver argument*/),
-				new Open(FIXME /*FIXME: receiver argument*/),
-				new Save(FIXME /*FIXME: receiver argument*/),
-				new Login(FIXME /*FIXME: receiver argument*/),
-				new MenuOpenShell(FIXME /*FIXME: receiver argument*/),
-				new MenuOpenUserManagement(FIXME /*FIXME: receiver argument*/)
+				new New(fsManager /*FIXME: receiver argument*/),
+				new Open(fsManager /*FIXME: receiver argument*/),
+				new Save(fsManager /*FIXME: receiver argument*/),
+				new Login(fsManager /*FIXME: receiver argument*/),
+				new MenuOpenShell(fsManager /*FIXME: receiver argument*/),
+				new MenuOpenUserManagement(fsManager /*FIXME: receiver argument*/)
 		});
 		menu.open();
 	}

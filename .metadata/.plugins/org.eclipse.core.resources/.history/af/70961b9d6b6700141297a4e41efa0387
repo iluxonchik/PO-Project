@@ -1,0 +1,162 @@
+package poof.core;
+
+import ist.po.ui.ValidityPredicate;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class FileSystemManager {
+	private String fsName;
+	private User activeUser;
+	private FileSystem activeFileSystem;
+	private LoginValidityPredicate loginValidityPredicate;
+	
+	public FileSystemManager() {
+		loginValidityPredicate = null;
+	}
+	
+	
+	public void appendDataToFile(String filename, String content) {
+		// TODO
+	}
+	
+	public void changeEntryPermissions(String entryName, PrivacyMode privacyMode) {
+		// TODO
+	}
+	
+	public void changeOwner(String entryName, String newOwnerUsername) {
+		// TODO
+	}
+	
+	public void  changeWorkingDirectory(String dirName) {
+		// TODO
+	}
+	
+	public void creteFile(String filename) {
+		// TODO
+	}
+	
+	public void createFileSystem() {
+		// TODO
+	}
+	
+	public void createUser(String username, String name) {
+		// TODO
+	}
+	
+	public List<String> listAllEntries(String directoryName) {
+		// TODO
+		return new ArrayList<String>();
+	}
+	
+	public String listEntry(String entryName) {
+		// TODO
+		return new String();
+	}
+	
+	public List<String> listUsers() {
+		// TODO
+		return new ArrayList<String>();
+	}
+	
+	public void loadFileSystem(String fileName) {
+		// TODO
+	}
+	
+	public void login(String username) {
+		// TODO
+	}
+	
+	public void printWorkingDirectory() {
+		// TODO
+	}
+	
+	public void removeEntry(String entryName) {
+		// TODO
+	}
+	
+	public void removeUser(String username) {
+		// TODO
+	}
+	
+	public void saveFileSystem() {
+		// TODO
+	}
+	
+	public String showFileData(String fileName) {
+		// TODO
+		
+		return new String();
+	}
+	
+	// Getters
+	public String getFileSystemName () {
+		// Is this one really needed?
+		return fsName;
+	}
+	
+	public User getActiveUser() {
+		return activeUser;
+	}
+	
+	public FileSystem getActiveFileSystem() {
+		return activeFileSystem;
+	}
+	
+	public LoginValidityPredicate getLoginValidityPrediacate(String username) {
+		return loginValidityPredicate.getInstance(username);
+	}
+	
+	// Setters
+	public setLoginValidityPredicateUsername(String username) {
+		loginValidityPredicate.setUsernameToCheck(username);
+	}
+	
+	
+	// ValidityPrediacate Classes
+	
+	private class LoginValidityPredicate extends ValidityPredicate<FileSystemManager> {
+		/* NOTE: 
+		 * Uses the Singleton pattern. 	
+		 */
+		
+		private String usernameToCheck;
+		private LoginValidityPredicate instance = null;
+		
+		private LoginValidityPredicate(FileSystemManager receiver, String usernameToCheck) {
+			super(receiver);
+			this.usernameToCheck = usernameToCheck;
+		}
+		
+		public LoginValidityPredicate getInstance(String usernameToCheck) {
+			if (instance!=null) {
+				// Object instance exists
+				instance.usernameToCheck = usernameToCheck;
+				return instance;
+			}
+			
+			// No object instance present, create one and return it
+			return instance = new LoginValidityPredicate(FileSystemManager.this, usernameToCheck);
+		}
+		
+		public LoginValidityPredicate getInstance() {
+			if (instance!=null) {
+				// Object instance exists
+				return instance;
+			}
+			
+			// No object instance present, create one and return it
+			return instance = new LoginValidityPredicate(FileSystemManager.this, null);
+		}
+
+		@Override
+		public boolean isValid() {
+			if (activeFileSystem.users.get(usernameToCheck) == null)
+				return false;
+			
+			return true;
+		}
+		
+	}
+	
+}

@@ -8,24 +8,34 @@ import ist.po.ui.ValidityPredicate;
 
 import java.io.IOException;
 
+
 // FIXME: import project-specific classes
+import poof.core.FileSystemManager;
 
 /**
  * Open shell menu.
  */
-public class MenuOpenShell extends Command<FIXME> /* FIXME: select core type for receiver */ {
+public class MenuOpenShell extends Command<FileSystemManager> /* FIXME: select core type for receiver */ {
 
 	/**
 	 * @param receiver
 	 */
-	public MenuOpenShell(FIXME /*FIXME: add receiver declaration: type must agree with the above*/) {
-		super(MenuEntry.MENU_SHELL, FIXME /*FIXME: receiver argument*/, FIXME /*FIXME: validity argument*/);
+	public MenuOpenShell(FileSystemManager receiver /*FIXME: add receiver declaration: type must agree with the above*/) {
+		super(MenuEntry.MENU_SHELL, receiver /*FIXME: receiver argument*/ , new ValidityPredicate<FileSystemManager>(receiver) {
+
+			@Override
+			public boolean isValid() {
+				// TODO Auto-generated method stub
+				return false;
+			}
+			
+		} /*FIXME: validity argument*/);
 	}
 
 	/** @see ist.po.ui.Command#execute() */
 	@Override
 	public final void execute() {
-		poof.textui.shell.MenuBuilder.menuFor(FIXME /*FIXME: receiver argument*/);
+		poof.textui.shell.MenuBuilder.menuFor(_receiver /*FIXME: receiver argument*/);
 	}
 
 }

@@ -3,9 +3,11 @@ package poof.textui;
 
 import static ist.po.ui.Dialog.IO;
 
+
 import java.io.IOException;
 
 // FIXME: import project-specific classes
+import poof.core.FileSystemManager;
 
 /**
  * Class that starts the application's textual interface.
@@ -21,7 +23,11 @@ public class Shell {
 		if (datafile != null) {
 			// FIXME: import text data file
 		}
-		poof.textui.main.MenuBuilder.menuFor(FIXME /*FIXME: core object (receiver) argument*/);
+		
+		// TODO: Create new FileSystemManager
+		FileSystemManager fsManager = new FileSystemManager();
+		
+		poof.textui.main.MenuBuilder.menuFor(fsManager /*FIXME: core object (receiver) argument*/);
 		IO.closeDown();
 	}
 
