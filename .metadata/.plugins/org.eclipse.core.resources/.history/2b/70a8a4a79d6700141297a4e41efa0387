@@ -11,7 +11,6 @@ import java.io.IOException;
 // FIXME: import project-specific classes
 import poof.core.FileSystemManager;
 import poof.textui.UserUnknownException;
-
 /**
  * §2.1.2.
  */
@@ -43,7 +42,7 @@ public class Login extends Command<FileSystemManager> /* FIXME: select core type
 		try {
 			_receiver.login(userToLogin);
 		} catch (UserUnknownException e) {
-			throw new UserUnknownException(userToLogin);
+			
 		}
 
 	}

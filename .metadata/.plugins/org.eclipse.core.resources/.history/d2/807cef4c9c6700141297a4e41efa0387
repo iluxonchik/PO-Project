@@ -96,7 +96,6 @@ public class FileSystem implements Serializable{
 	
 	// Getters
 	public User getUser(String username) {
-		// Return a user based on username
 		return users.get(username);
 	}
 	

@@ -71,7 +71,7 @@ public class FileSystemManager {
 	}
 	
 	public void login(String username) throws UserUnknownException {
-		
+		// TODO
 		User userToLogin = activeFileSystem.getUser(username);
 		
 		if(userToLogin ==  null)

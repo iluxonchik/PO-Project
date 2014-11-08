@@ -33,6 +33,8 @@ public class FileSystem implements Serializable{
 		
 		// add "home" to roots children (has no owner [i.e. the owner is "null"])
 		rootDirectory.addChild(new Directory(HOME_DIRECTORY, null, rootDirectory));
+
+		
 			
 	}
 	
@@ -93,11 +95,5 @@ public class FileSystem implements Serializable{
 		return new String();
 	}
 	
-	
-	// Getters
-	public User getUser(String username) {
-		// Return a user based on username
-		return users.get(username);
-	}
 	
 }

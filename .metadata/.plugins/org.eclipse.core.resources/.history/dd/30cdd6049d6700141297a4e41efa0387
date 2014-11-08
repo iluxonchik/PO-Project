@@ -71,13 +71,15 @@ public class FileSystemManager {
 	}
 	
 	public void login(String username) throws UserUnknownException {
-		
+		// TODO
 		User userToLogin = activeFileSystem.getUser(username);
 		
 		if(userToLogin ==  null)
 			// If user doesn't exist, throw an exception
 			throw new UserUnknownException(username);
-		setActiveUser(userToLogin);
+		
+		
+		
 	}
 	
 	public void printWorkingDirectory() {
@@ -119,7 +121,7 @@ public class FileSystemManager {
 	private void setActiveUser(User user) {
 		// Two-in-one: change active user and active directory
 		activeUser = user;
-		activeDirectory = user.getMainDirectory();	
+		
 	}
 	
 }

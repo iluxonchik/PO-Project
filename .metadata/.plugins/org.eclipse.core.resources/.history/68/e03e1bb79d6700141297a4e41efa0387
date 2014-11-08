@@ -43,7 +43,7 @@ public class Login extends Command<FileSystemManager> /* FIXME: select core type
 		try {
 			_receiver.login(userToLogin);
 		} catch (UserUnknownException e) {
-			throw new UserUnknownException(userToLogin);
+			
 		}
 
 	}

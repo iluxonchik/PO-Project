@@ -2,24 +2,17 @@ package poof.core;
 
 import ist.po.ui.ValidityPredicate;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
-
-import poof.textui.UserUnknownException;
-
 
 public class FileSystemManager {
 	private String fsName;
 	private User activeUser;
 	private FileSystem activeFileSystem;
-	private Directory activeDirectory;
 	
 	public FileSystemManager() {
 		activeFileSystem = null;
 		activeUser = null;
-		activeDirectory = null;
 	}
 	
 	
@@ -70,14 +63,8 @@ public class FileSystemManager {
 		// TODO
 	}
 	
-	public void login(String username) throws UserUnknownException {
-		
-		User userToLogin = activeFileSystem.getUser(username);
-		
-		if(userToLogin ==  null)
-			// If user doesn't exist, throw an exception
-			throw new UserUnknownException(username);
-		setActiveUser(userToLogin);
+	public void login(String username) {
+		// TODO
 	}
 	
 	public void printWorkingDirectory() {
@@ -116,10 +103,6 @@ public class FileSystemManager {
 		return activeFileSystem;
 	}
 	
-	private void setActiveUser(User user) {
-		// Two-in-one: change active user and active directory
-		activeUser = user;
-		activeDirectory = user.getMainDirectory();	
-	}
+	
 	
 }
