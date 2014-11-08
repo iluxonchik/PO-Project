@@ -25,7 +25,7 @@ public class ShowWorkingDirectory extends Command<FileSystemManager> /* FIXME: s
 	/** @see ist.po.ui.Command#execute() */
 	@Override
 	public final void execute() {
-		_receiver.printWorkingDirectory();
+		//FIXME: implement command
 	}
 
 }

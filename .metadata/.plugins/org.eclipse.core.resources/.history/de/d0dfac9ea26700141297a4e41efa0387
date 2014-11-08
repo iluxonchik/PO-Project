@@ -24,7 +24,7 @@ public class Directory extends FileSystemEntitiy {
 	}
 	
 	public Directory getParent() {
-		// NOTE: DOWNCAST! DANGER!
+		// NOTE: UPCAST! DANGER!
 		return (Directory) children.get(PARENT_DIR_NAME);
 	}
 	
