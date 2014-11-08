@@ -9,9 +9,27 @@ public class FileSystem {
 	Directory rootDirectory;
 	HashMap<String, User> users;
 	
+	public static final String ROOT_USERNAME = "root";
+	public static final String ROOT_NAME = "Super User";
+	public static final String ROOT_DIRECTORY = "/";
+	private static final String HOME_DIRECTORY = "home";
+
+	
 	public FileSystem(String name) {
 		this.name = name;
-		// TDODO: Create root user, etc
+		
+		// Create root user and add him to users list
+		User rootUser = new User(ROOT_USERNAME, ROOT_NAME, null); 
+		users.put(ROOT_USERNAME, rootUser);
+		
+		// Create a new root directory (has no owner [i.e. the owner is "null"])
+		rootDirectory = new Directory(ROOT_DIRECTORY, null, null);
+		
+		// add "home" to roots children (has no owner [i.e. the owner is "null"])
+		rootDirectory.addChild(new Directory(HOME_DIRECTORY, null, rootDirectory));
+
+		
+			
 	}
 	
 	public void addUser(User user) {
@@ -22,11 +40,11 @@ public class FileSystem {
 		// TODO
 	}
 	
-	public void changeEntryPermissions(FileSystemEntity entry, PrivacyMode privacyMode) {
+	public void changeEntryPermissions(FileSystemEntitiy entry, PrivacyMode privacyMode) {
 		// TODO
 	}
 	
-	public void changeOwner(FileSystemEntity entry, User newOwner) {
+	public void changeOwner(FileSystemEntitiy entry, User newOwner) {
 		if (!entry.getOwner().equals(newOwner)) {
 			entry.setOwner(newOwner);
 		}
@@ -46,7 +64,7 @@ public class FileSystem {
 		return new ArrayList<String> ();
 	}
 	
-	public String listEntry(FileSystemEntity entry) {
+	public String listEntry(FileSystemEntitiy entry) {
 		// TODO
 
 		return new String();
@@ -57,7 +75,7 @@ public class FileSystem {
 		return new ArrayList<String>();
 	}
 	
-	public void removeEntry(FileSystemEntity entry) {
+	public void removeEntry(FileSystemEntitiy entry) {
 		// TODO
 	}
 	

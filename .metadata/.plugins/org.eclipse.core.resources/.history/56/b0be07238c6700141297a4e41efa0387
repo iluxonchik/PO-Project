@@ -1,0 +1,30 @@
+package poof.core;
+
+import java.util.HashMap;
+
+public class Directory extends FileSystemEntitiy {
+	private final int ENTRY_COST = 8; // cost of the each entry inside the directory
+	private HashMap<String, FileSystemEntitiy> children;
+	
+	public Directory(String name, User owner, Directory parent) { 
+		super(name, owner);
+		children = new HashMap<String, FileSystemEntitiy>();
+		this.addChild()
+		
+		// TODO: Add parent(..) and current (.) directory references
+		
+	}
+	
+	public void addChild(FileSystemEntitiy entitiy) {
+		children.put(entitiy.getName(), entitiy);
+	}
+	
+	private void addChild(String name, Directory dir) {
+		// Add a directory, but index it using the specified name,
+		// instead of using the directory's name
+		children.put(name, dir)
+	}
+	
+
+	
+}

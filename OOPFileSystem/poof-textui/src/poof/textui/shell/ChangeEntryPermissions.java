@@ -1,4 +1,4 @@
-/** @version $Id: ChangeEntryPermissions.java,v 1.1 2014/10/01 22:45:54 david Exp $ */
+/** @version $Id: ChangeEntryPermissions.java,v 1.2 2014/11/08 20:24:15 ist178134 Exp $ */
 package poof.textui.shell;
 
 import static ist.po.ui.Dialog.IO;
