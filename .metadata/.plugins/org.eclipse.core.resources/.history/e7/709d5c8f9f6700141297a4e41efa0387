@@ -23,11 +23,6 @@ public class Directory extends FileSystemEntitiy {
 		
 	}
 	
-	public Directory getParent() {
-		// NOTE: UPCAST! DANGER!
-		return (Directory) children.get(PARENT_DIR_NAME);
-	}
-	
 	public void addChild(FileSystemEntitiy entitiy) {
 		children.put(entitiy.getName(), entitiy);
 	}
@@ -38,5 +33,11 @@ public class Directory extends FileSystemEntitiy {
 		// Used to add child and parent in Directory instantiation.
 		children.put(name, dir);
 	}
+	
+	public String getPath() {´
+		return children.get("..")
+	}
+	
+
 	
 }

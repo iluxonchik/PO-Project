@@ -122,3 +122,9 @@ Binding(CTRL+O,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.mylyn.wikitext.ui.editor.markupSourceContext,,,system)
+
+!ENTRY org.eclipse.ui 4 4 2014-11-08 23:37:28.729
+!MESSAGE Conflicting handlers for org.eclipse.ui.file.print: {ActionHandler(org.eclipse.ui.texteditor.TextOperationAction@dd0ca8c)} vs {ActionHandler(org.eclipse.ui.texteditor.AbstractDecoratedTextEditor$12@34205c93)}
+
+!ENTRY org.eclipse.ui 4 4 2014-11-08 23:37:28.739
+!MESSAGE Conflicting handlers for org.eclipse.ui.file.print: {ActionHandler(org.eclipse.ui.texteditor.TextOperationAction@dd0ca8c)} vs {ActionHandler(org.eclipse.ui.texteditor.AbstractDecoratedTextEditor$12@34205c93)}

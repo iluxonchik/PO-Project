@@ -33,5 +33,6 @@ public abstract class FileSystemEntitiy {
 		this.owner = newOwner;
 	}
 	
+	public abstract void getPath();
 	
 }

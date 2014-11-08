@@ -80,8 +80,8 @@ public class FileSystemManager {
 		setActiveUser(userToLogin);
 	}
 	
-	public String printWorkingDirectory() {
-		return activeFileSystem.getDirectoryPath(activeDirectory);
+	public void printWorkingDirectory() {
+		// TODO
 	}
 	
 	public void removeEntry(String entryName) {

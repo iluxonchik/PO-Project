@@ -5,4 +5,9 @@ public class File extends FileSystemEntitiy {
 	
 	public File(String name, User owner) { super (name, owner); }
 
+	@Override
+	public String getPath() {
+		// Can't get path of a file
+		throw new UnsupportedOperationException();
+	}
 }

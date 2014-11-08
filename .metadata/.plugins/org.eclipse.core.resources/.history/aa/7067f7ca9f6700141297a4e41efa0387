@@ -4,7 +4,7 @@ public abstract class FileSystemEntitiy {
 	protected String name;
 	protected int size;
 	protected User owner;
-	protected PrivacyMode privacyMode;
+	private PrivacyMode privacyMode;
 	
 	public FileSystemEntitiy (String name, User owner) {
 		this.name = name;

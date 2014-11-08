@@ -81,7 +81,7 @@ public class FileSystemManager {
 	}
 	
 	public String printWorkingDirectory() {
-		return activeFileSystem.getDirectoryPath(activeDirectory);
+		// TODO
 	}
 	
 	public void removeEntry(String entryName) {

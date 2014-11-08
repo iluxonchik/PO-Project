@@ -1,10 +1,10 @@
 package poof.core;
 
 public abstract class FileSystemEntitiy {
-	protected String name;
-	protected int size;
-	protected User owner;
-	protected PrivacyMode privacyMode;
+	private String name;
+	private int size;
+	private User owner;
+	private PrivacyMode privacyMode;
 	
 	public FileSystemEntitiy (String name, User owner) {
 		this.name = name;

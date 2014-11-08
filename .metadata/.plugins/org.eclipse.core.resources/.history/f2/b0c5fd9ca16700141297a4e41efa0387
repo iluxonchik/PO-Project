@@ -37,7 +37,7 @@ public class FileSystem implements Serializable{
 	}
 	
 	public String getDirectoryPath(Directory dir) {
-		// Get directory's path recursivly
+		// 
 		if (dir.getName() == ROOT_DIRECTORY)
 			return "/";
 		
