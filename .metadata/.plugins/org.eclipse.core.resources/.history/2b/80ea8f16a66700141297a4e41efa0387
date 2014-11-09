@@ -43,6 +43,7 @@ public class FileSystemManager {
 	
 	public void createFileSystem() {
 		activeFileSystem = new FileSystem("");
+		System.out.println("CREATE A NEW FILESYSTEM!!!! YAYAAAAY!")
 	}
 	
 	public void createUser(String username, String name) {

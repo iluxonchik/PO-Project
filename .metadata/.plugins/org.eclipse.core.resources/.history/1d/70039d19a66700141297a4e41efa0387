@@ -28,7 +28,6 @@ public class New extends Command<FileSystemManager> /* FIXME: select core type f
 	@Override
 	public final void execute() throws DialogException, IOException {
 		//FIXME: implement command
-		_receiver.createFileSystem();
 	}
 
 }

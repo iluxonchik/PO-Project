@@ -28,9 +28,8 @@ public class Directory extends FileSystemEntitiy {
 		return (Directory) children.get(PARENT_DIR_NAME);
 	}
 	
-	public Directory getChild(String name) {
-		// NOTE: DOWNCAST! DANGER!
-		return (Directory) children.get(name);
+	public getChild(String name) {
+		return children.get(name);
 	}
 	
 	public void addChild(FileSystemEntitiy entitiy) {

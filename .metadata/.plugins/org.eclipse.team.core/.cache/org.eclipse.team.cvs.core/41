@@ -2,6 +2,8 @@ package poof.core;
 
 import ist.po.ui.ValidityPredicate;
 
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +44,7 @@ public class FileSystemManager {
 	}
 	
 	public void createFileSystem() {
-		activeFileSystem = new FileSystem("");
+		// TODO
 	}
 	
 	public void createUser(String username, String name) {

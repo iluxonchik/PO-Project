@@ -1,4 +1,4 @@
-/** @version $Id: MenuOpenShell.java,v 1.3 2014/11/08 23:59:41 ist178134 Exp $ */
+/** @version $Id: MenuOpenShell.java,v 1.2 2014/11/08 20:24:14 ist178134 Exp $ */
 package poof.textui.main;
 
 import static ist.po.ui.Dialog.IO;
@@ -20,13 +20,13 @@ public class MenuOpenShell extends Command<FileSystemManager> /* FIXME: select c
 	/**
 	 * @param receiver
 	 */
-	public MenuOpenShell(final FileSystemManager receiver /*FIXME: add receiver declaration: type must agree with the above*/) {
+	public MenuOpenShell(FileSystemManager receiver /*FIXME: add receiver declaration: type must agree with the above*/) {
 		super(MenuEntry.MENU_SHELL, receiver /*FIXME: receiver argument*/ , new ValidityPredicate<FileSystemManager>(receiver) {
 
 			@Override
 			public boolean isValid() {
 				// TODO Auto-generated method stub
-				return receiver.getActiveFileSystem() != null; // only show if there is an active FileSystem
+				return false;
 			}
 			
 		} /*FIXME: validity argument*/);

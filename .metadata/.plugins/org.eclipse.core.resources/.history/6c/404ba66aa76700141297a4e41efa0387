@@ -24,8 +24,6 @@ public class FileSystem implements Serializable{
 	public FileSystem(String name) {
 		this.name = name;
 		
-		users = new HashMap<String, User>();
-		
 		// Create a new root directory (has no owner [i.e. the owner is "null"])
 		rootDirectory = new Directory(ROOT_DIRECTORY, null, null);
 		
