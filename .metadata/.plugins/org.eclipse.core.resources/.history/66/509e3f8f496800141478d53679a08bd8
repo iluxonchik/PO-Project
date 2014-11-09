@@ -11,8 +11,6 @@ import java.io.IOException;
 
 // FIXME: import project-specific classes
 import poof.core.FileSystemManager;
-import poof.core.FileSystem; // For constants
-import poof.core.User;
 /**
  * §2.3.1.
  */
@@ -28,10 +26,6 @@ public class CreateUser extends Command<FileSystemManager> /* FIXME: select core
 	@Override
 	public final void execute() throws DialogException, IOException {
 		//FIXME: implement command
-		User activeUser = _receiver.getActiveUser();
-		
-
-		
 		
 		//NOTE: Only root user can create new users
 	}

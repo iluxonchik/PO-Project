@@ -5,10 +5,6 @@ public class User {
 	private String username;
 	Directory mainDir; // user's home directory
 	
-	// Constants
-	public static final String ROOT_USERNAME = "root";
-	public static final String ROOT_NAME = "Super User";
-	
 	
 	public User(String username, String name, Directory mainDirParent) {
 		this.name = name;

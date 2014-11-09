@@ -9,12 +9,6 @@ public class Directory extends FileSystemEntitiy {
 	
 	private HashMap<String, FileSystemEntitiy> children;
 	
-	
-	// Constants
-	public static final String ROOT_DIRECTORY_NAME = "/";
-	public static final String HOME_DIRECTORY_NAME = "home";
-	public static final String DIR_SEPARATOR = "/";
-	
 	public Directory(String name, User owner, Directory parent) { 
 		super(name, owner);
 		children = new HashMap<String, FileSystemEntitiy>();

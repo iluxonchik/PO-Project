@@ -1,11 +1,9 @@
 package poof.core;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 
 public class FileSystem implements Serializable{
 	/**
@@ -17,8 +15,11 @@ public class FileSystem implements Serializable{
 	Directory rootDirectory;
 	HashMap<String, User> users;
 	
-
-
+	public static final String ROOT_USERNAME = "root";
+	public static final String ROOT_NAME = "Super User";
+	public static final String ROOT_DIRECTORY = "/";
+	private static final String HOME_DIRECTORY = "home";
+	public static final String DIR_SEPARATOR = "/";
 
 	
 	public FileSystem(String name) {
@@ -27,15 +28,15 @@ public class FileSystem implements Serializable{
 		users = new HashMap<String, User>();
 		
 		// Create a new root directory (has no owner [i.e. the owner is "null"])
-		rootDirectory = new Directory(Directory.ROOT_DIRECTORY_NAME, null, null);
+		rootDirectory = new Directory(ROOT_DIRECTORY, null, null);
 		
 		// add "home" to roots children (has no owner [i.e. the owner is "null"])
-		Directory homeDirectory = new Directory(Directory.HOME_DIRECTORY_NAME, null, rootDirectory);
+		Directory homeDirectory = new Directory(HOME_DIRECTORY, null, rootDirectory);
 		rootDirectory.addChild(homeDirectory);
 		
 		// Create root user and add him to users list
-		User rootUser = new User(User.ROOT_USERNAME, User.ROOT_NAME, homeDirectory); 
-		users.put(User.ROOT_USERNAME, rootUser);
+		User rootUser = new User(ROOT_USERNAME, ROOT_NAME, homeDirectory); 
+		users.put(ROOT_USERNAME, rootUser);
 		
 
 	}
@@ -43,10 +44,10 @@ public class FileSystem implements Serializable{
 	public String getDirectoryPath(Directory dir) {
 		// Get directory's path recursively
 		
-		if (dir.getName() == Directory.ROOT_DIRECTORY_NAME)
+		if (dir.getName() == ROOT_DIRECTORY)
 			return "/";
 		
-		return dir.getParent().getName() + Directory.DIR_SEPARATOR + name;
+		return dir.getParent().getName() + DIR_SEPARATOR + name;
 	}
 	
 	public void addUser(User user) {
