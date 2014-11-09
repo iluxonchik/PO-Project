@@ -19,7 +19,6 @@ public class FileSystem implements Serializable{
 	public static final String ROOT_NAME = "Super User";
 	public static final String ROOT_DIRECTORY = "/";
 	private static final String HOME_DIRECTORY = "home";
-	public static final String DIR_SEPARATOR = "/";
 
 	
 	public FileSystem(String name) {
@@ -47,7 +46,7 @@ public class FileSystem implements Serializable{
 		if (dir.getName() == ROOT_DIRECTORY)
 			return "/";
 		
-		return dir.getParent().getName() + DIR_SEPARATOR + name;
+		return dir.getParent().getName() + "/" + name;
 	}
 	
 	public void addUser(User user) {

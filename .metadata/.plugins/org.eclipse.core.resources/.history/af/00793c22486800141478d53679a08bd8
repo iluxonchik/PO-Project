@@ -42,7 +42,7 @@ public class FileSystemManager {
 	}
 	
 	public void createFileSystem() {
-		// new FileSystems name is null (file system is not associated to any file)
+		// new FileSystems name is null (file system is not associated to any file
 		activeFileSystem = new FileSystem(null);
 	}
 	

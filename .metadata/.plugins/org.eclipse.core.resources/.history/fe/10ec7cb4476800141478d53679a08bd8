@@ -14,8 +14,7 @@ public class Directory extends FileSystemEntitiy {
 		children = new HashMap<String, FileSystemEntitiy>();
 		
 		if (parent == null)
-			// if the parent dir is null, the directory is parent of itself
-			// used for root directory
+			// the root is of the dir, is the dir itself
 			parent = this;
 		
 		// Add the the current (.) and parent (..) dirs to children 
