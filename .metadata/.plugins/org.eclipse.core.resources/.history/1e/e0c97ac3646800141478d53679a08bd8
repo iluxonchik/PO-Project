@@ -41,7 +41,7 @@ public class FileSystem implements Serializable{
 	}
 	
 	public void addUser(User user) {
-		users.put(user.getUsername(), user);
+		users.put(user.getName(), user);
 	}
 	
 	public void appendDataToFile(File file, String content) {

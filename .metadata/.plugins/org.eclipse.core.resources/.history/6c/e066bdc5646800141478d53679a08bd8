@@ -20,7 +20,7 @@ public class User {
 	private void createHomeDirectory(Directory mainDirParent) {
 		// set user's home directory to /home/USERNAME/
 		mainDir = new Directory(this.getUsername(), this, mainDirParent);
-		mainDirParent.addChild(mainDir); // add 'username' dir to /home/
+		mainDirParent.addChild(mainDir); // add 'usename' dir to /home/
 	}
 	
 	// Getters

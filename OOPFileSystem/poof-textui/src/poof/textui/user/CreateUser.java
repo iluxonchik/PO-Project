@@ -16,7 +16,7 @@ import poof.core.User;
 /**
  * §2.3.1.
  */
-public class CreateUser extends Command<FileSystemManager> /* FIXME: select core type for receiver */ {
+public class CreateUser extends Command <FileSystemManager> /* FIXME: select core type for receiver */ {
 	/**
 	 * @param receiver
 	 */
