@@ -137,4 +137,9 @@ public class FileSystemManager {
 		activeDirectory = user.getMainDirectory();	
 	}
 	
+	private boolean hasPrivatePermissions(User user, FileSystemEntity entity) {
+		// TODO
+		return false;
+	}
+	
 }

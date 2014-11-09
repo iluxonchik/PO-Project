@@ -137,4 +137,15 @@ public class FileSystemManager {
 		activeDirectory = user.getMainDirectory();	
 	}
 	
+	private boolean hasPrivatePermissions(User user, FileSystemEntitiy entitiy) {
+		return (entitiy.getPrivacyMode() == PrivacyMode.PUBLIC) || 
+				(user == activeFileSystem.getUser(User.ROOT_USERNAME)) ||
+				(user == entitiy.getOwner()):
+				
+	}
+
+	private boolean hasRootPermissions(User user) {
+		// TODO
+		return false;
+	}
 }
