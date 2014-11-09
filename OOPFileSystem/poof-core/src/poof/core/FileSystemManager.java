@@ -43,7 +43,23 @@ public class FileSystemManager {
 	
 	public void createFileSystem() {
 		// new FileSystems name is null (file system is not associated to any file)
-		activeFileSystem = new FileSystem(null);
+
+		// create a temporary directory (to be home directory)
+		Directory homeDirectory = new Directory(Directory.HOME_DIRECTORY_NAME, null, null);
+		
+		// Create root user and add him to users list
+		User rootUser = new User(User.ROOT_USERNAME, User.ROOT_NAME, homeDirectory); 
+		activeFileSystem = new FileSystem(null, rootUser); // new file system with rootUser as the owner of root dir
+		activeFileSystem.addUser(rootUser); // add root user to FileSystems user list
+		
+		// Complete homeDirectory (build it)
+		Directory rootDirectory = activeFileSystem.getRootDirectory();
+		homeDirectory.setParent(rootDirectory); // set root directory as its parent
+		homeDirectory.setOwner(rootUser); // set root user as its owner
+		
+		// add homeDirectory to the structure
+		rootDirectory.addChild(homeDirectory);
+	
 	}
 	
 	public void createUser(String username, String name) {

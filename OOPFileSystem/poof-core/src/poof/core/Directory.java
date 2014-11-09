@@ -30,6 +30,7 @@ public class Directory extends FileSystemEntitiy {
 		
 	}
 	
+	// Getters
 	public Directory getParent() {
 		// NOTE: DOWNCAST! DANGER!
 		return (Directory) children.get(PARENT_DIR_NAME);
@@ -38,6 +39,16 @@ public class Directory extends FileSystemEntitiy {
 	public Directory getChild(String name) {
 		// NOTE: DOWNCAST! DANGER!
 		return (Directory) children.get(name);
+	}
+	
+	// Setters
+	public void setParent(Directory newParent) {
+		// DANGER! Can break the entire structure, therefore will only change 
+		// the parent directory in case it has not been set yet. This functions 
+		// purpose is to give some more flexibility when designing the directory structure.
+		if (children.get(PARENT_DIR_NAME) == null)
+			addChild(PARENT_DIR_NAME, newParent);
+		// TODO: else throw an exception?
 	}
 	
 	public void addChild(FileSystemEntitiy entitiy) {

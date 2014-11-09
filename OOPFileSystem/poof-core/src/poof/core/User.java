@@ -13,8 +13,12 @@ public class User {
 	public User(String username, String name, Directory mainDirParent) {
 		this.name = name;
 		this.username = username;
+		createHomeDirectory(mainDirParent); // set user's home dir to /home/USERNAME/
 		
-		// set user's home dir to /home/USERNAME/
+	}
+	
+	private void createHomeDirectory(Directory mainDirParent) {
+		// set user's home directory to /home/USERNAME/
 		mainDir = new Directory(this.getUsername(), this, mainDirParent);
 		mainDirParent.addChild(mainDir); // add 'usename' dir to /home/
 	}

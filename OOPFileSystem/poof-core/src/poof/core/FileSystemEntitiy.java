@@ -9,6 +9,7 @@ public abstract class FileSystemEntitiy {
 	public FileSystemEntitiy (String name, User owner) {
 		this.name = name;
 		this.owner = owner;
+		this.privacyMode = PrivacyMode.PRIVATE;
 	}
 
 	// Getters

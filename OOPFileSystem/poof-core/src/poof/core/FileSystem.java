@@ -21,22 +21,13 @@ public class FileSystem implements Serializable{
 
 
 	
-	public FileSystem(String name) {
+	public FileSystem(String name, User rootUser) {
 		this.name = name;
 		
 		users = new HashMap<String, User>();
 		
 		// Create a new root directory (has no owner [i.e. the owner is "null"])
-		rootDirectory = new Directory(Directory.ROOT_DIRECTORY_NAME, null, null);
-		
-		// add "home" to roots children (has no owner [i.e. the owner is "null"])
-		Directory homeDirectory = new Directory(Directory.HOME_DIRECTORY_NAME, null, rootDirectory);
-		rootDirectory.addChild(homeDirectory);
-		
-		// Create root user and add him to users list
-		User rootUser = new User(User.ROOT_USERNAME, User.ROOT_NAME, homeDirectory); 
-		users.put(User.ROOT_USERNAME, rootUser);
-		
+		rootDirectory = new Directory(Directory.ROOT_DIRECTORY_NAME, rootUser, null);	
 
 	}
 	
@@ -50,7 +41,7 @@ public class FileSystem implements Serializable{
 	}
 	
 	public void addUser(User user) {
-		// TODO
+		users.put(user.getName(), user);
 	}
 	
 	public void appendDataToFile(File file, String content) {
@@ -111,6 +102,10 @@ public class FileSystem implements Serializable{
 	public User getUser(String username) {
 		// Return a user based on username
 		return users.get(username);
+	}
+	
+	public Directory getRootDirectory() {
+		return rootDirectory;
 	}
 	
 }
