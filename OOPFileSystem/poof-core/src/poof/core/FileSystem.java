@@ -13,9 +13,10 @@ public class FileSystem implements Serializable{
 	 */
 	private static final long serialVersionUID = -4205496443358977682L;
 	
-	String name;
-	Directory rootDirectory;
-	HashMap<String, User> users;
+	private String name;
+	private Directory rootDirectory;
+	private Directory homeDirectory;
+	private HashMap<String, User> users;
 	
 
 
@@ -26,7 +27,7 @@ public class FileSystem implements Serializable{
 		
 		users = new HashMap<String, User>();
 		
-		// Create a new root directory (has no owner [i.e. the owner is "null"])
+		// Create a new root directory (has no parent [i.e. it's the parent of itself])
 		rootDirectory = new Directory(Directory.ROOT_DIRECTORY_NAME, rootUser, null);	
 
 	}
@@ -108,4 +109,13 @@ public class FileSystem implements Serializable{
 		return rootDirectory;
 	}
 	
+	public Directory getHomeDirectory() {
+		return homeDirectory;
+	}
+	
+	// Setters
+	public void setHomeDirectory(Directory dir) {
+		// Set home directory (i.e. the directory where main user directories are created).
+		homeDirectory = dir;
+	}
 }

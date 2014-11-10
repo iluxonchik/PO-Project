@@ -38,7 +38,7 @@ public class Login extends Command<FileSystemManager> /* FIXME: select core type
 	public final void execute() throws DialogException, IOException {
 		//FIXME: implement command
 		
-		String userToLogin = IO.readString(Message.usernameRequest());
+		String userToLogin = IO.readString(poof.textui.main.Message.usernameRequest());
 		
 		try {
 			_receiver.login(userToLogin);

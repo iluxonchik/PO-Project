@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<section name="CommitWizard">
+		<item value="500" key="VWeight2"/>
+		<item value="500" key="VWeight1"/>
+		<item value="400" key="width"/>
+		<item value="false" key="ShowCompare"/>
+		<item value="509" key="height"/>
+	</section>
 	<section name="NewLocationWizard">
 	</section>
 </section>

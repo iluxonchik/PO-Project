@@ -5,6 +5,8 @@ import ist.po.ui.ValidityPredicate;
 import java.util.ArrayList;
 import java.util.List;
 
+import poof.textui.AccessDeniedException;
+import poof.textui.UserExistsException;
 import poof.textui.UserUnknownException;
 
 
@@ -37,7 +39,7 @@ public class FileSystemManager {
 		// TODO
 	}
 	
-	public void creteFile(String filename) {
+	public void createFile(String filename) {
 		// TODO
 	}
 	
@@ -59,11 +61,25 @@ public class FileSystemManager {
 		
 		// add homeDirectory to the structure
 		rootDirectory.addChild(homeDirectory);
+		
+		// set the FileSystem's home directory
+		activeFileSystem.setHomeDirectory(homeDirectory);
 	
 	}
 	
-	public void createUser(String username, String name) {
-		// TODO
+	public void createUser(String username, String name) throws AccessDeniedException, UserExistsException {
+		if (!hasRootPermissions(activeUser))
+			// Logged in user is not root
+			throw new AccessDeniedException(activeUser.getUsername());
+		
+		if (activeFileSystem.getUser(username)!= null)
+			// A user with such username already exists
+			throw new UserExistsException(activeUser.getUsername());
+		
+		// At this point the logged in user is root and the username is free,
+		// so it's safe to create a new user
+		activeFileSystem.addUser(new User(username, name, activeFileSystem.getHomeDirectory()));
+		
 	}
 	
 	public List<String> listAllEntries(String directoryName) {

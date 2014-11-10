@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CommitComments></CommitComments>
+<CommitComments>	<CommitComment>rootUser is now the owner of &quot;home&quot; and &quot;/&quot; directories.
+BUGFIX: users now added using their username and not name as key.
+
+git commit history for a more detailed info.</CommitComment>
+	<CommitComment>Mostly refractoring. git commit history for more detailed info.</CommitComment>
+</CommitComments>
