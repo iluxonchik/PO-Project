@@ -145,6 +145,6 @@ public class FileSystemManager {
 	}
 
 	private boolean hasRootPermissions(User user) {
-		return (user.equals(activeFileSystem.getUser(User.ROOT_USERNAME)));
+		return (user == activeFileSystem.getUser(User.ROOT_USERNAME));
 	}
 }

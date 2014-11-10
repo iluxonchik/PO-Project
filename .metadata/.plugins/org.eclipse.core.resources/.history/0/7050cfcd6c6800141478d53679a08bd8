@@ -140,11 +140,11 @@ public class FileSystemManager {
 	private boolean hasPrivatePermissions(User user, FileSystemEntitiy entitiy) {
 		return (entitiy.getPrivacyMode().equals(PrivacyMode.PUBLIC)) ||  // entitiy is public
 				(user.equals(activeFileSystem.getUser(User.ROOT_USERNAME))) || // user is root
-				(user.equals(entitiy.getOwner())); // user is owner
+				(user == entitiy.getOwner()); // user is owner
 				
 	}
 
 	private boolean hasRootPermissions(User user) {
-		return (user.equals(activeFileSystem.getUser(User.ROOT_USERNAME)));
+		return (user == activeFileSystem.getUser(User.ROOT_USERNAME));
 	}
 }
