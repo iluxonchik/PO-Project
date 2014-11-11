@@ -1,1 +1,5 @@
 1415577850600	Move file
+1415696536188	Delete element
+1415697725342	Rename type 'UserExistsException'
+1415697736647	Rename type 'UserUnknownException'
+1415697751827	Rename type 'AccessDeniedException'

@@ -17,9 +17,7 @@ public abstract class FileSystemEntitiy {
 		return name;
 	}
 
-	public int getSize() {
-		return size;
-	}
+	public abstract int getSize();
 
 	public User getOwner() {
 		return owner;
@@ -32,6 +30,20 @@ public abstract class FileSystemEntitiy {
 	// Setters
 	public void setOwner (User newOwner) {
 		this.owner = newOwner;
+	}
+	
+	
+	@Override
+	public String toString() {
+		String entitiyStr = "";
+		if (privacyMode == PrivacyMode.PRIVATE)
+			entitiyStr += "privado";
+		else
+			entitiyStr += "público";
+		
+		entitiyStr += owner.getUsername() + " " + getSize() + " " + name;
+			
+		return entitiyStr;
 	}
 
 	

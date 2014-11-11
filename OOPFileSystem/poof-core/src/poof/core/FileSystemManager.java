@@ -1,15 +1,9 @@
 package poof.core;
 
-import ist.po.ui.ValidityPredicate;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-
-import poof.textui.AccessDeniedException;
-import poof.textui.UserExistsException;
-import poof.textui.UserUnknownException;
 
 
 public class FileSystemManager {
@@ -69,14 +63,14 @@ public class FileSystemManager {
 	
 	}
 	
-	public void createUser(String username, String name) throws AccessDeniedException, UserExistsException {
+	public void createUser(String username, String name) throws AccessDeniedCoreException, UserExistsCoreException {
 		if (!hasRootPermissions(activeUser))
 			// Logged in user is not root
-			throw new AccessDeniedException(activeUser.getUsername());
+			throw new AccessDeniedCoreException();
 		
 		if (activeFileSystem.getUser(username)!= null)
 			// A user with such username already exists
-			throw new UserExistsException(activeUser.getUsername());
+			throw new UserExistsCoreException();
 		
 		// At this point the logged in user is root and the username is free,
 		// so it's safe to create a new user
@@ -104,13 +98,13 @@ public class FileSystemManager {
 		// TODO
 	}
 	
-	public void login(String username) throws UserUnknownException {
+	public void login(String username) throws UserUnknownCoreException {
 		
 		User userToLogin = activeFileSystem.getUser(username);
 		
 		if(userToLogin ==  null)
 			// If user doesn't exist, throw an exception
-			throw new UserUnknownException(username);
+			throw new UserUnknownCoreException();
 		setActiveUser(userToLogin);
 	}
 	

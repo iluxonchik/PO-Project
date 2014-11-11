@@ -5,4 +5,10 @@ public class File extends FileSystemEntitiy {
 	
 	public File(String name, User owner) { super (name, owner); }
 
+	@Override
+	public int getSize() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

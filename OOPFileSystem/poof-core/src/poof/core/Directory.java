@@ -74,5 +74,11 @@ public class Directory extends FileSystemEntitiy {
 		// Used to add child and parent in Directory instantiation.
 		children.put(name, dir);
 	}
+
+	@Override
+	public int getSize() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }

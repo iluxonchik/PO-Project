@@ -1,4 +1,4 @@
-/** @version $Id: CreateUser.java,v 1.5 2014/11/10 20:54:47 ist178134 Exp $ */
+/** @version $Id: CreateUser.java,v 1.6 2014/11/11 09:26:49 ist178134 Exp $ */
 package poof.textui.user;
 
 import static ist.po.ui.Dialog.IO;
@@ -9,11 +9,19 @@ import ist.po.ui.ValidityPredicate;
 import java.io.IOException;
 
 
+
+
+
+
 // FIXME: import project-specific classes
 import poof.core.FileSystemManager;
 import poof.core.FileSystem; // For constants
 import poof.core.User;
-import poof.textui.main.Message;
+import poof.core.UserExistsCoreException;
+import poof.core.AccessDeniedCoreException;
+import poof.textui.AccessDeniedException;
+import poof.textui.UserExistsException;
+import poof.textui.user.Message;
 /**
  * §2.3.1.
  */
@@ -33,11 +41,12 @@ public class CreateUser extends Command <FileSystemManager> /* FIXME: select cor
 		User activeUser = _receiver.getActiveUser();
 		
 		// request new users username and name
-		username = IO.readString(poof.textui.user.Message.usernameRequest());
-		name = IO.readString(poof.textui.user.Message.nameRequest());
-		
-		_receiver.createUser(username, name);
-
+		username = IO.readString(Message.usernameRequest());
+		name = IO.readString(Message.nameRequest());
+		try {
+			_receiver.createUser(username, name);
+		} catch (AccessDeniedCoreException e) { throw new AccessDeniedException(username); }
+		catch (UserExistsCoreException e) { throw new UserExistsException(username); }
 		//NOTE: Only root user can create new users
 	}
 }

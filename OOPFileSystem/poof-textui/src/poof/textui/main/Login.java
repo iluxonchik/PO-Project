@@ -1,4 +1,4 @@
-/** @version $Id: Login.java,v 1.4 2014/11/10 20:54:47 ist178134 Exp $ */
+/** @version $Id: Login.java,v 1.5 2014/11/11 09:26:49 ist178134 Exp $ */
 package poof.textui.main;
 
 import static ist.po.ui.Dialog.IO;
@@ -8,9 +8,12 @@ import ist.po.ui.ValidityPredicate;
 
 import java.io.IOException;
 
+
 // FIXME: import project-specific classes
 import poof.core.FileSystemManager;
+import poof.core.UserUnknownCoreException;
 import poof.textui.UserUnknownException;
+import poof.textui.main.Message;
 
 /**
  * §2.1.2.
@@ -38,11 +41,11 @@ public class Login extends Command<FileSystemManager> /* FIXME: select core type
 	public final void execute() throws DialogException, IOException {
 		//FIXME: implement command
 		
-		String userToLogin = IO.readString(poof.textui.main.Message.usernameRequest());
+		String userToLogin = IO.readString(Message.usernameRequest());
 		
 		try {
 			_receiver.login(userToLogin);
-		} catch (UserUnknownException e) {
+		} catch (UserUnknownCoreException e) {
 			throw new UserUnknownException(userToLogin);
 		}
 
