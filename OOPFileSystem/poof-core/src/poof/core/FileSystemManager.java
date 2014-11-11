@@ -39,6 +39,21 @@ public class FileSystemManager {
 		// TODO
 	}
 	
+	public void createDirectory(String name) throws AccessDeniedCoreException, EntryExistsCoreException{
+		// TODO
+		
+		// first, check if user has permissions
+		if(!hasPrivatePermissions(activeUser, activeDirectory))
+			throw new AccessDeniedCoreException();
+		
+		if(activeDirectory.getChild(name)!=null)
+			// directory with such name already exists
+			throw new EntryExistsCoreException();
+		
+		// at this point it's safe to add a new directory
+		activeDirectory.addChild(new Directory(name, activeUser, activeDirectory));
+	}
+	
 	public void createFileSystem() {
 		// new FileSystems name is null (file system is not associated to any file)
 
@@ -83,9 +98,13 @@ public class FileSystemManager {
 		return new ArrayList<String>();
 	}
 	
-	public String listEntry(String entryName) {
-		// TODO
-		return new String();
+	public String listEntry(String entryName) throws EntryUnknownCoreException {
+		
+		Directory child = activeDirectory.getChild(entryName);
+		if (child == null)
+			// no directory with such name found
+			throw new EntryUnknownCoreException();
+		return child.toString(); 
 	}
 	
 	public Collection<User> listUsers() {

@@ -17,6 +17,9 @@ public class Directory extends FileSystemEntitiy {
 	
 	public Directory(String name, User owner, Directory parent) { 
 		super(name, owner);
+		
+		entitiyType = EntitiyType.DIRECTORY;
+		
 		children = new HashMap<String, FileSystemEntitiy>();
 		
 		if (parent == null)
@@ -79,6 +82,11 @@ public class Directory extends FileSystemEntitiy {
 	public int getSize() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	@Override
+	public String toString() {
+		return "d " + super.toString();
 	}
 	
 }

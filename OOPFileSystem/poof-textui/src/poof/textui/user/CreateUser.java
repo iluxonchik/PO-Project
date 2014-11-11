@@ -15,8 +15,6 @@ import java.io.IOException;
 
 // FIXME: import project-specific classes
 import poof.core.FileSystemManager;
-import poof.core.FileSystem; // For constants
-import poof.core.User;
 import poof.core.UserExistsCoreException;
 import poof.core.AccessDeniedCoreException;
 import poof.textui.AccessDeniedException;
@@ -38,7 +36,6 @@ public class CreateUser extends Command <FileSystemManager> /* FIXME: select cor
 	public final void execute() throws DialogException, IOException {
 		//FIXME: implement command
 		String username, name;
-		User activeUser = _receiver.getActiveUser();
 		
 		// request new users username and name
 		username = IO.readString(Message.usernameRequest());

@@ -5,6 +5,7 @@ public abstract class FileSystemEntitiy {
 	protected int size;
 	protected User owner;
 	protected PrivacyMode privacyMode;
+	protected EntitiyType entitiyType;
 	
 	public FileSystemEntitiy (String name, User owner) {
 		this.name = name;
@@ -27,6 +28,10 @@ public abstract class FileSystemEntitiy {
 		return privacyMode;
 	}
 	
+	public EntitiyType getentitiyType() {
+		return entitiyType;
+	}
+	
 	// Setters
 	public void setOwner (User newOwner) {
 		this.owner = newOwner;
@@ -37,9 +42,9 @@ public abstract class FileSystemEntitiy {
 	public String toString() {
 		String entitiyStr = "";
 		if (privacyMode == PrivacyMode.PRIVATE)
-			entitiyStr += "privado";
+			entitiyStr += "-";
 		else
-			entitiyStr += "público";
+			entitiyStr += "w";
 		
 		entitiyStr += owner.getUsername() + " " + getSize() + " " + name;
 			

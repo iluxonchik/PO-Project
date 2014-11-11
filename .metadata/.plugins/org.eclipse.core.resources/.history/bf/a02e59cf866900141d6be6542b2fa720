@@ -1,0 +1,6 @@
+package poof.textui.shell;
+
+
+public class EntryUnknownCoreException extends FileSystemManagerException {
+
+}
