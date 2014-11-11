@@ -1,116 +1,34 @@
-package poof.core;
+/** @version $Id: Shell.java,v 1.2 2014/11/08 20:24:15 ist178134 Exp $ */
+package poof.textui;
 
-import java.io.Serializable;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import static ist.po.ui.Dialog.IO;
 
 
-public class FileSystem implements Serializable{
+import java.io.IOException;
+
+// FIXME: import project-specific classes
+import poof.core.FileSystemManager;
+
+/**
+ * Class that starts the application's textual interface.
+ */
+public class Shell {
 	/**
-	 * Generated serialVersionUID
+	 * @param args
 	 */
-	private static final long serialVersionUID = -4205496443358977682L;
-	
-	String name;
-	Directory rootDirectory;
-	HashMap<String, User> users;
-	
+	public static void main(String[] args) {
+		// FIXME: create and initialize core objects
 
-
-
-	
-	public FileSystem(String name) {
-		this.name = name;
-		
-		users = new HashMap<String, User>();
-		
-		// Create a new root directory (has no owner [i.e. the owner is "null"])
-		rootDirectory = new Directory(Directory.ROOT_DIRECTORY_NAME, null, null);
-		
-		// add "home" to roots children (has no owner [i.e. the owner is "null"])
-		Directory homeDirectory = new Directory(Directory.HOME_DIRECTORY_NAME, null, rootDirectory);
-		rootDirectory.addChild(homeDirectory);
-		
-		// Create root user and add him to users list
-		User rootUser = new User(User.ROOT_USERNAME, User.ROOT_NAME, homeDirectory); 
-		users.put(User.ROOT_USERNAME, rootUser);
-		
-
-	}
-	
-	public String getDirectoryPath(Directory dir) {
-		// Get directory's path recursively
-		
-		if (dir.getName() == Directory.ROOT_DIRECTORY_NAME)
-			return "/";
-		
-		return dir.getParent().getName() + Directory.DIR_SEPARATOR + name;
-	}
-	
-	public void addUser(User user) {
-		// TODO
-	}
-	
-	public void appendDataToFile(File file, String content) {
-		// TODO
-	}
-	
-	public void changeEntryPermissions(FileSystemEntitiy entry, PrivacyMode privacyMode) {
-		// TODO
-	}
-	
-	public void changeOwner(FileSystemEntitiy entry, User newOwner) {
-		if (!entry.getOwner().equals(newOwner)) {
-			entry.setOwner(newOwner);
+		String datafile = System.getProperty("import"); //$NON-NLS-1$
+		if (datafile != null) {
+			// FIXME: import text data file
 		}
+		
+		// TODO: Create new FileSystemManager
+		FileSystemManager fsManager = new FileSystemManager();
+		
+		poof.textui.main.MenuBuilder.menuFor(fsManager /*FIXME: core object (receiver) argument*/);
+		IO.closeDown();
 	}
-	
-	// NOTE: Use visitor?
-	public void checkPermissions(User user) {
-		// TODO ?
-	}
-	
-	public void createFile(String name, Directory dir, User owner) {
-		// TODO
-	}
-	
-	public List<String> listAllEntries(Directory dir) {
-		// TODO
-		return new ArrayList<String> ();
-	}
-	
-	public String listEntry(FileSystemEntitiy entry) {
-		// TODO
 
-		return new String();
-	}
-	
-	public List<String> listUsers() {
-		// TODO
-		return new ArrayList<String>();
-	}
-	
-	public void removeEntry(FileSystemEntitiy entry) {
-		// TODO
-	}
-	
-	
-	public void removeUser(String username) {
-		// TODO
-	}
-	
-	public String showFileData(File file) {
-		// TODO
-		return new String();
-	}
-	
-	
-	// Getters
-	public User getUser(String username) {
-		// Return a user based on username
-		return users.get(username);
-	}
-	
 }

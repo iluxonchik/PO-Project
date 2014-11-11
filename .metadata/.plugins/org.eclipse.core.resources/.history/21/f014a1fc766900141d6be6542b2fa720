@@ -26,7 +26,7 @@ public class MenuOpenShell extends Command<FileSystemManager> /* FIXME: select c
 			@Override
 			public boolean isValid() {
 				// TODO Auto-generated method stub
-				return receiver.getActiveUser() != null; // only show if there is a logged in user
+				return receiver.getActiveFileSystem() != null; // only show if there is an active FileSystem
 			}
 			
 		} /*FIXME: validity argument*/);
