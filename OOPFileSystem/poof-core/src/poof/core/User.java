@@ -27,13 +27,17 @@ public class User {
 	public String getName() { return name; }
 	public String getUsername() { return username; }
 	public Directory getMainDirectory() { return this.mainDir; }
-	
-	// TODO: toString
+
 	
 	@Override
 	public boolean equals(Object obj) {
 		if (obj.getClass() != this.getClass())
 			return false; // different classes
 		return this.username == ((User)obj).username;
+	}
+	
+	@Override
+	public String toString() {
+		return username + ":" + name + ":" + mainDir.getAbsolutePath();
 	}
 }

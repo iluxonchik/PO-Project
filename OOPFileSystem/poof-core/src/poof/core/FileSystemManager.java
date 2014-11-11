@@ -3,7 +3,9 @@ package poof.core;
 import ist.po.ui.ValidityPredicate;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import poof.textui.AccessDeniedException;
 import poof.textui.UserExistsException;
@@ -92,10 +94,11 @@ public class FileSystemManager {
 		return new String();
 	}
 	
-	public List<String> listUsers() {
-		// TODO
-		return new ArrayList<String>();
-	}
+	public Collection<User> listUsers() {
+		
+		Map<String, User> sortedUserMap = activeFileSystem.listUsers();
+		return sortedUserMap.values();
+		}
 	
 	public void loadFileSystem(String fileName) {
 		// TODO
@@ -154,6 +157,9 @@ public class FileSystemManager {
 	}
 	
 	private boolean hasPrivatePermissions(User user, FileSystemEntitiy entitiy) {
+		if (user == null || entitiy == null)
+			return false;
+		
 		return (entitiy.getPrivacyMode().equals(PrivacyMode.PUBLIC)) ||  // entitiy is public
 				(user.equals(activeFileSystem.getUser(User.ROOT_USERNAME))) || // user is root
 				(user.equals(entitiy.getOwner())); // user is owner
@@ -161,6 +167,9 @@ public class FileSystemManager {
 	}
 
 	private boolean hasRootPermissions(User user) {
+		if (user == null) 
+			return false;
+		
 		return (user.equals(activeFileSystem.getUser(User.ROOT_USERNAME)));
 	}
 }

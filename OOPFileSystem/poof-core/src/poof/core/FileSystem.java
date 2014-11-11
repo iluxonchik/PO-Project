@@ -1,10 +1,11 @@
 package poof.core;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 
 public class FileSystem implements Serializable{
@@ -15,12 +16,9 @@ public class FileSystem implements Serializable{
 	
 	private String name;
 	private Directory rootDirectory;
-	private Directory homeDirectory;
+	private Directory homeDirectory; // convenient to have when creating new users
 	private HashMap<String, User> users;
 	
-
-
-
 	
 	public FileSystem(String name, User rootUser) {
 		this.name = name;
@@ -33,12 +31,7 @@ public class FileSystem implements Serializable{
 	}
 	
 	public String getDirectoryPath(Directory dir) {
-		// Get directory's path recursively
-		
-		if (dir.getName() == Directory.ROOT_DIRECTORY_NAME)
-			return "/";
-		
-		return dir.getParent().getName() + Directory.DIR_SEPARATOR + name;
+		return dir.getAbsolutePath();
 	}
 	
 	public void addUser(User user) {
@@ -79,9 +72,10 @@ public class FileSystem implements Serializable{
 		return new String();
 	}
 	
-	public List<String> listUsers() {
-		// TODO
-		return new ArrayList<String>();
+	public Map<String, User> listUsers() {
+		// build a map sorted by keys
+		Map<String, User> sortedUserMap = new TreeMap<String, User>(users);
+		return sortedUserMap;
 	}
 	
 	public void removeEntry(FileSystemEntitiy entry) {

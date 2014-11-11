@@ -4,4 +4,8 @@
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="poof.core.FileSystem"/>
 <fullyQualifiedTypeName name="poof.core.User"/>
+<fullyQualifiedTypeName name="poof.textui.AccessDeniedException"/>
+<fullyQualifiedTypeName name="poof.textui.UserExistsException"/>
+<fullyQualifiedTypeName name="poof.textui.main.Message"/>
+<fullyQualifiedTypeName name="poof.textui.user.Message"/>
 </qualifiedTypeNameHistroy>
