@@ -14,10 +14,6 @@ public abstract class FileSystemEntitiy {
 		this.privacyMode = PrivacyMode.PRIVATE;
 	}
 	
-	
-	public boolean isCdiable() {
-		return entitiyType == EntitiyType.DIRECTORY;
-	}
 
 	// Getters
 	public String getName() {

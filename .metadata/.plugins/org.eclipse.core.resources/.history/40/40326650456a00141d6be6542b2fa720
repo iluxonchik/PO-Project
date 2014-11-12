@@ -33,10 +33,6 @@ public class Directory extends FileSystemEntitiy {
 		
 	}
 	
-	public Directory (String name, Directory parent) {
-		this(name, parent.getOwner(), parent);
-	}
-	
 	// Getters
 	public Directory getParent() {
 		// NOTE: DOWNCAST! DANGER!
@@ -87,7 +83,6 @@ public class Directory extends FileSystemEntitiy {
 	}
 	
 	private void updateSize() {
-		// dir size = own size + parent size
 		size = ENTRY_COST * children.size();
 	}
 

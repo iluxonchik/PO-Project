@@ -39,13 +39,9 @@ public class FileSystemManager {
 		if (!directoryExists(dirName)) 
 			throw new EntryUnknownCoreException();
 		
-		FileSystemEntitiy entitiy = activeDirectory.getChild(dirName);
+		FileSystemEntitiy = activeDirectory.getChild(dirName);
 		
-		if(!entitiy.isCdiable())
-			throw new IsNotDirectoryCoreException();
-		
-		// Everything is ok, change the active directory
-		activeDirectory = (Directory)entitiy;
+		if()
 		
 	}
 	
@@ -54,7 +50,9 @@ public class FileSystemManager {
 			return false;
 		return true;
 	}
-
+	public boolean isCdiable(FileSystemEntitiy entitiy) {
+		return entitiy.getentitiyType() == EntitiyType.DIRECTORY:
+	}
 	
 	public void createFile(String filename) {
 		// TODO

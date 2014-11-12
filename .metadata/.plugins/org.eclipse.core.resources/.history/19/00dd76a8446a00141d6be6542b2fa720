@@ -10,13 +10,11 @@ import java.io.IOException;
 
 
 
-
 import poof.core.EntryUnknownCoreException;
 // FIXME: import project-specific classes
 import poof.core.FileSystemManager;
 import poof.core.IsNotDirectoryCoreException;
 import poof.textui.EntryUnknownException;
-import poof.textui.IsNotDirectoryException;
 import poof.textui.shell.MenuEntry;
 import poof.textui.shell.Message;
 
@@ -35,12 +33,15 @@ public class ChangeWorkingDirectory extends Command<FileSystemManager> /* FIXME:
 	@Override
 	public final void execute() throws DialogException, IOException {
 		//FIXME: implement command
-		String dirName = IO.readString(Message.directoryRequest());
-
+		String dirName = Message.directoryRequest();
+		
 		try {
 			_receiver.changeWorkingDirectory(dirName);
-		} catch (EntryUnknownCoreException e) { throw new EntryUnknownException(dirName); } 
-		catch (IsNotDirectoryCoreException e) {	throw new IsNotDirectoryException(dirName); }
+		} catch (EntryUnknownCoreException e) {
+			throw new EntryUnknownException(dirName);
+		} catch (IsNotDirectoryCoreException e) {
+			throw new IsNotDirectoryException(dirName);
+		}
 	}
 
 }

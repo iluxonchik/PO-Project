@@ -44,8 +44,6 @@ public class FileSystemManager {
 		if(!entitiy.isCdiable())
 			throw new IsNotDirectoryCoreException();
 		
-		// Everything is ok, change the active directory
-		activeDirectory = (Directory)entitiy;
 		
 	}
 	

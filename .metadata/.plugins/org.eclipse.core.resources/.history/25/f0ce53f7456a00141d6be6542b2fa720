@@ -88,11 +88,14 @@ public class Directory extends FileSystemEntitiy {
 	
 	private void updateSize() {
 		// dir size = own size + parent size
-		size = ENTRY_COST * children.size();
+		size = ENTRY_COST * children.size() + getParent().getSize();
 	}
 
 	@Override
 	public int getSize() {
+		if (children.size() == 2) {
+			return 2 * ENTRY_COST;
+		}
 		updateSize();
 		return size;
 	}

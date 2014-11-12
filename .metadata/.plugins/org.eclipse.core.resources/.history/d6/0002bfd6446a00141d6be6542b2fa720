@@ -36,7 +36,7 @@ public class ChangeWorkingDirectory extends Command<FileSystemManager> /* FIXME:
 	public final void execute() throws DialogException, IOException {
 		//FIXME: implement command
 		String dirName = IO.readString(Message.directoryRequest());
-
+		
 		try {
 			_receiver.changeWorkingDirectory(dirName);
 		} catch (EntryUnknownCoreException e) { throw new EntryUnknownException(dirName); } 

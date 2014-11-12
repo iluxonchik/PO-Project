@@ -45,7 +45,7 @@ public class FileSystemManager {
 			throw new IsNotDirectoryCoreException();
 		
 		// Everything is ok, change the active directory
-		activeDirectory = (Directory)entitiy;
+		activeDirectory = entitiy;
 		
 	}
 	
