@@ -26,18 +26,8 @@ public class FileSystemManager {
 		// TODO
 	}
 	
-	public void changeEntryPermissions(String entryName, PrivacyMode privacyMode) 
-			throws EntryUnknownCoreException, AccessDeniedCoreException {
-		
-		if (!entryExists(entryName))
-			throw new EntryUnknownCoreException();
-		
-		FileSystemEntitiy entitiy = activeDirectory.getChild(entryName);
-		
-		if (!hasPrivatePermissions(activeUser, entitiy))
-			throw new AccessDeniedCoreException();
-		
-		entitiy.setPrivacyMode(privacyMode);
+	public void changeEntryPermissions(String entryName, PrivacyMode privacyMode) {
+		// TODO
 	}
 	
 	public void changeOwner(String entryName, String newOwnerUsername) {
@@ -46,7 +36,7 @@ public class FileSystemManager {
 	
 	public void  changeWorkingDirectory(String dirName) throws EntryUnknownCoreException, IsNotDirectoryCoreException {
 		
-		if (!entryExists(dirName)) 
+		if (!directoryExists(dirName)) 
 			throw new EntryUnknownCoreException();
 		
 		FileSystemEntitiy entitiy = activeDirectory.getChild(dirName);
@@ -59,8 +49,8 @@ public class FileSystemManager {
 		
 	}
 	
-	public boolean entryExists(String entryName) {
-		if(activeDirectory.getChild(entryName) == null)
+	public boolean directoryExists(String dirName) {
+		if(activeDirectory.getChild(dirName) == null)
 			return false;
 		return true;
 	}

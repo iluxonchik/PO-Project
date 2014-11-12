@@ -47,18 +47,14 @@ public abstract class FileSystemEntitiy {
 		name = newName;
 	}
 	
-	public void setPrivacyMode(PrivacyMode privacyMode) {
-		this.privacyMode = privacyMode;
-	}
-	
 	
 	@Override
 	public String toString() {
 		String entitiyStr = "";
 		if (privacyMode == PrivacyMode.PRIVATE)
-			entitiyStr += "- ";
+			entitiyStr += "-";
 		else
-			entitiyStr += "w ";
+			entitiyStr += "w";
 		
 		entitiyStr += owner.getUsername() + " " + getSize() + " " + name;
 			

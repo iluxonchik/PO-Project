@@ -10,15 +10,11 @@ import java.io.IOException;
 
 
 
-
-
 import poof.core.AccessDeniedCoreException;
 import poof.core.EntryUnknownCoreException;
 // FIXME: import project-specific classes
 import poof.core.FileSystemManager;
 import poof.core.PrivacyMode;
-import poof.textui.AccessDeniedException;
-import poof.textui.EntryUnknownException;
 import poof.textui.shell.MenuEntry;
 import poof.textui.shell.Message;
 
@@ -52,11 +48,10 @@ public class ChangeEntryPermissions extends Command<FileSystemManager> /* FIXME:
 			_receiver.changeEntryPermissions(entryName, privacyMode);
 		} catch (EntryUnknownCoreException e) {
 			// TODO Auto-generated catch block
-			throw new EntryUnknownException(entryName);
+			throw new EntryUnknownException;
 		} catch (AccessDeniedCoreException e) {
 			// TODO Auto-generated catch block
-			String activeUsername = _receiver.getActiveUser().getName();
-			throw new AccessDeniedException(activeUsername);
+			e.printStackTrace();
 		}
 	}
 

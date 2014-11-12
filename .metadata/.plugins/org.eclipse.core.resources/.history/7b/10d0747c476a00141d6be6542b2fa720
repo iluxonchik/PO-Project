@@ -32,12 +32,8 @@ public class FileSystemManager {
 		if (!entryExists(entryName))
 			throw new EntryUnknownCoreException();
 		
-		FileSystemEntitiy entitiy = activeDirectory.getChild(entryName);
-		
-		if (!hasPrivatePermissions(activeUser, entitiy))
+		if (!hasPrivatePermissions(entryName, activeUser))
 			throw new AccessDeniedCoreException();
-		
-		entitiy.setPrivacyMode(privacyMode);
 	}
 	
 	public void changeOwner(String entryName, String newOwnerUsername) {
