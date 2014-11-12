@@ -1,75 +1,31 @@
-package poof.core;
+/** @version $Id: CreateDirectory.java,v 1.2 2014/11/08 20:24:14 ist178134 Exp $ */
+package poof.textui.shell;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import static ist.po.ui.Dialog.IO;
+import ist.po.ui.Command;
+import ist.po.ui.DialogException;
+import ist.po.ui.ValidityPredicate;
 
-public class FileSystem {
-	String name;
-	Directory rootDirectory;
-	HashMap<String, User> users;
-	
-	public FileSystem(String name) {
-		this.name = name;
-		// TDODO: Create root user, etc
-	}
-	
-	public void addUser(User user) {
-		// TODO
-	}
-	
-	public void appendDataToFile(File file, String content) {
-		// TODO
-	}
-	
-	public void changeEntryPermissions(FileSystemEntity entry, PrivacyMode privacyMode) {
-		// TODO
-	}
-	
-	public void changeOwner(FileSystemEntity entry, User newOwner) {
-		if (!entry.getOwner().equals(newOwner)) {
-			entry.setOwner(newOwner);
-		}
-	}
-	
-	// NOTE: Use visitor?
-	public void checkPermissions(User user) {
-		// TODO ?
-	}
-	
-	public void createFile(String name, Directory dir, User owner) {
-		// TODO
-	}
-	
-	public List<String> listAllEntries(Directory dir) {
-		// TODO
-		return new ArrayList<String> ();
-	}
-	
-	public String listEntry(FileSystemEntity entry) {
-		// TODO
+import java.io.IOException;
 
-		return new String();
+// FIXME: import project-specific classes
+import poof.core.FileSystemManager;
+
+/**
+ * §2.2.6.
+ */
+public class CreateDirectory extends Command<FileSystemManager> /* FIXME: select core type for receiver */ {
+	/**
+	 * @param receiver
+	 */
+	public CreateDirectory(FileSystemManager reciever /*FIXME: add receiver declaration: type must agree with the above*/) {
+		super(MenuEntry.MKDIR, reciever /*FIXME: receiver argument*/);
 	}
-	
-	public List<String> listUsers() {
-		// TODO
-		return new ArrayList<String>();
+
+	/** @see ist.po.ui.Command#execute() */
+	@Override
+	public final void execute() throws DialogException, IOException {
+		//FIXME: implement command
 	}
-	
-	public void removeEntry(FileSystemEntity entry) {
-		// TODO
-	}
-	
-	
-	public void removeUser(String username) {
-		// TODO
-	}
-	
-	public String showFileData(File file) {
-		// TODO
-		return new String();
-	}
-	
-	
+
 }

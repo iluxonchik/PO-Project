@@ -1,29 +1,51 @@
-/** @version $Id: ListAllUsers.java,v 1.1 2014/10/01 22:45:55 david Exp $ */
-package poof.textui.user;
+package poof.core;
 
-import static ist.po.ui.Dialog.IO;
-import ist.po.ui.Command;
-import ist.po.ui.DialogException;
-import ist.po.ui.ValidityPredicate;
-
-import java.io.IOException;
-
-// FIXME: import project-specific classes
-
-/**
- * Â§2.3.2.
- */
-public class ListAllUsers extends Command<FIXME> /* FIXME: select core type for receiver */ {
-	/**
-	 * @param receiver
-	 */
-	public ListAllUsers(FIXME /*FIXME: add receiver declaration: type must agree with the above*/) {
-		super(MenuEntry.LIST_USERS, FIXME /*FIXME: receiver argument*/);
+public abstract class FileSystemEntitiy {
+	protected String name;
+	protected int size;
+	protected User owner;
+	protected PrivacyMode privacyMode;
+	
+	public FileSystemEntitiy (String name, User owner) {
+		this.name = name;
+		this.owner = owner;
+		this.privacyMode = PrivacyMode.PRIVATE;
 	}
 
-	/** @see ist.po.ui.Command#execute() */
+	// Getters
+	public String getName() {
+		return name;
+	}
+
+	public abstract int getSize();
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public PrivacyMode getPrivacyMode() {
+		return privacyMode;
+	}
+	
+	// Setters
+	public void setOwner (User newOwner) {
+		this.owner = newOwner;
+	}
+	
+	
 	@Override
-	public final void execute() throws DialogException, IOException  {
-		//FIXME: implement command
+	public String toString() {
+		String entitiyStr = "";
+		if (privacyMode == PrivacyMode.PRIVATE)
+			entitiyStr += "privado";
+		else
+			entitiyStr += "público";
+		
+		entitiyStr += owner.getUsername() + " " + getSize() + " " + name;
+			
+		return entitiyStr;
 	}
+
+	
+	
 }

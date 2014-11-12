@@ -52,6 +52,10 @@ public class Directory extends FileSystemEntitiy {
 		return getParent().getAbsolutePath() + Directory.DIR_SEPARATOR + name;
 	} 
 	
+	public HashMap<String, FileSystemEntitiy> getChildren() {
+		return children;
+	}
+	
 	// Setters
 	public void setParent(Directory newParent) {
 		// DANGER! Can break the entire structure, therefore will only change 
@@ -77,15 +81,20 @@ public class Directory extends FileSystemEntitiy {
 		// Used to add child and parent in Directory instantiation.
 		children.put(name, dir);
 	}
+	
+	private void updateSize() {
+		size = ENTRY_COST * children.size();
+	}
 
 	@Override
 	public int getSize() {
-		// TODO Auto-generated method stub
-		return 0;
+		updateSize();
+		return size;
 	}
 	
 	@Override
 	public String toString() {
+		updateSize();
 		return "d " + super.toString();
 	}
 	

@@ -12,6 +12,9 @@ public class FileSystemManager {
 	private FileSystem activeFileSystem;
 	private Directory activeDirectory;
 	
+	private final String PARENT_DIR_NAME = "..";
+	private final String THIS_DIR_NAME = ".";
+	
 	public FileSystemManager() {
 		activeFileSystem = null;
 		activeUser = null;
@@ -75,6 +78,9 @@ public class FileSystemManager {
 		
 		// set the FileSystem's home directory
 		activeFileSystem.setHomeDirectory(homeDirectory);
+		
+		// login the root user
+		setActiveUser(rootUser);
 	
 	}
 	
@@ -93,9 +99,19 @@ public class FileSystemManager {
 		
 	}
 	
-	public List<String> listAllEntries(String directoryName) {
+	public Collection<FileSystemEntitiy> listAllEntries() {
 		// TODO
-		return new ArrayList<String>();
+		Map<String, FileSystemEntitiy> sortedChildrenMap = activeFileSystem.listAllEntries(activeDirectory);
+		// Now, remove the parent and the self references, substituting them for dummy ones 
+		// this is only done for the purposes of printing them with correct names ( .. and .)
+		
+		Directory tempDir = (Directory)sortedChildrenMap.remove(PARENT_DIR_NAME); // remove parent
+		sortedChildrenMap.put(PARENT_DIR_NAME, new Directory(PARENT_DIR_NAME, tempDir.owner, tempDir.getParent()));
+		
+		tempDir = (Directory)sortedChildrenMap.remove(THIS_DIR_NAME);
+		sortedChildrenMap.put(THIS_DIR_NAME, new Directory(THIS_DIR_NAME, tempDir.owner, tempDir.getParent()));
+		
+		return sortedChildrenMap.values();
 	}
 	
 	public String listEntry(String entryName) throws EntryUnknownCoreException {

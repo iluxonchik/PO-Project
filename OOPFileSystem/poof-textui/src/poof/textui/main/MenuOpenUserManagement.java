@@ -1,4 +1,4 @@
-/** @version $Id: MenuOpenUserManagement.java,v 1.3 2014/11/08 23:59:41 ist178134 Exp $ */
+/** @version $Id: MenuOpenUserManagement.java,v 1.4 2014/11/11 10:16:46 ist178134 Exp $ */
 package poof.textui.main;
 
 import static ist.po.ui.Dialog.IO;

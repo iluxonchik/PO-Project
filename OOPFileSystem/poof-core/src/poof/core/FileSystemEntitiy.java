@@ -7,11 +7,13 @@ public abstract class FileSystemEntitiy {
 	protected PrivacyMode privacyMode;
 	protected EntitiyType entitiyType;
 	
+	
 	public FileSystemEntitiy (String name, User owner) {
 		this.name = name;
 		this.owner = owner;
 		this.privacyMode = PrivacyMode.PRIVATE;
 	}
+	
 
 	// Getters
 	public String getName() {
@@ -35,6 +37,10 @@ public abstract class FileSystemEntitiy {
 	// Setters
 	public void setOwner (User newOwner) {
 		this.owner = newOwner;
+	}
+	
+	public void setName(String newName) {
+		name = newName;
 	}
 	
 	
