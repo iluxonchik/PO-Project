@@ -94,6 +94,10 @@ public class FileSystem implements Serializable{
 		return new String();
 	}
 	
+	public boolean isAssociated() {
+		return name != null;
+	}
+	
 	
 	// Getters
 	public User getUser(String username) {
@@ -109,9 +113,17 @@ public class FileSystem implements Serializable{
 		return homeDirectory;
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
 	// Setters
 	public void setHomeDirectory(Directory dir) {
 		// Set home directory (i.e. the directory where main user directories are created).
 		homeDirectory = dir;
+	}
+	
+	public void setName (String name) {
+		this.name = name;
 	}
 }

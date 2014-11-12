@@ -1,5 +1,9 @@
 package poof.core;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -11,6 +15,9 @@ public class FileSystemManager {
 	private User activeUser;
 	private FileSystem activeFileSystem;
 	private Directory activeDirectory;
+	private boolean needsSaving; // dirty bit indicating wether the FS has changes that need
+								// to be saved.
+	private final String fileExtension; // extension of files when opening/sving FileSystem
 	
 	private final String PARENT_DIR_NAME = "..";
 	private final String THIS_DIR_NAME = ".";
@@ -19,6 +26,8 @@ public class FileSystemManager {
 		activeFileSystem = null;
 		activeUser = null;
 		activeDirectory = null;
+		needsSaving = true;
+		fileExtension = ".raw";
 	}
 	
 	
@@ -38,6 +47,7 @@ public class FileSystemManager {
 			throw new AccessDeniedCoreException();
 		
 		entitiy.setPrivacyMode(privacyMode);
+		needsSaving = true;
 	}
 	
 	public void changeOwner(String entryName, String newOwnerUsername) {
@@ -68,6 +78,7 @@ public class FileSystemManager {
 	
 	public void createFile(String filename) {
 		// TODO
+		needsSaving = true;
 	}
 	
 	public void createDirectory(String name) throws AccessDeniedCoreException, EntryExistsCoreException{
@@ -83,6 +94,7 @@ public class FileSystemManager {
 		
 		// at this point it's safe to add a new directory
 		activeDirectory.addChild(new Directory(name, activeUser, activeDirectory));
+		needsSaving = true;
 	}
 	
 	public void createFileSystem() {
@@ -124,6 +136,7 @@ public class FileSystemManager {
 		// At this point the logged in user is root and the username is free,
 		// so it's safe to create a new user
 		activeFileSystem.addUser(new User(username, name, activeFileSystem.getHomeDirectory()));
+		needsSaving = true;
 		
 	}
 	
@@ -169,6 +182,7 @@ public class FileSystemManager {
 			// If user doesn't exist, throw an exception
 			throw new UserUnknownCoreException();
 		setActiveUser(userToLogin);
+		needsSaving = true;
 	}
 	
 	public String printWorkingDirectory() {
@@ -192,14 +206,27 @@ public class FileSystemManager {
 		// removal of the specified directory is allowed
 		activeFileSystem.removeEntry(activeDirectory, entryName);
 		
+		needsSaving = true;
+		
 	}
 	
 	public void removeUser(String username) {
 		// TODO
 	}
 	
-	public void saveFileSystem() {
-		// TODO
+	public void saveFileSystem(String name) {
+		activeFileSystem.setName(name); // associate activeFilesystem to a filename
+	
+		try {
+			ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(
+					new FileOutputStream(name + fileExtension)));
+			out.writeObject(activeFileSystem);
+			out.writeObject(activeUser);
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public String showFileData(String fileName) {
@@ -222,10 +249,15 @@ public class FileSystemManager {
 		return activeFileSystem;
 	}
 	
+	public boolean needsSaving() {
+		return needsSaving;
+	}
+	
 	private void setActiveUser(User user) {
 		// Two-in-one: change active user and active directory
 		activeUser = user;
 		activeDirectory = user.getMainDirectory();	
+		needsSaving = true;
 	}
 	
 	private boolean hasPrivatePermissions(User user, FileSystemEntitiy entitiy) {
@@ -248,4 +280,6 @@ public class FileSystemManager {
 	private boolean isLegalDirectoryRemoval(String entryName) {
 		return (!(entryName.equals(PARENT_DIR_NAME)) && !(entryName.equals(THIS_DIR_NAME)));
 	}
+	
+	
 }

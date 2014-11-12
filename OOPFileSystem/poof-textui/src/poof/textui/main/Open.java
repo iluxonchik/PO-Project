@@ -2,6 +2,7 @@
 package poof.textui.main;
 
 import static ist.po.ui.Dialog.IO;
+
 import ist.po.ui.Command;
 import ist.po.ui.DialogException;
 import ist.po.ui.ValidityPredicate;
@@ -9,8 +10,10 @@ import ist.po.ui.ValidityPredicate;
 import java.io.IOException;
 
 // FIXME: import project-specific classes
-
 import poof.core.FileSystemManager;
+import poof.textui.main.MenuEntry;
+import poof.textui.main.Message;
+
 /**
  * Open existing file.
  */
@@ -27,6 +30,7 @@ public class Open extends Command<FileSystemManager> /* FIXME: select core type 
 	@Override
 	public final void execute() throws DialogException, IOException {
 		//FIXME: implement command
+		String fileName = IO.readString(Message.openFile());
 	}
 
 }
