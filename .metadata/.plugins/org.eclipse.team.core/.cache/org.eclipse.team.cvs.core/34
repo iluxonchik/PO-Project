@@ -1,39 +1,32 @@
-package poof.core;
+/** @version $Id: ChangeWorkingDirectory.java,v 1.2 2014/11/08 20:24:14 ist178134 Exp $ */
+package poof.textui.shell;
 
-import java.util.HashMap;
+import static ist.po.ui.Dialog.IO;
 
-public class Directory extends FileSystemEntitiy {
-	private final int ENTRY_COST = 8; // cost of the each entry inside the directory
-	private final String PARENT_DIR_NAME = "..";
-	private final String THIS_DIR_NAME = ".";
-	
-	private HashMap<String, FileSystemEntitiy> children;
-	
-	public Directory(String name, User owner, Directory parent) { 
-		super(name, owner);
-		children = new HashMap<String, FileSystemEntitiy>();
-		
-		if (parent == null)
-			// the root is of the dir, is the dir itself
-			parent = this;
-		
-		// Add the the current (.) and parent (..) dirs to children 
-		addChild(THIS_DIR_NAME, this);
-		addChild(PARENT_DIR_NAME, parent);
-		
-	}
-	
-	public void addChild(FileSystemEntitiy entitiy) {
-		children.put(entitiy.getName(), entitiy);
-	}
-	
-	private void addChild(String name, Directory dir) {
-		// Add a directory, but index it using the specified name,
-		// instead of using the directory's name.
-		// Used to add child and parent in Directory instantiation.
-		children.put(name, dir);
-	}
-	
+import ist.po.ui.Command;
+import ist.po.ui.DialogException;
+import ist.po.ui.ValidityPredicate;
 
-	
+import java.io.IOException;
+
+// FIXME: import project-specific classes
+import poof.core.FileSystemManager;
+
+/**
+ * §2.2.4.
+ */
+public class ChangeWorkingDirectory extends Command<FileSystemManager> /* FIXME: select core type for receiver */ {
+	/**
+	 * @param receiver
+	 */
+	public ChangeWorkingDirectory(FileSystemManager reciever /*FIXME: add receiver declaration: type must agree with the above*/) {
+		super(MenuEntry.CD, reciever /*FIXME: receiver argument*/);
+	}
+
+	/** @see ist.po.ui.Command#execute() */
+	@Override
+	public final void execute() throws DialogException, IOException {
+		//FIXME: implement command
+	}
+
 }

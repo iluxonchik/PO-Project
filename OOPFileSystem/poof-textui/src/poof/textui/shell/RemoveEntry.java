@@ -6,10 +6,20 @@ import ist.po.ui.DialogException;
 
 import java.io.IOException;
 
+import static ist.po.ui.Dialog.IO;
 
 
+
+import poof.core.AccessDeniedCoreException;
+import poof.core.EntryUnknownCoreException;
 // FIXME: import project-specific classes
 import poof.core.FileSystemManager;
+import poof.core.IllegalRemovalCoreException;
+import poof.textui.AccessDeniedException;
+import poof.textui.EntryUnknownException;
+import poof.textui.IllegalRemovalException;
+import poof.textui.shell.MenuEntry;
+import poof.textui.shell.Message;
 
 /**
  * §2.2.3.
@@ -26,5 +36,18 @@ public class RemoveEntry extends Command<FileSystemManager> /* FIXME: select cor
 	@Override
 	public final void execute() throws DialogException, IOException {
 		//FIXME: implement command
+		
+		String entryName = IO.readString(Message.nameRequest());
+		try {
+			_receiver.removeEntry(entryName);
+		} catch (EntryUnknownCoreException e) {
+			throw new EntryUnknownException(entryName);
+		} catch (AccessDeniedCoreException e) {
+			String activeUsername = _receiver.getActiveUser().getName();
+			throw new AccessDeniedException(activeUsername);
+		} catch (IllegalRemovalCoreException e) {
+			throw new IllegalRemovalException();
+		}
+		
 	}
 }

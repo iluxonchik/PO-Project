@@ -1,107 +1,56 @@
 package poof.core;
 
-import ist.po.ui.ValidityPredicate;
+public abstract class FileSystemEntitiy {
+	protected String name;
+	protected int size;
+	protected User owner;
+	protected PrivacyMode privacyMode;
+	protected EntitiyType entitiyType;
+	
+	public FileSystemEntitiy (String name, User owner) {
+		this.name = name;
+		this.owner = owner;
+		this.privacyMode = PrivacyMode.PRIVATE;
+	}
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class FileSystemManager {
-	private String fsName;
-	private User activeUser;
-	private FileSystem activeFileSystem;
-	
-	public FileSystemManager() {
-	
-	}
-	
-	
-	public void appendDataToFile(String filename, String content) {
-		// TODO
-	}
-	
-	public void changeEntryPermissions(String entryName, PrivacyMode privacyMode) {
-		// TODO
-	}
-	
-	public void changeOwner(String entryName, String newOwnerUsername) {
-		// TODO
-	}
-	
-	public void  changeWorkingDirectory(String dirName) {
-		// TODO
-	}
-	
-	public void creteFile(String filename) {
-		// TODO
-	}
-	
-	public void createFileSystem() {
-		// TODO
-	}
-	
-	public void createUser(String username, String name) {
-		// TODO
-	}
-	
-	public List<String> listAllEntries(String directoryName) {
-		// TODO
-		return new ArrayList<String>();
-	}
-	
-	public String listEntry(String entryName) {
-		// TODO
-		return new String();
-	}
-	
-	public List<String> listUsers() {
-		// TODO
-		return new ArrayList<String>();
-	}
-	
-	public void loadFileSystem(String fileName) {
-		// TODO
-	}
-	
-	public void login(String username) {
-		// TODO
-	}
-	
-	public void printWorkingDirectory() {
-		// TODO
-	}
-	
-	public void removeEntry(String entryName) {
-		// TODO
-	}
-	
-	public void removeUser(String username) {
-		// TODO
-	}
-	
-	public void saveFileSystem() {
-		// TODO
-	}
-	
-	public String showFileData(String fileName) {
-		// TODO
-		
-		return new String();
-	}
-	
 	// Getters
-	public String getFileSystemName () {
-		// Is this one really needed?
-		return fsName;
+	public String getName() {
+		return name;
+	}
+
+	public abstract int getSize();
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public PrivacyMode getPrivacyMode() {
+		return privacyMode;
 	}
 	
-	public User getActiveUser() {
-		return activeUser;
+	public EntitiyType getentitiyType() {
+		return entitiyType;
 	}
 	
-	public FileSystem getActiveFileSystem() {
-		return activeFileSystem;
+	// Setters
+	public void setOwner (User newOwner) {
+		this.owner = newOwner;
 	}
 	
+	
+	@Override
+	public String toString() {
+		String entitiyStr = "";
+		if (privacyMode == PrivacyMode.PRIVATE)
+			entitiyStr += "-";
+		else
+			entitiyStr += "w";
+		
+		entitiyStr += owner.getUsername() + " " + getSize() + " " + name;
+			
+		return entitiyStr;
+	}
+
 	
 	
 }

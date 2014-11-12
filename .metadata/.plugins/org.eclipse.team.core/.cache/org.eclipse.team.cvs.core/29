@@ -1,93 +1,92 @@
 package poof.core;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-public class FileSystem {
-	String name;
-	Directory rootDirectory;
-	HashMap<String, User> users;
+public class Directory extends FileSystemEntitiy {
+	private final int ENTRY_COST = 8; // cost of the each entry inside the directory
+	private final String PARENT_DIR_NAME = "..";
+	private final String THIS_DIR_NAME = ".";
 	
-	public static final String ROOT_USERNAME = "root";
-	public static final String ROOT_NAME = "Super User";
-	public static final String ROOT_DIRECTORY = "/";
-	private static final String HOME_DIRECTORY = "home";
-
+	private HashMap<String, FileSystemEntitiy> children;
 	
-	public FileSystem(String name) {
-		this.name = name;
+	
+	// Constants
+	public static final String ROOT_DIRECTORY_NAME = "/";
+	public static final String HOME_DIRECTORY_NAME = "home";
+	public static final String DIR_SEPARATOR = "/";
+	
+	public Directory(String name, User owner, Directory parent) { 
+		super(name, owner);
 		
-		// Create root user and add him to users list
-		User rootUser = new User(ROOT_USERNAME, ROOT_NAME, null); 
-		users.put(ROOT_USERNAME, rootUser);
+		entitiyType = EntitiyType.DIRECTORY;
 		
-		// Create a new root directory (has no owner [i.e. the owner is "null"])
-		rootDirectory = new Directory(ROOT_DIRECTORY, null, null);
+		children = new HashMap<String, FileSystemEntitiy>();
 		
-		// add "home" to roots children (has no owner [i.e. the owner is "null"])
-		rootDirectory.addChild(new Directory(HOME_DIRECTORY, null, rootDirectory));
-
+		if (parent == null)
+			// if the parent dir is null, the directory is parent of itself
+			// used for root directory
+			parent = this;
 		
+		// Add the the current (.) and parent (..) dirs to children 
+		addChild(THIS_DIR_NAME, this);
+		addChild(PARENT_DIR_NAME, parent);
+		
+	}
+	
+	// Getters
+	public Directory getParent() {
+		// NOTE: DOWNCAST! DANGER!
+		return (Directory) children.get(PARENT_DIR_NAME);
+	}
+	
+	public Directory getChild(String name) {
+		// NOTE: DOWNCAST! DANGER!
+		return (Directory) children.get(name);
+	}
+	
+	public String getAbsolutePath() {
+		// Build directory path recursively 
+		if (name == Directory.ROOT_DIRECTORY_NAME)
+			return "";
+		
+		return getParent().getAbsolutePath() + Directory.DIR_SEPARATOR + name;
+	} 
+	
+	// Setters
+	public void setParent(Directory newParent) {
+		// DANGER! Can break the entire structure, therefore will only change 
+		// the parent directory in case the directory is parent of itself. 
+		// This functions purpose is to give some more flexibility when designing 
+		// the directory structure and allow to re-design the directory structure at runtime.
+		// (i.e. it's possible to change the root of the directory structure dynamically).
+		if (children.get(PARENT_DIR_NAME) == this)
+			addChild(PARENT_DIR_NAME, newParent);			
 			
+		// TODO: else throw an exception?
 	}
 	
-	public void addUser(User user) {
-		// TODO
+	
+	
+	public void addChild(FileSystemEntitiy entitiy) {
+		children.put(entitiy.getName(), entitiy);
 	}
 	
-	public void appendDataToFile(File file, String content) {
-		// TODO
+	private void addChild(String name, Directory dir) {
+		// Add a directory, but index it using the specified name,
+		// instead of using the directory's name.
+		// Used to add child and parent in Directory instantiation.
+		children.put(name, dir);
 	}
-	
-	public void changeEntryPermissions(FileSystemEntitiy entry, PrivacyMode privacyMode) {
-		// TODO
-	}
-	
-	public void changeOwner(FileSystemEntitiy entry, User newOwner) {
-		if (!entry.getOwner().equals(newOwner)) {
-			entry.setOwner(newOwner);
-		}
-	}
-	
-	// NOTE: Use visitor?
-	public void checkPermissions(User user) {
-		// TODO ?
-	}
-	
-	public void createFile(String name, Directory dir, User owner) {
-		// TODO
-	}
-	
-	public List<String> listAllEntries(Directory dir) {
-		// TODO
-		return new ArrayList<String> ();
-	}
-	
-	public String listEntry(FileSystemEntitiy entry) {
-		// TODO
 
-		return new String();
+	@Override
+	public int getSize() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
-	public List<String> listUsers() {
-		// TODO
-		return new ArrayList<String>();
+	@Override
+	public String toString() {
+		return "d " + super.toString();
 	}
-	
-	public void removeEntry(FileSystemEntitiy entry) {
-		// TODO
-	}
-	
-	
-	public void removeUser(String username) {
-		// TODO
-	}
-	
-	public String showFileData(File file) {
-		// TODO
-		return new String();
-	}
-	
 	
 }

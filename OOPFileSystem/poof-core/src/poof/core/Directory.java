@@ -90,6 +90,10 @@ public class Directory extends FileSystemEntitiy {
 		// dir size = own size + parent size
 		size = ENTRY_COST * children.size();
 	}
+	
+	public void removeChild(String entryName) {
+		children.remove(entryName);
+	}
 
 	@Override
 	public int getSize() {

@@ -80,8 +80,8 @@ public class FileSystem implements Serializable{
 		return sortedUserMap;
 	}
 	
-	public void removeEntry(FileSystemEntitiy entry) {
-		// TODO
+	public void removeEntry(Directory activeDir, String entryName) {
+		activeDir.removeChild(entryName);
 	}
 	
 	

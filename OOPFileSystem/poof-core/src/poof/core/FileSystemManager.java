@@ -175,8 +175,23 @@ public class FileSystemManager {
 		return activeFileSystem.getDirectoryPath(activeDirectory);
 	}
 	
-	public void removeEntry(String entryName) {
-		// TODO
+	public void removeEntry(String entryName) throws EntryUnknownCoreException, AccessDeniedCoreException,
+	IllegalRemovalCoreException{
+		
+		if (!entryExists(entryName))
+			throw new EntryUnknownCoreException();
+		
+		if (!isLegalDirectoryRemoval(entryName)) 
+			throw new IllegalRemovalCoreException();
+		
+		FileSystemEntitiy entitiy = activeDirectory.getChild(entryName);
+		
+		if (!hasPrivatePermissions(activeUser, entitiy))
+			throw new AccessDeniedCoreException();
+		
+		// removal of the specified directory is allowed
+		activeFileSystem.removeEntry(activeDirectory, entryName);
+		
 	}
 	
 	public void removeUser(String username) {
@@ -228,5 +243,9 @@ public class FileSystemManager {
 			return false;
 		
 		return (user.equals(activeFileSystem.getUser(User.ROOT_USERNAME)));
+	}
+	
+	private boolean isLegalDirectoryRemoval(String entryName) {
+		return (!(entryName.equals(PARENT_DIR_NAME)) && !(entryName.equals(THIS_DIR_NAME)));
 	}
 }
