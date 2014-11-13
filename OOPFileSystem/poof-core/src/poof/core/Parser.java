@@ -17,7 +17,6 @@ public class Parser {
 	
 	public void parse(String strToParse) {
 		String data[] = strToParse.split("\\|");
-		System.out.println(data.length);
 		ArrayList<String> ctoargs = new ArrayList<String>(data.length-1);
 		data[0] = formatClassName(data[0]);
 		
@@ -36,7 +35,7 @@ public class Parser {
 				createDirectory(ctoargs);
 			}
 			else if(type == File.class) {
-				createFile(ctoargs.toArray());
+				createFile(ctoargs);
 			}
 			
 			
@@ -97,33 +96,8 @@ public class Parser {
 			dir.setPrivacyMode(PrivacyMode.PUBLIC);
 	}
 	
-	private void createFile(Object[] ctoargs) {
-	
+	private void createFile(ArrayList<String> ctoargs) {
+		// TODO
 	}
-	
-	
-	/*
-	public Directory createDirectory(String[] data, FileSystem fs) {
-			try {					
-					String pathEntries[] = data[2].split("/");
-					Directory curDir = fs.getRootDirectory();
-					for (int ix = 1; ix < pathEntries.length; ix++){
-						if (curDir.getChild(pathEntries[ix]) == null){
-							curDir.addChild(new Directory(pathEntries[ix], curDir));
-						}
-						curDir = curDir.getChild(pathEntries[ix]);
-					}
-			}
-				Constructor<?> ctor = type.getConstructor(String.class, User.class);
-				return ctor.newInstance(name, fs.getHomeDirectory());
-				
 
-		   } catch (InstantiationException e) {e.printStackTrace(); return null; }
-			catch (IllegalAccessException e) {e.printStackTrace(); return null; }
-			catch (IllegalArgumentException e) {e.printStackTrace(); return null; }
-			catch (InvocationTargetException e) {e.printStackTrace(); return null; }
-			catch (NoSuchMethodException e) { e.printStackTrace(); return null; }
-			
-	}
-	*/
 }

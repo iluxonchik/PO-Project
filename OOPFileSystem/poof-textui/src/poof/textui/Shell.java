@@ -11,8 +11,10 @@ import java.io.IOException;
 
 
 
+
 // FIXME: import project-specific classes
 import poof.core.FileSystemManager;
+import poof.core.Parser;
 
 /**
  * Class that starts the application's textual interface.
@@ -31,14 +33,21 @@ public class Shell {
 		if (datafile != null) {
 			// FIXME: import text data file
 			try {
+				String line;
+				
 				BufferedReader br = new BufferedReader(new FileReader(datafile));
 				fsManager.createFileSystem(); // first, create a new FileSystem
+				Parser p = new Parser(fsManager);
 				
+				while((line = br.readLine() )!= null)
+					p.parse(line);
 				
-				
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}
+				br.close();
+			} catch (FileNotFoundException e) { e.printStackTrace(); } 
+			catch (IOException e) { e.printStackTrace(); }
+		}
+		else {
+			System.out.println("NO FILE!");
 		}
 		
 		
