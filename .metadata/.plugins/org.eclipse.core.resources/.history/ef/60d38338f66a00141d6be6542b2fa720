@@ -8,7 +8,6 @@ import ist.po.ui.ValidityPredicate;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.Map;
 
 // FIXME: import project-specific classes
 import poof.core.FileSystemManager;
@@ -29,21 +28,10 @@ public class ListAllEntries extends Command<FileSystemManager> /* FIXME: select 
 	@Override
 	public final void execute() throws DialogException, IOException {
 		//FIXME: implement command
-		Map<String, FileSystemEntitiy> children = _receiver.listAllEntries();
+		Collection<FileSystemEntitiy> children = _receiver.listAllEntries();
 		
-		for(Map.Entry<String, FileSystemEntitiy> entry: children.entrySet()) {
-			if(entry.getKey() == _receiver.THIS_DIR_NAME)
-				// print self reference as "."
-				IO.println(entry.getValue().toString(_receiver.THIS_DIR_NAME));
-			else if (entry.getKey() == _receiver.PARENT_DIR_NAME)
-				// print parent reference as ".."
-				IO.println(entry.getValue().toString(_receiver.PARENT_DIR_NAME));
-			else
-				// print other references with their default name
-				IO.println(entry.getValue().toString());
-				
-		}
-			
+		for(FileSystemEntitiy entry : children)
+			IO.println(entry.toString());
 	}
 
 }

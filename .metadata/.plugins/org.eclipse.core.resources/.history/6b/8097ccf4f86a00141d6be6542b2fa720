@@ -36,10 +36,10 @@ public class ListAllEntries extends Command<FileSystemManager> /* FIXME: select 
 				// print self reference as "."
 				IO.println(entry.getValue().toString(_receiver.THIS_DIR_NAME));
 			else if (entry.getKey() == _receiver.PARENT_DIR_NAME)
-				// print parent reference as ".."
+				// print parent refernce as ".."
 				IO.println(entry.getValue().toString(_receiver.PARENT_DIR_NAME));
 			else
-				// print other references with their default name
+				// print other refrences with their default name
 				IO.println(entry.getValue().toString());
 				
 		}

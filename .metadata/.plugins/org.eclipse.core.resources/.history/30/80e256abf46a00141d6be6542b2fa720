@@ -65,8 +65,8 @@ public abstract class FileSystemEntitiy implements Serializable {
 	}
 	
 	
+	
 	public String toString(String name) {
-		// This method allows to print the same entity with different names
 		String entitiyStr = "";
 		if (privacyMode == PrivacyMode.PRIVATE)
 			entitiyStr += "- ";

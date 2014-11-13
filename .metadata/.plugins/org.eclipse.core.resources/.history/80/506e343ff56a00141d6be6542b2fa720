@@ -2,7 +2,6 @@ package poof.core;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,6 +66,7 @@ public class FileSystem implements Serializable{
 	public Map<String, FileSystemEntitiy> listAllEntries(Directory dir) {
 		
 		Map<String, FileSystemEntitiy> sortedChildrenMap = new TreeMap<String, FileSystemEntitiy>(dir.getChildren());
+		
 		return sortedChildrenMap;
 	}
 	

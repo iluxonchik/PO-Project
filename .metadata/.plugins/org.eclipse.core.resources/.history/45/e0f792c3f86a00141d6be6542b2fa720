@@ -32,15 +32,12 @@ public class ListAllEntries extends Command<FileSystemManager> /* FIXME: select 
 		Map<String, FileSystemEntitiy> children = _receiver.listAllEntries();
 		
 		for(Map.Entry<String, FileSystemEntitiy> entry: children.entrySet()) {
-			if(entry.getKey() == _receiver.THIS_DIR_NAME)
-				// print self reference as "."
-				IO.println(entry.getValue().toString(_receiver.THIS_DIR_NAME));
+			if(entry.getKey() == _receiver.THIS_DIR_NAME);
+				IO.println(entry.getValue().toString(_receiver.THIS_DIR_NAME))
 			else if (entry.getKey() == _receiver.PARENT_DIR_NAME)
-				// print parent reference as ".."
 				IO.println(entry.getValue().toString(_receiver.PARENT_DIR_NAME));
 			else
-				// print other references with their default name
-				IO.println(entry.getValue().toString());
+				
 				
 		}
 			

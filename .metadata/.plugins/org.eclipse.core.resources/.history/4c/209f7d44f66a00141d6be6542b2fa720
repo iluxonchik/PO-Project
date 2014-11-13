@@ -64,7 +64,7 @@ public class FileSystem implements Serializable{
 		// TODO
 	}
 	
-	public Map<String, FileSystemEntitiy> listAllEntries(Directory dir) {
+	public Collection<FileSystemEntitiy> listAllEntries(Directory dir) {
 		
 		Map<String, FileSystemEntitiy> sortedChildrenMap = new TreeMap<String, FileSystemEntitiy>(dir.getChildren());
 		return sortedChildrenMap;

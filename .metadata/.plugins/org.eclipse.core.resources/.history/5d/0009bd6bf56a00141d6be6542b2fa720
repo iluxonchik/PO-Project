@@ -19,11 +19,9 @@ public class FileSystemManager {
 	private User activeUser;
 	private FileSystem activeFileSystem;
 	private Directory activeDirectory;
-	private boolean needsSaving; // dirty bit indicating whether the FS has changes that need
+	private boolean needsSaving; // dirty bit indicating wether the FS has changes that need
 								// to be saved.
-	private final String fileExtension; // extension of files when opening/saving FileSystem
-	
-	// Constants
+	private final String fileExtension; // extension of files when opening/sving FileSystem
 	public final String PARENT_DIR_NAME = "..";
 	public final String THIS_DIR_NAME = ".";
 	
@@ -146,7 +144,7 @@ public class FileSystemManager {
 		
 	}
 	
-	public Map<String, FileSystemEntitiy> listAllEntries() {
+	public Collection<FileSystemEntitiy> listAllEntries() {
 	
 		return activeFileSystem.listAllEntries(activeDirectory);
 	}

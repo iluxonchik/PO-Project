@@ -19,13 +19,11 @@ public class FileSystemManager {
 	private User activeUser;
 	private FileSystem activeFileSystem;
 	private Directory activeDirectory;
-	private boolean needsSaving; // dirty bit indicating whether the FS has changes that need
+	private boolean needsSaving; // dirty bit indicating wether the FS has changes that need
 								// to be saved.
-	private final String fileExtension; // extension of files when opening/saving FileSystem
-	
-	// Constants
-	public final String PARENT_DIR_NAME = "..";
-	public final String THIS_DIR_NAME = ".";
+	private final String fileExtension; // extension of files when opening/sving FileSystem
+	private final String PARENT_DIR_NAME = "..";
+	private final String THIS_DIR_NAME = ".";
 	
 
 	
@@ -89,6 +87,7 @@ public class FileSystemManager {
 	}
 	
 	public void createDirectory(String name) throws AccessDeniedCoreException, EntryExistsCoreException{
+		// TODO
 		
 		// first, check if user has permissions
 		if(!hasPrivatePermissions(activeUser, activeDirectory))
@@ -146,9 +145,11 @@ public class FileSystemManager {
 		
 	}
 	
-	public Map<String, FileSystemEntitiy> listAllEntries() {
-	
-		return activeFileSystem.listAllEntries(activeDirectory);
+	public Collection<FileSystemEntitiy> listAllEntries() {
+		// TODO
+		Map<String, FileSystemEntitiy> sortedChildrenMap = activeFileSystem.listAllEntries(activeDirectory);
+		
+		return sortedChildrenMap.values();
 	}
 	
 	public String listEntry(String entryName) throws EntryUnknownCoreException {
