@@ -1,6 +1,10 @@
 package poof.core;
 
 public class File extends FileSystemEntitiy {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1035258600217016351L;
 	String content;
 	
 	public File(String name, User owner) { 

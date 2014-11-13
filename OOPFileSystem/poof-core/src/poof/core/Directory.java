@@ -1,9 +1,13 @@
 package poof.core;
 
-import java.io.Serializable;
 import java.util.HashMap;
 
 public class Directory extends FileSystemEntitiy {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1968533951935404039L;
 	
 	private final int ENTRY_COST = 8; // cost of the each entry inside the directory
 	private final String PARENT_DIR_NAME = "..";
@@ -110,7 +114,12 @@ public class Directory extends FileSystemEntitiy {
 	@Override
 	public String toString() {
 		updateSize();
-		return "d " + super.toString();
+		return toString(name);
+	}
+	
+	@Override
+	public String toString(String name) {
+		return "d " + super.toString(name);
 	}
 	
 	

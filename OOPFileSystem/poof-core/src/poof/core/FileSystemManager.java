@@ -166,6 +166,21 @@ public class FileSystemManager {
 		return sortedUserMap.values();
 		}
 	
+	public void saveFileSystem(String name) {
+		activeFileSystem.setName(name); // associate activeFilesystem to a filename
+	
+		try {
+			ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(
+					new FileOutputStream(name + fileExtension)));
+			out.writeObject(activeFileSystem);
+			out.writeObject(activeUser);
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public void loadFileSystem(String fileName) throws FileNotFoundException {
 		try {
 			ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(
@@ -173,7 +188,7 @@ public class FileSystemManager {
 			
 			activeFileSystem = (FileSystem)in.readObject(); // restore FS
 			activeUser = (User)in.readObject(); // restore active user
-			
+			activeDirectory = activeUser.getMainDirectory(); // set users dir to default
 			in.close();
 		}catch (FileNotFoundException e) { throw new FileNotFoundException(); } 
 		catch (IOException e) { e.printStackTrace(); }
@@ -218,21 +233,6 @@ public class FileSystemManager {
 	
 	public void removeUser(String username) {
 		// TODO
-	}
-	
-	public void saveFileSystem(String name) {
-		activeFileSystem.setName(name); // associate activeFilesystem to a filename
-	
-		try {
-			ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(
-					new FileOutputStream(name + fileExtension)));
-			out.writeObject(activeFileSystem);
-			out.writeObject(activeUser);
-			out.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
 	}
 	
 	public String showFileData(String fileName) {

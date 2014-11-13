@@ -14,8 +14,6 @@ public class FileSystem implements Serializable{
 	 * Generated serialVersionUID
 	 */
 	private static final long serialVersionUID = -4205496443358977682L;
-	private final String PARENT_DIR_NAME = "..";
-	private final String THIS_DIR_NAME = ".";
 	
 	private String name;
 	private Directory rootDirectory;
