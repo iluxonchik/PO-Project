@@ -19,8 +19,7 @@ public class Parser {
 		String data[] = strToParse.split("\\|");
 		System.out.println(data.length);
 		ArrayList<String> ctoargs = new ArrayList<String>(data.length-1);
-		
-		
+		data[0] = formatClassName(data[0]);
 		
 		try {
 			Class<?> type = Class.forName(PACKAGE_PATH + data[0]);
@@ -78,6 +77,15 @@ public class Parser {
 		
 		}
 		return rootDir;
+	}
+	
+	private String formatClassName(String className) {
+		// formats class name to the correct format
+		// (i.e. first letter uppercase, the rest lowercase).
+		className = className.toLowerCase();
+		char firstChar = Character.toUpperCase(className.charAt(0));
+		className = firstChar + className.substring(1);
+		return className;
 	}
 	
 	private void createDirectory(Object[] ctoargs) {

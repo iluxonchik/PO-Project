@@ -128,10 +128,10 @@ public class FileSystemManager {
 		// login the root user
 		setActiveUser(rootUser);
 		
-		needsSaving = true;
+		needsSaving = false;
 		
 		Parser p = new Parser(this);
-		p.parse("User|obiwan|Obi-Wan Kenobi|/home/obiwan");
+		p.parse("USER|obiwan|Obi-Wan Kenobi|/home/obiwan");
 	}
 	
 	public void createUser(String username, String name) throws AccessDeniedCoreException, UserExistsCoreException {
