@@ -1,4 +1,4 @@
-/** @version $Id: Shell.java,v 1.2 2014/11/08 20:24:15 ist178134 Exp $ */
+/** @version $Id: Shell.java,v 1.4 2014/11/13 18:29:33 ist178134 Exp $ */
 package poof.textui;
 
 import static ist.po.ui.Dialog.IO;
@@ -46,9 +46,7 @@ public class Shell {
 			} catch (FileNotFoundException e) { e.printStackTrace(); } 
 			catch (IOException e) { e.printStackTrace(); }
 		}
-		else {
-			System.out.println("NO FILE!");
-		}
+	
 		
 		
 		poof.textui.main.MenuBuilder.menuFor(fsManager /*FIXME: core object (receiver) argument*/);

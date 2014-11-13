@@ -23,11 +23,6 @@ public class FileSystemManager {
 								// to be saved.
 	private final String fileExtension; // extension of files when opening/saving FileSystem
 	
-	// Constants
-	public final String PARENT_DIR_NAME = "..";
-	public final String THIS_DIR_NAME = ".";
-	
-
 	
 	public FileSystemManager() {
 		activeFileSystem = null;
@@ -180,6 +175,8 @@ public class FileSystemManager {
 			e.printStackTrace();
 		}
 		
+		needsSaving = false;
+		
 	}
 	
 	public void loadFileSystem(String fileName) throws FileNotFoundException {
@@ -287,8 +284,11 @@ public class FileSystemManager {
 	}
 	
 	private boolean isLegalDirectoryRemoval(String entryName) {
-		return (!(entryName.equals(PARENT_DIR_NAME)) && !(entryName.equals(THIS_DIR_NAME)));
+		return (!(entryName.equals(Directory.PARENT_DIR_NAME)) && !(entryName.equals(Directory.THIS_DIR_NAME)));
 	}
 	
+	public void setNeedsSaving(boolean bool) {
+		needsSaving = bool;
+	}
 	
 }

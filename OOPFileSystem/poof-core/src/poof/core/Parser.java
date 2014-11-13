@@ -29,12 +29,15 @@ public class Parser {
 			}
 			
 			if(type == User.class){
+				fsm.setNeedsSaving(true);
 				createUser(ctoargs);
 			}
 			else if(type == Directory.class) {
+				fsm.setNeedsSaving(true);
 				createDirectory(ctoargs);
 			}
 			else if(type == File.class) {
+				fsm.setNeedsSaving(true);
 				createFile(ctoargs);
 			}
 			
@@ -90,8 +93,8 @@ public class Parser {
 	private void createDirectory(ArrayList<String> ctoargs) {
 		FileSystem fs = fsm.getActiveFileSystem();
 		Directory dir = buildDirectory(ctoargs.get(0),fs.getRootDirectory(), fs.getUser(ctoargs.get(1)));
-		
-		if(ctoargs.get(2) == "public")
+				
+		if(ctoargs.get(2).equals("public"))
 			// if directory is public, set it to public
 			dir.setPrivacyMode(PrivacyMode.PUBLIC);
 	}
