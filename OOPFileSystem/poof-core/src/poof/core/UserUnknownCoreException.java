@@ -5,6 +5,8 @@ public class UserUnknownCoreException extends FileSystemManagerException {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7166216333350556606L;
+	private static final long serialVersionUID = 780458175435497986L;
+
+
 
 }

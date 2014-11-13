@@ -147,7 +147,7 @@ public class FileSystemManager {
 	}
 	
 	public Map<String, FileSystemEntitiy> listAllEntries() {
-	
+
 		return activeFileSystem.listAllEntries(activeDirectory);
 	}
 	
@@ -189,6 +189,7 @@ public class FileSystemManager {
 			activeFileSystem = (FileSystem)in.readObject(); // restore FS
 			activeUser = (User)in.readObject(); // restore active user
 			activeDirectory = activeUser.getMainDirectory(); // set users dir to default
+			needsSaving = false;
 			in.close();
 		}catch (FileNotFoundException e) { throw new FileNotFoundException(); } 
 		catch (IOException e) { e.printStackTrace(); }

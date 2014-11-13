@@ -1,0 +1,8 @@
+package poof.core;
+
+
+public class EntryUnknownCoreException extends FileSystemManagerException {
+
+	
+
+}

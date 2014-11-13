@@ -1,4 +1,4 @@
-/** @version $Id: ListAllUsers.java,v 1.3 2014/11/11 07:46:28 ist178134 Exp $ */
+/** @version $Id: ListAllUsers.java,v 1.4 2014/11/13 06:19:07 ist178134 Exp $ */
 package poof.textui.user;
 
 import static ist.po.ui.Dialog.IO;

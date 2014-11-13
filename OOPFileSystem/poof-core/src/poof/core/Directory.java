@@ -46,7 +46,7 @@ public class Directory extends FileSystemEntitiy {
 	// Getters
 	public Directory getParent() {
 		// NOTE: DOWNCAST! DANGER!
-		return (Directory) children.get(PARENT_DIR_NAME);
+		return getChild(PARENT_DIR_NAME);
 	}
 	
 	public Directory getChild(String name) {
@@ -56,7 +56,7 @@ public class Directory extends FileSystemEntitiy {
 	
 	public String getAbsolutePath() {
 		// Build directory path recursively 
-		if (name == Directory.ROOT_DIRECTORY_NAME)
+		if (name.equals(Directory.ROOT_DIRECTORY_NAME))
 			return "";
 		
 		return getParent().getAbsolutePath() + Directory.DIR_SEPARATOR + name;

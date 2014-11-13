@@ -5,6 +5,8 @@ public class AccessDeniedCoreException extends FileSystemManagerException {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1562683966088724204L;
+	private static final long serialVersionUID = 7910661931071810255L;
+
+	
 
 }

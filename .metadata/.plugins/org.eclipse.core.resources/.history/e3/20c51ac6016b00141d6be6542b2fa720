@@ -1,0 +1,8 @@
+package poof.core;
+
+import java.io.Serializable;
+
+public class FileSystemManagerException extends Exception implements Serializable{
+
+
+}
