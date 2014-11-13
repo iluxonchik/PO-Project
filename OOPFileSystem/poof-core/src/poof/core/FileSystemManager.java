@@ -132,6 +132,7 @@ public class FileSystemManager {
 		
 		Parser p = new Parser(this);
 		p.parse("USER|obiwan|Obi-Wan Kenobi|/home/obiwan");
+		p.parse("DIRECTORY|/home/obiwan/droids|obiwan|private");
 	}
 	
 	public void createUser(String username, String name) throws AccessDeniedCoreException, UserExistsCoreException {

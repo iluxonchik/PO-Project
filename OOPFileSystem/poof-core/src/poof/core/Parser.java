@@ -33,7 +33,7 @@ public class Parser {
 				createUser(ctoargs);
 			}
 			else if(type == Directory.class) {
-				createDirectory(ctoargs.toArray());
+				createDirectory(ctoargs);
 			}
 			else if(type == File.class) {
 				createFile(ctoargs.toArray());
@@ -88,8 +88,13 @@ public class Parser {
 		return className;
 	}
 	
-	private void createDirectory(Object[] ctoargs) {
+	private void createDirectory(ArrayList<String> ctoargs) {
+		FileSystem fs = fsm.getActiveFileSystem();
+		Directory dir = buildDirectory(ctoargs.get(0),fs.getRootDirectory(), fs.getUser(ctoargs.get(1)));
 		
+		if(ctoargs.get(2) == "public")
+			// if directory is public, set it to public
+			dir.setPrivacyMode(PrivacyMode.PUBLIC);
 	}
 	
 	private void createFile(Object[] ctoargs) {
