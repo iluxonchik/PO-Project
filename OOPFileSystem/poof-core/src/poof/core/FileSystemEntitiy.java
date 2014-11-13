@@ -1,6 +1,9 @@
 package poof.core;
 
 import java.io.Serializable;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 
 public abstract class FileSystemEntitiy implements Serializable {
 	/**
@@ -23,7 +26,7 @@ public abstract class FileSystemEntitiy implements Serializable {
 	
 	
 	public boolean isCdiable() {
-		return entitiyType == EntitiyType.DIRECTORY;
+		return entitiyType.equals(EntitiyType.DIRECTORY);
 	}
 
 	// Getters
@@ -68,7 +71,7 @@ public abstract class FileSystemEntitiy implements Serializable {
 	public String toString(String name) {
 		// This method allows to print the same entity with different names
 		String entitiyStr = "";
-		if (privacyMode == PrivacyMode.PRIVATE)
+		if (privacyMode.equals(PrivacyMode.PRIVATE))
 			entitiyStr += "- ";
 		else
 			entitiyStr += "w ";

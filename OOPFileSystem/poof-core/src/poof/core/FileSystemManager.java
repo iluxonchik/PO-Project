@@ -33,8 +33,8 @@ public class FileSystemManager {
 		activeFileSystem = null;
 		activeUser = null;
 		activeDirectory = null;
-		needsSaving = true;
-		fileExtension = ".raw";
+		needsSaving = false;
+		fileExtension = ".raw";		
 	}
 	
 	
@@ -127,7 +127,11 @@ public class FileSystemManager {
 		
 		// login the root user
 		setActiveUser(rootUser);
-	
+		
+		needsSaving = true;
+		
+		Parser p = new Parser(this);
+		p.parse("User|obiwan|Obi-Wan Kenobi|/home/obiwan");
 	}
 	
 	public void createUser(String username, String name) throws AccessDeniedCoreException, UserExistsCoreException {
@@ -204,7 +208,7 @@ public class FileSystemManager {
 			// If user doesn't exist, throw an exception
 			throw new UserUnknownCoreException();
 		setActiveUser(userToLogin);
-		needsSaving = true;
+
 	}
 	
 	public String printWorkingDirectory() {
@@ -234,6 +238,7 @@ public class FileSystemManager {
 	
 	public void removeUser(String username) {
 		// TODO
+		needsSaving = true;
 	}
 	
 	public String showFileData(String fileName) {

@@ -1,7 +1,8 @@
-/** @version $Id: New.java,v 1.3 2014/11/09 00:31:22 ist178134 Exp $ */
+/** @version $Id: New.java,v 1.4 2014/11/13 07:30:03 ist178134 Exp $ */
 package poof.textui.main;
 
 import static ist.po.ui.Dialog.IO;
+
 import ist.po.ui.Command;
 import ist.po.ui.DialogException;
 import ist.po.ui.ValidityPredicate;
@@ -9,7 +10,9 @@ import ist.po.ui.ValidityPredicate;
 import java.io.IOException;
 
 // FIXME: import project-specific classes
-
+import poof.textui.main.MenuEntry;
+import poof.textui.main.Message;
+import poof.core.FileSystem;
 import poof.core.FileSystemManager;
 
 /**
@@ -28,6 +31,23 @@ public class New extends Command<FileSystemManager> /* FIXME: select core type f
 	@Override
 	public final void execute() throws DialogException, IOException {
 		//FIXME: implement command
+		if(_receiver.needsSaving()) {
+			
+			if(IO.readBoolean(Message.saveBeforeExit())) {
+				// if user wants to save the currently active FileSystem
+				
+				FileSystem activeFileSystem = _receiver.getActiveFileSystem();
+				String name;
+				if(activeFileSystem.isAssociated()) {
+					// if the activeFileSystem is already associated to a file
+					name = activeFileSystem.getName();
+				}
+				else {
+					name = IO.readString(Message.newSaveAs());
+				}
+				_receiver.saveFileSystem(name);
+			}
+		}
 		_receiver.createFileSystem();
 	}
 

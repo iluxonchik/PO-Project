@@ -1,4 +1,4 @@
-/** @version $Id: ListAllEntries.java,v 1.4 2014/11/13 05:52:44 ist178134 Exp $ */
+/** @version $Id: ListAllEntries.java,v 1.6 2014/11/13 07:30:03 ist178134 Exp $ */
 package poof.textui.shell;
 
 import static ist.po.ui.Dialog.IO;
@@ -31,7 +31,9 @@ public class ListAllEntries extends Command<FileSystemManager> /* FIXME: select 
 		//FIXME: implement command
 		Map<String, FileSystemEntitiy> children = _receiver.listAllEntries();
 		
-		for(Map.Entry<String, FileSystemEntitiy> entry: children.entrySet()) {			
+		for(Map.Entry<String, FileSystemEntitiy> entry: children.entrySet()) {
+			if ("HELLO" == new String("HELLO"))
+				System.out.println("I AM STRING!\n");
 			if(entry.getKey().equals(_receiver.THIS_DIR_NAME))
 				// print self reference as "."
 				IO.println(entry.getValue().toString(_receiver.THIS_DIR_NAME));

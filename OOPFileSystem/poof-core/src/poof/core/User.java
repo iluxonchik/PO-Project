@@ -20,8 +20,16 @@ public class User implements Serializable{
 	public User(String username, String name, Directory mainDirParent) {
 		this.name = name;
 		this.username = username;
-		createHomeDirectory(mainDirParent); // set user's home dir to /home/USERNAME/
 		
+		if(mainDirParent != null)
+			createHomeDirectory(mainDirParent); // set user's home dir to /home/USERNAME/
+		else
+			mainDir = null;
+		
+	}
+	
+	public User(String username, String name) {
+		this(username, name, null);
 	}
 	
 	private void createHomeDirectory(Directory mainDirParent) {
@@ -35,12 +43,14 @@ public class User implements Serializable{
 	public String getUsername() { return username; }
 	public Directory getMainDirectory() { return this.mainDir; }
 
+	// Setters
+	public void setMainDir(Directory dir) { mainDir = dir; }
 	
 	@Override
 	public boolean equals(Object obj) {
 		if (obj.getClass() != this.getClass())
 			return false; // different classes
-		return this.username == ((User)obj).username;
+		return this.username.equals(((User)obj).username);
 	}
 	
 	@Override
