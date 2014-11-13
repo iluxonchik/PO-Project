@@ -1,6 +1,13 @@
 package poof.core;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2407830354520585884L;
+	
 	private String name;
 	private String username;
 	Directory mainDir; // user's home directory

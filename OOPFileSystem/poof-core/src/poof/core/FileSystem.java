@@ -1,7 +1,6 @@
 package poof.core;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +13,8 @@ public class FileSystem implements Serializable{
 	 * Generated serialVersionUID
 	 */
 	private static final long serialVersionUID = -4205496443358977682L;
+	private final String PARENT_DIR_NAME = "..";
+	private final String THIS_DIR_NAME = ".";
 	
 	private String name;
 	private Directory rootDirectory;
@@ -65,6 +66,9 @@ public class FileSystem implements Serializable{
 	public Map<String, FileSystemEntitiy> listAllEntries(Directory dir) {
 		
 		Map<String, FileSystemEntitiy> sortedChildrenMap = new TreeMap<String, FileSystemEntitiy>(dir.getChildren());
+		
+		sortedChildrenMap.get(PARENT_DIR_NAME).setName(PARENT_DIR_NAME);
+		sortedChildrenMap.get(THIS_DIR_NAME).setName(THIS_DIR_NAME);
 		return sortedChildrenMap;
 	}
 	

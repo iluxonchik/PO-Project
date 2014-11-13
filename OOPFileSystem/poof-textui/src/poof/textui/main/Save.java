@@ -1,7 +1,7 @@
 /** @version $Id: Save.java,v 1.2 2014/11/08 20:24:14 ist178134 Exp $ */
 package poof.textui.main;
 
-import static ist.po.ui.Dialog.IO;~
+import static ist.po.ui.Dialog.IO;
 
 import ist.po.ui.Command;
 import ist.po.ui.DialogException;

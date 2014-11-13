@@ -1,8 +1,12 @@
 package poof.core;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,9 +22,10 @@ public class FileSystemManager {
 	private boolean needsSaving; // dirty bit indicating wether the FS has changes that need
 								// to be saved.
 	private final String fileExtension; // extension of files when opening/sving FileSystem
-	
 	private final String PARENT_DIR_NAME = "..";
 	private final String THIS_DIR_NAME = ".";
+	
+
 	
 	public FileSystemManager() {
 		activeFileSystem = null;
@@ -93,7 +98,7 @@ public class FileSystemManager {
 			throw new EntryExistsCoreException();
 		
 		// at this point it's safe to add a new directory
-		activeDirectory.addChild(new Directory(name, activeUser, activeDirectory));
+		activeDirectory.addChild(new Directory(name, activeDirectory));
 		needsSaving = true;
 	}
 	
@@ -143,14 +148,6 @@ public class FileSystemManager {
 	public Collection<FileSystemEntitiy> listAllEntries() {
 		// TODO
 		Map<String, FileSystemEntitiy> sortedChildrenMap = activeFileSystem.listAllEntries(activeDirectory);
-		// Now, remove the parent and the self references, substituting them for dummy ones 
-		// this is only done for the purposes of printing them with correct names ( .. and .)
-		
-		Directory tempDir = (Directory)sortedChildrenMap.remove(PARENT_DIR_NAME); // remove parent
-		sortedChildrenMap.put(PARENT_DIR_NAME, new Directory(PARENT_DIR_NAME, tempDir.owner, tempDir.getParent()));
-		
-		tempDir = (Directory)sortedChildrenMap.remove(THIS_DIR_NAME);
-		sortedChildrenMap.put(THIS_DIR_NAME, new Directory(THIS_DIR_NAME, tempDir.owner, tempDir.getParent()));
 		
 		return sortedChildrenMap.values();
 	}
@@ -170,8 +167,18 @@ public class FileSystemManager {
 		return sortedUserMap.values();
 		}
 	
-	public void loadFileSystem(String fileName) {
-		// TODO
+	public void loadFileSystem(String fileName) throws FileNotFoundException {
+		try {
+			ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(
+					new FileInputStream(fileName + fileExtension)));
+			
+			activeFileSystem = (FileSystem)in.readObject(); // restore FS
+			activeUser = (User)in.readObject(); // restore active user
+			
+			in.close();
+		}catch (FileNotFoundException e) { throw new FileNotFoundException(); } 
+		catch (IOException e) { e.printStackTrace(); }
+		catch (ClassNotFoundException e) { e.printStackTrace(); }
 	}
 	
 	public void login(String username) throws UserUnknownCoreException {

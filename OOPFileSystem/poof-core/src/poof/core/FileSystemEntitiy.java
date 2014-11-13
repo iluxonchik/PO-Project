@@ -1,6 +1,13 @@
 package poof.core;
 
-public abstract class FileSystemEntitiy {
+import java.io.Serializable;
+
+public abstract class FileSystemEntitiy implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5454995429011788081L;
+	
 	protected String name;
 	protected int size;
 	protected User owner;

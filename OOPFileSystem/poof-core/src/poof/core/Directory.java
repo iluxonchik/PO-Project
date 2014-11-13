@@ -1,8 +1,10 @@
 package poof.core;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 public class Directory extends FileSystemEntitiy {
+	
 	private final int ENTRY_COST = 8; // cost of the each entry inside the directory
 	private final String PARENT_DIR_NAME = "..";
 	private final String THIS_DIR_NAME = ".";
@@ -73,6 +75,10 @@ public class Directory extends FileSystemEntitiy {
 		// TODO: else throw an exception?
 	}
 	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	
 	
 	public void addChild(FileSystemEntitiy entitiy) {
@@ -106,5 +112,6 @@ public class Directory extends FileSystemEntitiy {
 		updateSize();
 		return "d " + super.toString();
 	}
+	
 	
 }
