@@ -44,8 +44,6 @@ public class ListAllEntries extends Command<FileSystemManager> /* FIXME: select 
 			else
 				// print other references with their default name
 				IO.println(entry.getValue().toString());
-			
-				
 		}
 			
 	}

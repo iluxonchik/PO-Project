@@ -1,7 +1,5 @@
 package poof.core;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 
@@ -9,6 +7,9 @@ public class Parser {
 	private FileSystemManager fsm;
 
 	private final String PACKAGE_PATH = "poof.core.";
+	private final String DIRECTORY_SEPARATOR = "/";
+	private final String IMPORT_ARGS_SEPARATOR = "\\|";
+	private final String PUBLIC_LITERAL = "public";
 	
 	public Parser (FileSystemManager fms) {
 		this.fsm = fms;
@@ -16,7 +17,7 @@ public class Parser {
 	
 	
 	public void parse(String strToParse) {
-		String data[] = strToParse.split("\\|");
+		String data[] = strToParse.split(IMPORT_ARGS_SEPARATOR);
 		ArrayList<String> ctoargs = new ArrayList<String>(data.length-1);
 		data[0] = formatClassName(data[0]);
 		
@@ -52,19 +53,18 @@ public class Parser {
 	
 	private void createUser(ArrayList<String> ctoargs) {
 		
-		FileSystem fs = fsm.getActiveFileSystem();
 		User newUser = new User(ctoargs.get(0), ctoargs.get(1));
 		
 		// build users home directory
 		String homeDirPath = ctoargs.get(2);
-		Directory homeDir = buildDirectory(homeDirPath, fs.getRootDirectory(), newUser);
+		Directory homeDir = buildDirectory(homeDirPath, fsm.getRootDirectory(), newUser);
 		newUser.setMainDir(homeDir); // set users new home directory
-		fs.addUser(newUser);
+		fsm.addUser(newUser);
 		
 	}
 	
 	private Directory buildDirectory(String path, Directory rootDir, User owner) {
-		String[] dirParts = path.split("/");
+		String[] dirParts = path.split(DIRECTORY_SEPARATOR);
 		
 		Directory newDir;
 		for (int i = 1; i < dirParts.length; i++) {
@@ -94,7 +94,7 @@ public class Parser {
 		FileSystem fs = fsm.getActiveFileSystem();
 		Directory dir = buildDirectory(ctoargs.get(0),fs.getRootDirectory(), fs.getUser(ctoargs.get(1)));
 				
-		if(ctoargs.get(2).equals("public"))
+		if(ctoargs.get(2).equals(PUBLIC_LITERAL))
 			// if directory is public, set it to public
 			dir.setPrivacyMode(PrivacyMode.PUBLIC);
 	}

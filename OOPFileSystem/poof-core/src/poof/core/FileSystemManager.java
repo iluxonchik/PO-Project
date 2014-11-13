@@ -43,12 +43,12 @@ public class FileSystemManager {
 		if (!entryExists(entryName))
 			throw new EntryUnknownCoreException();
 		
-		FileSystemEntitiy entitiy = activeDirectory.getChild(entryName);
+		FileSystemEntitiy entity = activeDirectory.getChild(entryName);
 		
-		if (!hasPrivatePermissions(activeUser, entitiy))
+		if (!hasPrivatePermissions(activeUser, entity))
 			throw new AccessDeniedCoreException();
 		
-		entitiy.setPrivacyMode(privacyMode);
+		activeFileSystem.changeEntryPermissions(entity, privacyMode);
 		needsSaving = true;
 	}
 	
@@ -149,11 +149,12 @@ public class FileSystemManager {
 	
 	public String listEntry(String entryName) throws EntryUnknownCoreException {
 		
-		Directory child = activeDirectory.getChild(entryName);
+		FileSystemEntitiy child = activeDirectory.getChild(entryName);
 		if (child == null)
 			// no directory with such name found
 			throw new EntryUnknownCoreException();
-		return child.toString(); 
+		
+		return activeFileSystem.listEntry(child); 
 	}
 	
 	public Collection<User> listUsers() {
@@ -289,6 +290,14 @@ public class FileSystemManager {
 	
 	public void setNeedsSaving(boolean bool) {
 		needsSaving = bool;
+	}
+	
+	public void addUser(User user) {
+		activeFileSystem.addUser(user);
+	}
+	
+	public Directory getRootDirectory() {
+		return activeFileSystem.getRootDirectory();
 	}
 	
 }

@@ -60,7 +60,7 @@ public class Directory extends FileSystemEntitiy {
 		if (name.equals(Directory.ROOT_DIRECTORY_NAME))
 			return "";
 		
-		return getParent().getAbsolutePath() + Directory.DIR_SEPARATOR + name;
+		return getParent().getAbsolutePath() + DIR_SEPARATOR + name;
 	} 
 	
 	public HashMap<String, FileSystemEntitiy> getChildren() {
