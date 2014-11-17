@@ -75,7 +75,8 @@ public class Parser {
 				rootDir.addChild(newDir);
 				
 			}
-			rootDir = rootDir.getChild(dirParts[i]); // update parent of next directory
+			//TODO: DANGER: DOWNCAST! ADD ADITIONAL CHECKS!
+			rootDir = (Directory) rootDir.getChild(dirParts[i]); // update parent of next directory
 		
 		}
 		return rootDir;

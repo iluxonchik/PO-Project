@@ -8,8 +8,15 @@ import ist.po.ui.ValidityPredicate;
 
 import java.io.IOException;
 
+
+
+import poof.core.AccessDeniedCoreException;
+import poof.core.EntryExistsCoreException;
 // FIXME: import project-specific classes
 import poof.core.FileSystemManager;
+import poof.textui.EntryExistsException;
+import poof.textui.shell.MenuEntry;
+import poof.textui.shell.Message;
 
 /**
  * §2.2.5.
@@ -25,7 +32,16 @@ public class CreateFile extends Command<FileSystemManager> /* FIXME: select core
 	/** @see ist.po.ui.Command#execute() */
 	@Override
 	public final void execute() throws DialogException, IOException {
-		//FIXME: implement command
+		
+		String filename = IO.readString(Message.fileRequest());
+		
+		try {
+			_receiver.createFile(filename);
+		} catch (EntryExistsCoreException e) {
+			throw new EntryExistsException(filename);
+		} catch (AccessDeniedCoreException e) {
+			throw new EntryExistsException(filename);
+		}
 	}
 
 }

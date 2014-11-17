@@ -7,19 +7,29 @@ public class File extends FileSystemEntitiy {
 	private static final long serialVersionUID = -1035258600217016351L;
 	String content;
 	
-	public File(String name, User owner) { 
+	public File(String name, User owner, String content) { 
 		super (name, owner); 
+		this.content = content;
 		
 		entitiyType = EntitiyType.FILE;
+	}
+	
+	public File(String name, User owner) {
+		this(name, owner, "");
 	}
 	
 	public void appendData(String data) {
 		content += data;
 	}
 
+	public String getContent() {
+		return content;
+	}
+	
 	@Override
 	public int getSize() {
-		// TODO Auto-generated method stub
+		if (content != null)
+			return content.length();
 		return 0;
 	}
 

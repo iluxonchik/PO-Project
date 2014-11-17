@@ -46,13 +46,16 @@ public class Directory extends FileSystemEntitiy {
 	
 	// Getters
 	public Directory getParent() {
-		// NOTE: DOWNCAST! DANGER!
-		return getChild(PARENT_DIR_NAME);
+		FileSystemEntitiy entity = getChild(PARENT_DIR_NAME);
+		
+		if (entity.getentitiyType() == EntitiyType.DIRECTORY)
+			return (Directory)entity;
+		
+		return null; // something went wrong | no parent directory?
 	}
 	
-	public Directory getChild(String name) {
-		// NOTE: DOWNCAST! DANGER!
-		return (Directory) children.get(name);
+	public FileSystemEntitiy getChild(String name) {
+		return children.get(name);
 	}
 	
 	public String getAbsolutePath() {

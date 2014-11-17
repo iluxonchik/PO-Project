@@ -56,6 +56,7 @@ public class FileSystemManager {
 		
 		file.appendData(content);
 		
+		needsSaving = true;
 	
 	}
 	
@@ -100,8 +101,21 @@ public class FileSystemManager {
 	}
 
 	
-	public void createFile(String filename) {
-		// TODO
+	public void createFile(String filename) throws EntryExistsCoreException, AccessDeniedCoreException{
+		
+		File f = new File(filename, activeUser);
+		
+		if (!hasPrivatePermissions(activeUser, activeDirectory))
+			// user doesn't have permissions to create files here
+			throw new AccessDeniedCoreException();
+		
+		if(activeDirectory.getChild(filename) != null)
+			// entry with such name already exists
+			throw new EntryExistsCoreException();
+		
+		// add file to children list
+		activeDirectory.addChild(f);
+		
 		needsSaving = true;
 	}
 	
@@ -258,10 +272,20 @@ public class FileSystemManager {
 		needsSaving = true;
 	}
 	
-	public String showFileData(String fileName) {
-		// TODO
+	public String showFileData(String fileName) throws EntryUnknownCoreException, IsNotFileCoreException {
 		
-		return new String();
+		File file = null;
+		FileSystemEntitiy fsEntity = activeDirectory.getChild(fileName);
+	
+		if (fsEntity == null)
+			throw new EntryUnknownCoreException();
+		
+		if (!isFile(fsEntity))
+			throw new IsNotFileCoreException();
+		else
+			file = (File)fsEntity;
+		
+		return file.getContent();
 	}
 	
 	// Getters
