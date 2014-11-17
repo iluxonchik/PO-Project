@@ -8,9 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 
@@ -33,8 +31,32 @@ public class FileSystemManager {
 	}
 	
 	
-	public void appendDataToFile(String filename, String content) {
-		// TODO
+	public void appendDataToFile(String filename, String content) 
+			throws EntryUnknownCoreException,IsNotFileCoreException, AccessDeniedCoreException
+	{
+		File file = null;
+		FileSystemEntitiy entity = activeDirectory.getChild(filename);
+		
+		if (entity == null)
+			// entity does not exist
+			throw new EntryUnknownCoreException();
+		
+		if(!hasPrivatePermissions(activeUser, entity))
+			// logged in user has no permissions to alter the file
+			throw new AccessDeniedCoreException();
+		
+		if (entity.isCdiable())
+			// entity is a file
+			throw new IsNotFileCoreException();
+		else {
+			if (isFile(entity))
+				// now it's "safe" to cast to file
+				file = (File)entity;
+		}
+		
+		file.appendData(content);
+		
+	
 	}
 	
 	public void changeEntryPermissions(String entryName, PrivacyMode privacyMode) 
@@ -300,4 +322,7 @@ public class FileSystemManager {
 		return activeFileSystem.getRootDirectory();
 	}
 	
+	public boolean isFile(FileSystemEntitiy entity) {
+		return entity.getentitiyType() == EntitiyType.FILE;
+	}
 }

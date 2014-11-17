@@ -12,6 +12,10 @@ public class File extends FileSystemEntitiy {
 		
 		entitiyType = EntitiyType.FILE;
 	}
+	
+	public void appendData(String data) {
+		content += data;
+	}
 
 	@Override
 	public int getSize() {

@@ -7,6 +7,11 @@
 		<item value="false" key="ShowCompare"/>
 		<item value="682" key="height"/>
 	</section>
+	<section name="IgnoreResourcesDialog">
+		<item value="2" key="Action"/>
+	</section>
+	<section name="CheckoutAsWizard">
+	</section>
 	<section name="NewLocationWizard">
 	</section>
 </section>

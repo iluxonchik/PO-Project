@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CommitComments>	<CommitComment>User creation functionality implemented.
-
-git commit log for more info.</CommitComment>
-	<CommitComment>rootUser is now the owner of &quot;home&quot; and &quot;/&quot; directories.
-BUGFIX: users now added using their username and not name as key.
-
-git commit history for a more detailed info.</CommitComment>
-	<CommitComment>Mostly refractoring. git commit history for more detailed info.</CommitComment>
+<CommitComments>	<CommitComment>rel name updated</CommitComment>
+	<CommitComment>Javadoc and rel01.txt added.</CommitComment>
+	<CommitComment>Added methods to fsm</CommitComment>
+	<CommitComment>Added constants.</CommitComment>
+	<CommitComment>updates</CommitComment>
+	<CommitComment>Parsing now sets needsSaving to true</CommitComment>
+	<CommitComment>Bugfix (== was used instead of .equals())</CommitComment>
+	<CommitComment>More debug messages cleaning</CommitComment>
+	<CommitComment>Debug message removed.</CommitComment>
+	<CommitComment>import implemented</CommitComment>
 </CommitComments>

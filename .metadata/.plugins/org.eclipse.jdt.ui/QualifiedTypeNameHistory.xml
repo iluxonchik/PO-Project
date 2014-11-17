@@ -8,4 +8,7 @@
 <fullyQualifiedTypeName name="poof.textui.UserExistsException"/>
 <fullyQualifiedTypeName name="poof.textui.main.Message"/>
 <fullyQualifiedTypeName name="poof.textui.user.Message"/>
+<fullyQualifiedTypeName name="java.lang.reflect.Constructor"/>
+<fullyQualifiedTypeName name="java.lang.reflect.InvocationTargetException"/>
+<fullyQualifiedTypeName name="poof.core.Directory"/>
 </qualifiedTypeNameHistroy>
