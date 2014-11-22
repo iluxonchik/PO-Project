@@ -1,6 +1,0 @@
-package poof;
-
-public abstract class FileSystemEntities {
-	public String name;
-	public String size;
-}

@@ -1,5 +1,0 @@
-package poof;
-
-public abstract class FileSystemEntities {
-
-}

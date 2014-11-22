@@ -8,9 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 
@@ -33,8 +31,33 @@ public class FileSystemManager {
 	}
 	
 	
-	public void appendDataToFile(String filename, String content) {
-		// TODO
+	public void appendDataToFile(String filename, String content) 
+			throws EntryUnknownCoreException,IsNotFileCoreException, AccessDeniedCoreException
+	{
+		File file = null;
+		FileSystemEntitiy entity = activeDirectory.getChild(filename);
+		
+		if (entity == null)
+			// entity does not exist
+			throw new EntryUnknownCoreException();
+		
+		if(!hasPrivatePermissions(activeUser, entity))
+			// logged in user has no permissions to alter the file
+			throw new AccessDeniedCoreException();
+		
+		if (entity.isCdiable())
+			// entity is a file
+			throw new IsNotFileCoreException();
+		else {
+			if (isFile(entity))
+				// now it's "safe" to cast to file
+				file = (File)entity;
+		}
+		
+		file.appendData(content);
+		
+		needsSaving = true;
+	
 	}
 	
 	public void changeEntryPermissions(String entryName, PrivacyMode privacyMode) 
@@ -78,8 +101,21 @@ public class FileSystemManager {
 	}
 
 	
-	public void createFile(String filename) {
-		// TODO
+	public void createFile(String filename) throws EntryExistsCoreException, AccessDeniedCoreException{
+		
+		File f = new File(filename, activeUser);
+		
+		if (!hasPrivatePermissions(activeUser, activeDirectory))
+			// user doesn't have permissions to create files here
+			throw new AccessDeniedCoreException();
+		
+		if(activeDirectory.getChild(filename) != null)
+			// entry with such name already exists
+			throw new EntryExistsCoreException();
+		
+		// add file to children list
+		activeDirectory.addChild(f);
+		
 		needsSaving = true;
 	}
 	
@@ -123,7 +159,7 @@ public class FileSystemManager {
 		// login the root user
 		setActiveUser(rootUser);
 		
-		needsSaving = false;
+		needsSaving = true; //TODO: clarify it it needs to be saved or not
 	}
 	
 	public void createUser(String username, String name) throws AccessDeniedCoreException, UserExistsCoreException {
@@ -236,10 +272,20 @@ public class FileSystemManager {
 		needsSaving = true;
 	}
 	
-	public String showFileData(String fileName) {
-		// TODO
+	public String showFileData(String fileName) throws EntryUnknownCoreException, IsNotFileCoreException {
 		
-		return new String();
+		File file = null;
+		FileSystemEntitiy fsEntity = activeDirectory.getChild(fileName);
+	
+		if (fsEntity == null)
+			throw new EntryUnknownCoreException();
+		
+		if (!isFile(fsEntity))
+			throw new IsNotFileCoreException();
+		else
+			file = (File)fsEntity;
+		
+		return file.getContent();
 	}
 	
 	// Getters
@@ -300,4 +346,7 @@ public class FileSystemManager {
 		return activeFileSystem.getRootDirectory();
 	}
 	
+	public boolean isFile(FileSystemEntitiy entity) {
+		return entity.getentitiyType() == EntitiyType.FILE;
+	}
 }

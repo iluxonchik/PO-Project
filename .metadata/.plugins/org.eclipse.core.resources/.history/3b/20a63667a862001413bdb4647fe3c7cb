@@ -1,5 +1,0 @@
-package poof.core;
-
-public class File extends FileSystemEntities {
-	public File(String name, User onwer) { super (name, owner); }
-}

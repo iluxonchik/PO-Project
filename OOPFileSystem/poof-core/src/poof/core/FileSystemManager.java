@@ -159,7 +159,7 @@ public class FileSystemManager {
 		// login the root user
 		setActiveUser(rootUser);
 		
-		needsSaving = false;
+		needsSaving = true;
 	}
 	
 	public void createUser(String username, String name) throws AccessDeniedCoreException, UserExistsCoreException {
