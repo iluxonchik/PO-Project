@@ -1,4 +1,4 @@
-/** @version $Id: ChangeOwner.java,v 1.2 2014/11/08 20:24:15 ist178134 Exp $ */
+/** @version $Id: ChangeOwner.java,v 1.3 2014/11/22 14:16:06 ist178134 Exp $ */
 package poof.textui.shell;
 
 import static ist.po.ui.Dialog.IO;
@@ -25,7 +25,7 @@ public class ChangeOwner extends Command<FileSystemManager> /* FIXME: select cor
 	/** @see ist.po.ui.Command#execute() */
 	@Override
 	public final void execute() throws DialogException, IOException {
-		//FIXME: implement command
+		
 	}
 
 }

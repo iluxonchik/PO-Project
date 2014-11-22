@@ -75,16 +75,11 @@ public class FileSystemManager {
 		needsSaving = true;
 	}
 	
-	public void changeOwner(String entryName, String newOwnerUsername) throws EntryUnknownCoreException, AccessDeniedCoreException{
+	public void changeOwner(String entryName, String newOwnerUsername) throws {
 		FileSystemEntitiy entry = activeDirectory.getChild(entryName);
 		
-		if (entry == null)
-			throw new EntryUnknownCoreException();
 		
-		if (!hasPrivatePermissions(activeUser, entry))
-			throw new AccessDeniedCoreException();
 		
-		// everything is OK by now, change the permissions
 		activeFileSystem.changeOwner(entry, activeUser);
 	}
 	

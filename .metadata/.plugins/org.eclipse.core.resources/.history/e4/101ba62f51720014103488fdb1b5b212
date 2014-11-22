@@ -84,7 +84,7 @@ public class FileSystemManager {
 		if (!hasPrivatePermissions(activeUser, entry))
 			throw new AccessDeniedCoreException();
 		
-		// everything is OK by now, change the permissions
+		// Everything is ok by now, change the permissions
 		activeFileSystem.changeOwner(entry, activeUser);
 	}
 	
