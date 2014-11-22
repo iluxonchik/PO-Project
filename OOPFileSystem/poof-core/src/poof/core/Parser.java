@@ -1,6 +1,7 @@
 package poof.core;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Parser {
@@ -10,6 +11,7 @@ public class Parser {
 	private final String DIRECTORY_SEPARATOR = "/";
 	private final String IMPORT_ARGS_SEPARATOR = "\\|";
 	private final String PUBLIC_LITERAL = "public";
+	private final String FILENAME_SEPARATOR = "; ";
 	
 	public Parser (FileSystemManager fms) {
 		this.fsm = fms;
@@ -39,7 +41,7 @@ public class Parser {
 			}
 			else if(type == File.class) {
 				fsm.setNeedsSaving(true);
-				createFile(ctoargs);
+				createFile(ctoargs, fsm.getActiveUser());
 			}
 			
 			
@@ -91,17 +93,28 @@ public class Parser {
 		return className;
 	}
 	
-	private void createDirectory(ArrayList<String> ctoargs) {
+	private Directory createDirectory(ArrayList<String> ctoargs) {
 		FileSystem fs = fsm.getActiveFileSystem();
 		Directory dir = buildDirectory(ctoargs.get(0),fs.getRootDirectory(), fs.getUser(ctoargs.get(1)));
 				
 		if(ctoargs.get(2).equals(PUBLIC_LITERAL))
 			// if directory is public, set it to public
 			dir.setPrivacyMode(PrivacyMode.PUBLIC);
+		
+		return dir;
 	}
 	
-	private void createFile(ArrayList<String> ctoargs) {
-		// TODO
+	private void createFile(ArrayList<String> ctoargs, User owner) {
+		Directory dir;
+		String fileNames[] = ctoargs.get(ctoargs.size() - 1).split(FILENAME_SEPARATOR);
+		
+		// remove the file name(s) and pass it to directory creator
+		ctoargs.remove(ctoargs.size() - 1); 
+		dir = createDirectory(ctoargs);
+		
+		// add files to the directory
+		for (String fileName : fileNames)
+			dir.addChild(new File(fileName, owner));
 	}
 
 }

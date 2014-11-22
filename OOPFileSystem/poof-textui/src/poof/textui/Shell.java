@@ -27,7 +27,6 @@ public class Shell {
 		// FIXME: create and initialize core objects
 
 		FileSystemManager fsManager = new FileSystemManager();
-
 		
 		String datafile = System.getProperty("import"); //$NON-NLS-1$
 		if (datafile != null) {
