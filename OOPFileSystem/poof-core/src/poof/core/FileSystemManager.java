@@ -167,7 +167,7 @@ public class FileSystemManager {
 		
 		// login the root user
 		setActiveUser(rootUser);
-		
+
 		needsSaving = true;
 	}
 	

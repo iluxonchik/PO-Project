@@ -11,7 +11,6 @@ public class Parser {
 	private final String DIRECTORY_SEPARATOR = "/";
 	private final String IMPORT_ARGS_SEPARATOR = "\\|";
 	private final String PUBLIC_LITERAL = "public";
-	private final String FILENAME_SEPARATOR = "; ";
 	
 	public Parser (FileSystemManager fms) {
 		this.fsm = fms;
@@ -28,6 +27,7 @@ public class Parser {
 
 			
 			for (int i = 1; i < data.length; i++){
+				// build arguments list
 				ctoargs.add(data[i]);
 			}
 			
@@ -37,11 +37,11 @@ public class Parser {
 			}
 			else if(type == Directory.class) {
 				fsm.setNeedsSaving(true);
-				createDirectory(ctoargs);
+				createDirectory(ctoargs, false);
 			}
 			else if(type == File.class) {
 				fsm.setNeedsSaving(true);
-				createFile(ctoargs, fsm.getActiveUser());
+				createFile(ctoargs);
 			}
 			
 			
@@ -66,21 +66,34 @@ public class Parser {
 	}
 	
 	private Directory buildDirectory(String path, Directory rootDir, User owner) {
+		int i;
 		String[] dirParts = path.split(DIRECTORY_SEPARATOR);
 		
 		Directory newDir;
-		for (int i = 1; i < dirParts.length; i++) {
+		for (i = 1; i < dirParts.length-1; i++) {
 			
-			if(rootDir.getChild(dirParts[i]) ==null ) {
+			if(rootDir.getChild(dirParts[i]) ==null ) {				
 				// if sub directory doesn't exist, create it
-				newDir = new Directory(dirParts[i], owner, rootDir);
-				rootDir.addChild(newDir);
-				
+				newDir = new Directory(dirParts[i], rootDir);
+				rootDir.addChild(newDir);	
 			}
+			
 			//TODO: DANGER: DOWNCAST! ADD ADITIONAL CHECKS!
 			rootDir = (Directory) rootDir.getChild(dirParts[i]); // update parent of next directory
-		
 		}
+		// force owner on the last directory
+		
+		if (owner != null)
+			newDir = new Directory(dirParts[i], owner, rootDir);
+		else
+			// last directory's owner is not set, use parent as owner (useful for file creation)
+			newDir = new Directory(dirParts[i], rootDir);
+		
+		rootDir.addChild(newDir);
+		
+		//TODO: DANGER: DOWNCAST! ADD ADITIONAL CHECKS!
+		rootDir = (Directory) rootDir.getChild(dirParts[i]); // update parent of next directory
+		
 		return rootDir;
 	}
 	
@@ -93,9 +106,16 @@ public class Parser {
 		return className;
 	}
 	
-	private Directory createDirectory(ArrayList<String> ctoargs) {
+	private Directory createDirectory(ArrayList<String> ctoargs, boolean useParentOwnerForAll) {
 		FileSystem fs = fsm.getActiveFileSystem();
-		Directory dir = buildDirectory(ctoargs.get(0),fs.getRootDirectory(), fs.getUser(ctoargs.get(1)));
+		User owner;
+		
+		if (useParentOwnerForAll)
+			owner = null;
+		else
+			owner = fs.getUser(ctoargs.get(1));
+		
+		Directory dir = buildDirectory(ctoargs.get(0),fs.getRootDirectory(), owner);
 				
 		if(ctoargs.get(2).equals(PUBLIC_LITERAL))
 			// if directory is public, set it to public
@@ -104,17 +124,40 @@ public class Parser {
 		return dir;
 	}
 	
-	private void createFile(ArrayList<String> ctoargs, User owner) {
+	private void createFile(ArrayList<String> ctoargs) {
 		Directory dir;
-		String fileNames[] = ctoargs.get(ctoargs.size() - 1).split(FILENAME_SEPARATOR);
+		String dirPath = "";
+		String fileContent = ctoargs.get(ctoargs.size() - 1);
+		int i; // used in for cycle and after it
+		
+		if (fileContent == "")
+			fileContent = null;
+			
+		String pathParts[]= ctoargs.get(0).split(DIRECTORY_SEPARATOR); 
+		String fileName = pathParts[pathParts.length - 1]; // get the file name
+		
+
+		System.out.println("fileName: " + fileName + "\n");
+		
+
+		System.out.println("fileContent: " + fileContent + "\n");
+		
+		// build new directory path (remove the filename)
+		for (i = 0; i < pathParts.length - 2; i++) {
+			dirPath += pathParts[i] + "/";
+		}
+		dirPath += pathParts[i];
+		
+		System.out.println("dirPath: " + dirPath + "\n");
+		
+		ctoargs.set(0, dirPath);
 		
 		// remove the file name(s) and pass it to directory creator
 		ctoargs.remove(ctoargs.size() - 1); 
-		dir = createDirectory(ctoargs);
+		dir = createDirectory(ctoargs, true);
 		
 		// add files to the directory
-		for (String fileName : fileNames)
-			dir.addChild(new File(fileName, owner));
+		dir.addChild(new File(fileName, dir.getOwner(), fileContent));
 	}
 
 }

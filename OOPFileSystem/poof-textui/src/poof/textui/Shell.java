@@ -1,4 +1,4 @@
-/** @version $Id: Shell.java,v 1.4 2014/11/13 18:29:33 ist178134 Exp $ */
+/** @version $Id: Shell.java,v 1.5 2014/11/22 15:06:39 ist178134 Exp $ */
 package poof.textui;
 
 import static ist.po.ui.Dialog.IO;
@@ -30,7 +30,6 @@ public class Shell {
 		
 		String datafile = System.getProperty("import"); //$NON-NLS-1$
 		if (datafile != null) {
-			// FIXME: import text data file
 			try {
 				String line;
 				

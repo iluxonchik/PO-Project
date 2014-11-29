@@ -15,11 +15,11 @@ public class File extends FileSystemEntitiy {
 	}
 	
 	public File(String name, User owner) {
-		this(name, owner, "");
+		this(name, owner, null);
 	}
 	
 	public void appendData(String data) {
-		content += data;
+		content += data + "\n";
 	}
 
 	public String getContent() {
