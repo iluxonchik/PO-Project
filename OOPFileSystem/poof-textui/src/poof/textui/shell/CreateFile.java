@@ -1,7 +1,8 @@
-/** @version $Id: CreateFile.java,v 1.3 2014/11/17 20:35:10 ist178134 Exp $ */
+/** @version $Id: CreateFile.java,v 1.4 2014/11/30 21:34:37 ist178134 Exp $ */
 package poof.textui.shell;
 
 import static ist.po.ui.Dialog.IO;
+
 import ist.po.ui.Command;
 import ist.po.ui.DialogException;
 import ist.po.ui.ValidityPredicate;
@@ -17,6 +18,7 @@ import poof.core.FileSystemManager;
 import poof.textui.EntryExistsException;
 import poof.textui.shell.MenuEntry;
 import poof.textui.shell.Message;
+import poof.textui.AccessDeniedException;
 
 /**
  * §2.2.5.
@@ -37,9 +39,10 @@ public class CreateFile extends Command<FileSystemManager> /* FIXME: select core
 		
 		try {
 			_receiver.createFile(filename);
-		} catch (EntryExistsCoreException e) {
-			throw new EntryExistsException(filename);
 		} catch (AccessDeniedCoreException e) {
+			throw new AccessDeniedException(e.getUsername());
+		} 
+		catch (EntryExistsCoreException e) {
 			throw new EntryExistsException(filename);
 		}
 	}

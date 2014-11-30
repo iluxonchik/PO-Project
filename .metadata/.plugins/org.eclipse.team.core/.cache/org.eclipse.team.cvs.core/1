@@ -1,86 +1,48 @@
 package poof.core;
 
-import java.io.Serializable;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-
-public abstract class FileSystemEntitiy implements Serializable {
+public class File extends FileSystemEntitiy {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5454995429011788081L;
+	private static final long serialVersionUID = -1035258600217016351L;
+	String content;
 	
-	protected String name;
-	protected int size;
-	protected User owner;
-	protected PrivacyMode privacyMode;
-	protected EntitiyType entitiyType;
-	
-	
-	public FileSystemEntitiy (String name, User owner) {
-		this.name = name;
-		this.owner = owner;
-		this.privacyMode = PrivacyMode.PRIVATE;
+	public File(String name, User owner, String content) { 
+		super (name, owner); 
+		
+		if (content == null)
+			this.content = null;
+		else
+			this.content = content + "\n";
+		
+		entitiyType = EntitiyType.FILE;
 	}
 	
+	public File(String name, User owner) {
+		this(name, owner, null);
+	}
 	
-	public boolean isCdiable() {
-		return entitiyType.equals(EntitiyType.DIRECTORY);
-	}
-
-	// Getters
-	public String getName() {
-		return name;
-	}
-
-	public abstract int getSize();
-
-	public User getOwner() {
-		return owner;
+	public void appendData(String data) {
+		if (content == null)
+			content = data + "\n";
+		else
+			content += data + "\n";
 	}
 
-	public PrivacyMode getPrivacyMode() {
-		return privacyMode;
+	public String getContent() {
+		return content;
 	}
 	
-	public EntitiyType getentitiyType() {
-		return entitiyType;
+	@Override
+	public int getSize() {
+		if (content != null)
+			return content.length();
+		return 0;
 	}
-	
-	// Setters
-	public void setOwner (User newOwner) {
-		this.owner = newOwner;
-	}
-	
-	public void setName(String newName) {
-		name = newName;
-	}
-	
-	public void setPrivacyMode(PrivacyMode privacyMode) {
-		this.privacyMode = privacyMode;
-	}
-	
 	
 	@Override
 	public String toString() {
-		return toString(this.name);
-	}
-	
-	
-	public String toString(String name) {
-		// This method allows to print the same entity with different names
-		String entitiyStr = "";
-		if (privacyMode.equals(PrivacyMode.PRIVATE))
-			entitiyStr += "- ";
-		else
-			entitiyStr += "w ";
-		
-		entitiyStr += owner.getUsername() + " " + getSize() + " " + name;
-			
-		return entitiyStr;
+		return "- " + super.toString(name);
 	}
 
-	
-	
 }

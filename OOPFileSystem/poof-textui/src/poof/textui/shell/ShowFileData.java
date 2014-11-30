@@ -1,4 +1,4 @@
-/** @version $Id: ShowFileData.java,v 1.3 2014/11/17 20:35:10 ist178134 Exp $ */
+/** @version $Id: ShowFileData.java,v 1.4 2014/11/30 22:03:02 ist178134 Exp $ */
 package poof.textui.shell;
 
 import static ist.po.ui.Dialog.IO;
@@ -38,7 +38,11 @@ public class ShowFileData extends Command<FileSystemManager> /* FIXME: select co
 		String filename = IO.readString(Message.fileRequest());
 		
 		try {
-			IO.println(_receiver.showFileData(filename));
+			String fileContent = _receiver.showFileData(filename);
+			
+			if (fileContent != null)
+				IO.println(fileContent);
+			
 		} catch (EntryUnknownCoreException e) { throw new EntryUnknownException(filename); } 
 		  catch (IsNotFileCoreException e) { throw new IsNotFileException(filename); }
 		

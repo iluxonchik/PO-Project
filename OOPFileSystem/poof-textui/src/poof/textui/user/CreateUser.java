@@ -1,4 +1,4 @@
-/** @version $Id: CreateUser.java,v 1.7 2014/11/11 10:16:45 ist178134 Exp $ */
+/** @version $Id: CreateUser.java,v 1.8 2014/11/30 22:05:19 ist178134 Exp $ */
 package poof.textui.user;
 
 import static ist.po.ui.Dialog.IO;
@@ -42,7 +42,7 @@ public class CreateUser extends Command <FileSystemManager> /* FIXME: select cor
 		name = IO.readString(Message.nameRequest());
 		try {
 			_receiver.createUser(username, name);
-		} catch (AccessDeniedCoreException e) { throw new AccessDeniedException(username); }
+		} catch (AccessDeniedCoreException e) { throw new AccessDeniedException(e.getUsername()); }
 		catch (UserExistsCoreException e) { throw new UserExistsException(username); }
 		//NOTE: Only root user can create new users
 	}

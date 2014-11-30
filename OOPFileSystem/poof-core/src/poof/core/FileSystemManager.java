@@ -43,7 +43,7 @@ public class FileSystemManager {
 		
 		if(!hasPrivatePermissions(activeUser, entity))
 			// logged in user has no permissions to alter the file
-			throw new AccessDeniedCoreException();
+			throw new AccessDeniedCoreException(activeUser.getName());
 		
 		if (entity.isCdiable())
 			// entity is a file
@@ -69,7 +69,7 @@ public class FileSystemManager {
 		FileSystemEntitiy entity = activeDirectory.getChild(entryName);
 		
 		if (!hasPrivatePermissions(activeUser, entity))
-			throw new AccessDeniedCoreException();
+			throw new AccessDeniedCoreException(activeUser.getName());
 		
 		activeFileSystem.changeEntryPermissions(entity, privacyMode);
 		needsSaving = true;
@@ -82,7 +82,7 @@ public class FileSystemManager {
 			throw new EntryUnknownCoreException();
 		
 		if (!hasPrivatePermissions(activeUser, entry))
-			throw new AccessDeniedCoreException();
+			throw new AccessDeniedCoreException(activeUser.getUsername());
 		
 		// everything is OK by now, change the permissions
 		activeFileSystem.changeOwner(entry, activeUser);
@@ -112,15 +112,15 @@ public class FileSystemManager {
 	
 	public void createFile(String filename) throws EntryExistsCoreException, AccessDeniedCoreException{
 		
-		File f = new File(filename, activeUser);
-		
 		if (!hasPrivatePermissions(activeUser, activeDirectory))
 			// user doesn't have permissions to create files here
-			throw new AccessDeniedCoreException();
+			throw new AccessDeniedCoreException(activeUser.getUsername());
 		
 		if(activeDirectory.getChild(filename) != null)
 			// entry with such name already exists
 			throw new EntryExistsCoreException();
+		
+		File f = new File(filename, activeUser);
 		
 		// add file to children list
 		activeDirectory.addChild(f);
@@ -132,7 +132,7 @@ public class FileSystemManager {
 		
 		// first, check if user has permissions
 		if(!hasPrivatePermissions(activeUser, activeDirectory))
-			throw new AccessDeniedCoreException();
+			throw new AccessDeniedCoreException(activeUser.getUsername());
 		
 		if(activeDirectory.getChild(name)!=null)
 			// directory with such name already exists
@@ -180,7 +180,7 @@ public class FileSystemManager {
 	public void createUser(String username, String name) throws AccessDeniedCoreException, UserExistsCoreException {
 		if (!hasRootPermissions(activeUser))
 			// Logged in user is not root
-			throw new AccessDeniedCoreException();
+			throw new AccessDeniedCoreException(activeUser.getUsername());
 		
 		if (activeFileSystem.getUser(username)!= null)
 			// A user with such username already exists
@@ -273,7 +273,7 @@ public class FileSystemManager {
 		FileSystemEntitiy entitiy = activeDirectory.getChild(entryName);
 		
 		if (!hasPrivatePermissions(activeUser, entitiy) || !hasDirectoryPermissions(activeDirectory, activeUser))
-			throw new AccessDeniedCoreException();
+			throw new AccessDeniedCoreException(activeUser.getUsername());
 		
 		// removal of the specified directory is allowed
 		activeFileSystem.removeEntry(activeDirectory, entryName);
@@ -284,7 +284,9 @@ public class FileSystemManager {
 	
 	private boolean hasDirectoryPermissions(Directory activeDirectory,
 			User activeUser) {
-		return activeDirectory.getOwner() == activeUser;
+		return activeDirectory.getOwner() == activeUser || 
+				hasRootPermissions(activeUser)||
+				isPublic(activeDirectory);
 	}
 
 
@@ -339,7 +341,7 @@ public class FileSystemManager {
 			return false;
 		
 		return (entitiy.getPrivacyMode().equals(PrivacyMode.PUBLIC)) ||  // entitiy is public
-				(user.equals(activeFileSystem.getUser(User.ROOT_USERNAME))) || // user is root
+				(hasRootPermissions(user)) || // user is root
 				(user.equals(entitiy.getOwner())); // user is owner
 				
 	}
@@ -369,5 +371,9 @@ public class FileSystemManager {
 	
 	public boolean isFile(FileSystemEntitiy entity) {
 		return entity.getentitiyType() == EntitiyType.FILE;
+	}
+	
+	public boolean isPublic(FileSystemEntitiy ent) {
+		return ent.getPrivacyMode() == PrivacyMode.PUBLIC;
 	}
 }
