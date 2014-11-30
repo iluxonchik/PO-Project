@@ -1,4 +1,4 @@
-/** @version $Id: RemoveEntry.java,v 1.3 2014/11/13 05:52:44 ist178134 Exp $ */
+/** @version $Id: RemoveEntry.java,v 1.4 2014/11/30 12:37:55 ist178134 Exp $ */
 package poof.textui.shell;
 
 import ist.po.ui.Command;
@@ -43,7 +43,7 @@ public class RemoveEntry extends Command<FileSystemManager> /* FIXME: select cor
 		} catch (EntryUnknownCoreException e) {
 			throw new EntryUnknownException(entryName);
 		} catch (AccessDeniedCoreException e) {
-			String activeUsername = _receiver.getActiveUser().getName();
+			String activeUsername = _receiver.getActiveUser().getUsername();
 			throw new AccessDeniedException(activeUsername);
 		} catch (IllegalRemovalCoreException e) {
 			throw new IllegalRemovalException();

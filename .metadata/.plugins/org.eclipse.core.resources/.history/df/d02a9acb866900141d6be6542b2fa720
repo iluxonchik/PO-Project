@@ -1,7 +1,0 @@
-package poof.textui.shell;
-
-import poof.core.FileSystemException;
-
-public class EntryUnknownCoreException extends FileSystemException {
-
-}

@@ -12,8 +12,8 @@ public class Parser {
 	private final String IMPORT_ARGS_SEPARATOR = "\\|";
 	private final String PUBLIC_LITERAL = "public";
 	
-	public Parser (FileSystemManager fms) {
-		this.fsm = fms;
+	public Parser (FileSystemManager fsm) {
+		this.fsm = fsm;
 	}
 	
 	
@@ -37,7 +37,7 @@ public class Parser {
 			}
 			else if(type == Directory.class) {
 				fsm.setNeedsSaving(true);
-				createDirectory(ctoargs, false);
+				createDirectory(ctoargs, false, true);
 			}
 			else if(type == File.class) {
 				fsm.setNeedsSaving(true);
@@ -70,26 +70,38 @@ public class Parser {
 		String[] dirParts = path.split(DIRECTORY_SEPARATOR);
 		
 		Directory newDir;
+		
 		for (i = 1; i < dirParts.length-1; i++) {
 			
-			if(rootDir.getChild(dirParts[i]) ==null ) {				
+			if(rootDir.getChild(dirParts[i]) == null ) {				
 				// if sub directory doesn't exist, create it
 				newDir = new Directory(dirParts[i], rootDir);
-				rootDir.addChild(newDir);	
+				rootDir.addChild(newDir);
 			}
-			
+	
 			//TODO: DANGER: DOWNCAST! ADD ADITIONAL CHECKS!
 			rootDir = (Directory) rootDir.getChild(dirParts[i]); // update parent of next directory
 		}
+		
+		// TODO: refractor below
+		
 		// force owner on the last directory
 		
-		if (owner != null)
-			newDir = new Directory(dirParts[i], owner, rootDir);
-		else
-			// last directory's owner is not set, use parent as owner (useful for file creation)
-			newDir = new Directory(dirParts[i], rootDir);
+		if(rootDir.getChild(dirParts[i]) == null ) {				
+			// if sub directory doesn't exist, create it
+			
+			if (owner != null) {
+				newDir = new Directory(dirParts[i], owner, rootDir);
+			}
+			else
+				// last directory's owner is not set, use parent as owner (useful for file creation)
+				newDir = new Directory(dirParts[i], rootDir);
+			
+			rootDir.addChild(newDir);
+		}
+
+
 		
-		rootDir.addChild(newDir);
 		
 		//TODO: DANGER: DOWNCAST! ADD ADITIONAL CHECKS!
 		rootDir = (Directory) rootDir.getChild(dirParts[i]); // update parent of next directory
@@ -106,20 +118,24 @@ public class Parser {
 		return className;
 	}
 	
-	private Directory createDirectory(ArrayList<String> ctoargs, boolean useParentOwnerForAll) {
+	private Directory createDirectory(ArrayList<String> ctoargs, boolean useParentOwnerForAll, boolean changePrivacy) {
 		FileSystem fs = fsm.getActiveFileSystem();
 		User owner;
 		
-		if (useParentOwnerForAll)
+		if (useParentOwnerForAll) {
 			owner = null;
-		else
+		}
+		else {
 			owner = fs.getUser(ctoargs.get(1));
-		
+		}
+
 		Directory dir = buildDirectory(ctoargs.get(0),fs.getRootDirectory(), owner);
-				
-		if(ctoargs.get(2).equals(PUBLIC_LITERAL))
-			// if directory is public, set it to public
-			dir.setPrivacyMode(PrivacyMode.PUBLIC);
+		
+		if(changePrivacy) {		
+			if(ctoargs.get(2).equals(PUBLIC_LITERAL))
+				// if directory is public, set it to public
+				dir.setPrivacyMode(PrivacyMode.PUBLIC);
+		}
 		
 		return dir;
 	}
@@ -136,28 +152,28 @@ public class Parser {
 		String pathParts[]= ctoargs.get(0).split(DIRECTORY_SEPARATOR); 
 		String fileName = pathParts[pathParts.length - 1]; // get the file name
 		
-
-		System.out.println("fileName: " + fileName + "\n");
-		
-
-		System.out.println("fileContent: " + fileContent + "\n");
-		
 		// build new directory path (remove the filename)
 		for (i = 0; i < pathParts.length - 2; i++) {
 			dirPath += pathParts[i] + "/";
 		}
 		dirPath += pathParts[i];
 		
-		System.out.println("dirPath: " + dirPath + "\n");
-		
 		ctoargs.set(0, dirPath);
 		
 		// remove the file name(s) and pass it to directory creator
 		ctoargs.remove(ctoargs.size() - 1); 
-		dir = createDirectory(ctoargs, true);
-		
+		dir = createDirectory(ctoargs, true, false);
+				
 		// add files to the directory
 		dir.addChild(new File(fileName, dir.getOwner(), fileContent));
+		FileSystemEntitiy fsEnt = dir.getChild(fileName);
+		
+		User owner = fsm.getActiveFileSystem().getUser(ctoargs.get(1)); // get the specified owner
+		fsEnt.setOwner(owner);
+		
+		if(ctoargs.get(2).equals(PUBLIC_LITERAL))
+			// if directory is public, set it to public
+			fsEnt.setPrivacyMode(PrivacyMode.PUBLIC);
 	}
 
 }

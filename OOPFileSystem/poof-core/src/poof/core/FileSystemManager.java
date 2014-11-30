@@ -55,7 +55,7 @@ public class FileSystemManager {
 		}
 		
 		file.appendData(content);
-		
+				
 		needsSaving = true;
 	
 	}
@@ -139,7 +139,8 @@ public class FileSystemManager {
 			throw new EntryExistsCoreException();
 		
 		// at this point it's safe to add a new directory
-		activeDirectory.addChild(new Directory(name, activeDirectory));
+		// NOTE: (new Directory(name, activeDirectory) was used before
+		activeDirectory.addChild(new Directory(name, activeUser, activeDirectory));
 		needsSaving = true;
 	}
 	
@@ -167,7 +168,12 @@ public class FileSystemManager {
 		
 		// login the root user
 		setActiveUser(rootUser);
-
+	
+		/*
+		Parser p = new Parser(this);
+		p.parse("USER|vader|Darth Vader|/home/vader");
+		p.parse("FILE|/home/root/calendar|vader|public|10:00 kill rebels; 12:00 lunch with emperor");
+		*/
 		needsSaving = true;
 	}
 	
@@ -266,7 +272,7 @@ public class FileSystemManager {
 		
 		FileSystemEntitiy entitiy = activeDirectory.getChild(entryName);
 		
-		if (!hasPrivatePermissions(activeUser, entitiy))
+		if (!hasPrivatePermissions(activeUser, entitiy) || !hasDirectoryPermissions(activeDirectory, activeUser))
 			throw new AccessDeniedCoreException();
 		
 		// removal of the specified directory is allowed
@@ -276,6 +282,12 @@ public class FileSystemManager {
 		
 	}
 	
+	private boolean hasDirectoryPermissions(Directory activeDirectory,
+			User activeUser) {
+		return activeDirectory.getOwner() == activeUser;
+	}
+
+
 	public void removeUser(String username) {
 		// TODO
 		needsSaving = true;

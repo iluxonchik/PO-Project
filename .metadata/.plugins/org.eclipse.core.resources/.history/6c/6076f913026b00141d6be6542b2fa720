@@ -1,7 +1,0 @@
-package poof.core;
-
-public class EntryExistsCoreException extends FileSystemManagerException {
-
-
-
-}

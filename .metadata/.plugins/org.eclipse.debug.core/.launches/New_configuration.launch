@@ -9,4 +9,5 @@
 <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="poof.textui.Shell"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="OOPFileSystem"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dimport=Dailies/A-016-013-M-ok.import -Din=Dailies/A-016-013-M-ok.in -Dout=test.out"/>
 </launchConfiguration>

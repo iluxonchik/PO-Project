@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CommitComments>	<CommitComment>rel name updated</CommitComment>
+<CommitComments>	<CommitComment>Parser fixes.</CommitComment>
+	<CommitComment>rel name updated</CommitComment>
 	<CommitComment>Javadoc and rel01.txt added.</CommitComment>
 	<CommitComment>Added methods to fsm</CommitComment>
 	<CommitComment>Added constants.</CommitComment>
@@ -8,5 +9,4 @@
 	<CommitComment>Bugfix (== was used instead of .equals())</CommitComment>
 	<CommitComment>More debug messages cleaning</CommitComment>
 	<CommitComment>Debug message removed.</CommitComment>
-	<CommitComment>import implemented</CommitComment>
 </CommitComments>

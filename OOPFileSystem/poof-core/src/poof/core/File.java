@@ -5,11 +5,15 @@ public class File extends FileSystemEntitiy {
 	 * 
 	 */
 	private static final long serialVersionUID = -1035258600217016351L;
-	String content;
+	private String content;
 	
 	public File(String name, User owner, String content) { 
 		super (name, owner); 
-		this.content = content;
+		
+		if (content == null)
+			this.content = null;
+		else
+			this.content = content + "\n";
 		
 		entitiyType = EntitiyType.FILE;
 	}
@@ -19,7 +23,10 @@ public class File extends FileSystemEntitiy {
 	}
 	
 	public void appendData(String data) {
-		content += data + "\n";
+		if (content == null)
+			content = data + "\n";
+		else
+			content += data + "\n";
 	}
 
 	public String getContent() {
@@ -31,6 +38,11 @@ public class File extends FileSystemEntitiy {
 		if (content != null)
 			return content.length();
 		return 0;
+	}
+	
+	@Override
+	public String toString() {
+		return "- " + super.toString(name);
 	}
 
 }

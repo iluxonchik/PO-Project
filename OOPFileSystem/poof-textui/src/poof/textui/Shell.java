@@ -1,4 +1,4 @@
-/** @version $Id: Shell.java,v 1.5 2014/11/22 15:06:39 ist178134 Exp $ */
+/** @version $Id: Shell.java,v 1.6 2014/11/29 14:33:28 ist178134 Exp $ */
 package poof.textui;
 
 import static ist.po.ui.Dialog.IO;

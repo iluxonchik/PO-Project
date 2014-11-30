@@ -10,7 +10,7 @@ public class User implements Serializable{
 	
 	private String name;
 	private String username;
-	Directory mainDir; // user's home directory
+	private Directory mainDir; // user's home directory
 	
 	// Constants
 	public static final String ROOT_USERNAME = "root";
@@ -44,7 +44,7 @@ public class User implements Serializable{
 	public Directory getMainDirectory() { return this.mainDir; }
 
 	// Setters
-	public void setMainDir(Directory dir) { mainDir = dir; }
+	public void setMainDir(Directory dir) { mainDir = dir; dir.setOwner(this); }
 	
 	@Override
 	public boolean equals(Object obj) {

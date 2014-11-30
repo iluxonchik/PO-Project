@@ -1,5 +1,0 @@
-package poof.textui.main;
-
-public abstract class FileSystemException {
-
-}
