@@ -25,18 +25,17 @@ import poof.textui.shell.Message;
 /**
  * §2.2.10.
  */
-public class ChangeEntryPermissions extends Command<FileSystemManager> /* FIXME: select core type for receiver */ {
+public class ChangeEntryPermissions extends Command<FileSystemManager> {
 	/**
 	 * @param receiver
 	 */
-	public ChangeEntryPermissions(FileSystemManager reciever /*FIXME: add receiver declaration: type must agree with the above*/) {
-		super(MenuEntry.CHMOD, reciever /*FIXME: receiver argument*/);
+	public ChangeEntryPermissions(FileSystemManager reciever) {
+		super(MenuEntry.CHMOD, reciever);
 	}
 
 	/** @see ist.po.ui.Command#execute() */
 	@Override
 	public final void execute() throws DialogException, IOException {
-		//FIXME: implement command
 		PrivacyMode privacyMode;
 		
 		String entryName = IO.readString(Message.nameRequest());
@@ -51,12 +50,9 @@ public class ChangeEntryPermissions extends Command<FileSystemManager> /* FIXME:
 		try {
 			_receiver.changeEntryPermissions(entryName, privacyMode);
 		} catch (EntryUnknownCoreException e) {
-			// TODO Auto-generated catch block
 			throw new EntryUnknownException(entryName);
 		} catch (AccessDeniedCoreException e) {
-			// TODO Auto-generated catch block
-			String activeUsername = _receiver.getActiveUser().getName();
-			throw new AccessDeniedException(activeUsername);
+			throw new AccessDeniedException(e.getUsername());
 		}
 	}
 
