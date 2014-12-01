@@ -16,19 +16,19 @@ public class MenuBuilder {
 	/**
 	 * @param receiver
 	 */
-	public static void menuFor(FileSystemManager fsManager /*FIXME: receiver declaration*/) {
+	public static void menuFor(FileSystemManager fsManager) {
 		Menu menu = new Menu(MenuEntry.TITLE, new Command<?>[] {
-				new ListAllEntries(fsManager /*FIXME: receiver argument*/),
-				new ListEntry(fsManager /*FIXME: receiver argument*/),
-				new RemoveEntry(fsManager /*FIXME: receiver argument*/),
-				new ChangeWorkingDirectory(fsManager /*FIXME: receiver argument*/),
-				new CreateFile(fsManager /*FIXME: receiver argument*/),
-				new CreateDirectory(fsManager /*FIXME: receiver argument*/),
-				new ShowWorkingDirectory(fsManager /*FIXME: receiver argument*/),
-				new AppendDataToFile(fsManager /*FIXME: receiver argument*/),
-				new ShowFileData(fsManager/*FIXME: receiver argument*/),
-				new ChangeEntryPermissions(fsManager /*FIXME: receiver argument*/),
-				new ChangeOwner(fsManager /*FIXME: receiver argument*/),
+				new ListAllEntries(fsManager),
+				new ListEntry(fsManager),
+				new RemoveEntry(fsManager),
+				new ChangeWorkingDirectory(fsManager),
+				new CreateFile(fsManager),
+				new CreateDirectory(fsManager),
+				new ShowWorkingDirectory(fsManager),
+				new AppendDataToFile(fsManager),
+				new ShowFileData(fsManager),
+				new ChangeEntryPermissions(fsManager),
+				new ChangeOwner(fsManager),
 				});
 		menu.open();
 	}

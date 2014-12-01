@@ -32,8 +32,8 @@ public class New extends Command<FileSystemManager> {
 		if(_receiver.needsSaving()) {
 			
 			if(IO.readBoolean(Message.saveBeforeExit())) {
-				// if user wants to save the currently active FileSystem
 				
+				// if user wants to save the currently active FileSystem
 				FileSystem activeFileSystem = _receiver.getActiveFileSystem();
 				String name;
 				if(activeFileSystem.isAssociated()) {

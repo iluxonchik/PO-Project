@@ -8,26 +8,25 @@ import poof.core.FileSystemManager;
 /**
  * Open user management menu.
  */
-public class MenuOpenUserManagement extends Command<FileSystemManager> /* FIXME: select core type for receiver */ {
+public class MenuOpenUserManagement extends Command<FileSystemManager> {
 
 	/**
 	 * @param receiver
 	 */
-	public MenuOpenUserManagement(final FileSystemManager receiver /*FIXME: add receiver declaration: type must agree with the above*/) {
-		super(MenuEntry.MENU_USER_MGT, receiver /*FIXME: receiver argument*/ , new ValidityPredicate<FileSystemManager>(receiver) {
+	public MenuOpenUserManagement(final FileSystemManager receiver) {
+		super(MenuEntry.MENU_USER_MGT, receiver, new ValidityPredicate<FileSystemManager>(receiver) {
 
 			@Override
 			public boolean isValid() {
-				// TODO Auto-generated method stub
 				return receiver.getActiveUser() != null; // only show if there is an active User
 			}
-		} /*FIXME: validity argument*/);
+		});
 	}
 
 	/** @see ist.po.ui.Command#execute() */
 	@Override
 	public final void execute() {
-		poof.textui.user.MenuBuilder.menuFor(_receiver /*FIXME: receiver argument*/);
+		poof.textui.user.MenuBuilder.menuFor(_receiver);
 	}
 
 }

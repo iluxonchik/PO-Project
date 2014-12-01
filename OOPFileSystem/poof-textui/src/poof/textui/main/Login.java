@@ -18,28 +18,26 @@ import poof.textui.main.Message;
 /**
  * §2.1.2.
  */
-public class Login extends Command<FileSystemManager> /* FIXME: select core type for receiver */ {
+public class Login extends Command<FileSystemManager> {
 
 	/**
 	 * @param receiver
 	 */
-	public Login(final FileSystemManager receiver /*FIXME: add receiver declaration: type must agree with the above*/) {
+	public Login(final FileSystemManager receiver) {
 		
-		super(MenuEntry.LOGIN, receiver /*FIXME: receiver argument*/, new ValidityPredicate<FileSystemManager>(receiver) {
+		super(MenuEntry.LOGIN, receiver, new ValidityPredicate<FileSystemManager>(receiver) {
 
 			@Override
 			public boolean isValid() {
-				// TODO Auto-generated method stub
 				return receiver.getActiveFileSystem() != null; // only show if there is an active FileSystem
 			}
 			
-		}/*FIXME: validity argument*/);
+		});
 	}
 
 	/** @see ist.po.ui.Command#execute() */
 	@Override
 	public final void execute() throws DialogException, IOException {
-		//FIXME: implement command
 		
 		String userToLogin = IO.readString(Message.usernameRequest());
 		

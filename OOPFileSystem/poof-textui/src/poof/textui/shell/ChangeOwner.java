@@ -4,10 +4,8 @@ package poof.textui.shell;
 import ist.po.ui.Command;
 import ist.po.ui.DialogException;
 
-
 import java.io.IOException;
 
-// FIXME: import project-specific classes
 import poof.core.FileSystemManager;
 
 /**

@@ -15,7 +15,7 @@ public class MenuBuilder {
 	/**
 	 * @param receiver
 	 */
-	public static void menuFor(FileSystemManager fsManager /*FIXME: receiver declaration*/) {
+	public static void menuFor(FileSystemManager fsManager) {
 		Menu menu = new Menu(MenuEntry.TITLE, new Command<?>[] {
 				new CreateUser(fsManager),
 				new ListAllUsers(fsManager),
