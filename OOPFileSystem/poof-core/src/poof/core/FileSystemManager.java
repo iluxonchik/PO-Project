@@ -121,11 +121,8 @@ public class FileSystemManager {
 		if(activeDirectory.getChild(filename) != null)
 			// entry with such name already exists
 			throw new EntryExistsCoreException();
-		
-		File f = new File(filename, activeUser);
-		
-		// add file to children list
-		activeDirectory.addChild(f);
+			
+		activeFileSystem.createFile(filename, activeDirectory, activeUser);
 		
 		needsSaving = true;
 	}

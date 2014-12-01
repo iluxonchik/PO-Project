@@ -106,8 +106,11 @@ public class FileSystem implements Serializable{
 	 * @param dir directory where the file should be added
 	 * @param owner the owner of the file
 	 */
-	public void createFile(String name, Directory dir, User owner) {
-		// TODO
+	public void createFile(String filename, Directory dir, User owner) {
+		
+		File f = new File(filename, owner);
+		// add file to children list
+		dir.addChild(f);
 	}
 	
 	/**
