@@ -302,7 +302,7 @@ public class FileSystemManager {
 		else
 			file = (File)fsEntity;
 		
-		return file.getContent();
+		return activeFileSystem.showFileData(file);
 	}
 	
 	public void initializeFromFile(String datafile) {

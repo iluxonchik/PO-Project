@@ -173,8 +173,8 @@ public class FileSystem implements Serializable{
 	 * @return file contents
 	 */
 	public String showFileData(File file) {
-		// TODO
-		return new String();
+
+		return file.getContent();
 	}
 	
 	/**
