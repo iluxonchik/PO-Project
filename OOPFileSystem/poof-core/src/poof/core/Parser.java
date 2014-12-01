@@ -1,7 +1,6 @@
 package poof.core;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class Parser {
@@ -79,14 +78,12 @@ public class Parser {
 				rootDir.addChild(newDir);
 			}
 	
-			//TODO: DANGER: DOWNCAST! ADD ADITIONAL CHECKS!
 			rootDir = (Directory) rootDir.getChild(dirParts[i]); // update parent of next directory
 		}
 		
-		// TODO: refractor below
-		
+
+		// Code below performs actions specifically on the last entry		
 		// force owner on the last directory
-		
 		if(rootDir.getChild(dirParts[i]) == null ) {				
 			// if sub directory doesn't exist, create it
 			
@@ -100,10 +97,6 @@ public class Parser {
 			rootDir.addChild(newDir);
 		}
 
-
-		
-		
-		//TODO: DANGER: DOWNCAST! ADD ADITIONAL CHECKS!
 		rootDir = (Directory) rootDir.getChild(dirParts[i]); // update parent of next directory
 		
 		return rootDir;

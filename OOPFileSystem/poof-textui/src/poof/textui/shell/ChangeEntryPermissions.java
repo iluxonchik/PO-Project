@@ -4,7 +4,6 @@ package poof.textui.shell;
 import static ist.po.ui.Dialog.IO;
 import ist.po.ui.Command;
 import ist.po.ui.DialogException;
-import ist.po.ui.ValidityPredicate;
 
 import java.io.IOException;
 

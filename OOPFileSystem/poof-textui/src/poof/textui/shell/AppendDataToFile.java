@@ -4,7 +4,6 @@ package poof.textui.shell;
 import static ist.po.ui.Dialog.IO;
 import ist.po.ui.Command;
 import ist.po.ui.DialogException;
-import ist.po.ui.ValidityPredicate;
 
 import java.io.IOException;
 
@@ -14,7 +13,6 @@ import java.io.IOException;
 
 import poof.core.AccessDeniedCoreException;
 import poof.core.EntryUnknownCoreException;
-// FIXME: import project-specific classes
 import poof.core.FileSystemManager;
 import poof.core.IsNotFileCoreException;
 import poof.textui.AccessDeniedException;
@@ -26,12 +24,12 @@ import poof.textui.shell.Message;
 /**
  * §2.2.8.
  */
-public class AppendDataToFile extends Command<FileSystemManager> /* FIXME: select core type for receiver */ {
+public class AppendDataToFile extends Command<FileSystemManager> {
 	/**
 	 * @param receiver
 	 */
-	public AppendDataToFile(FileSystemManager reciever /*FIXME: add receiver declaration: type must agree with the above*/) {
-		super(MenuEntry.APPEND, reciever /*FIXME: receiver argument*/);
+	public AppendDataToFile(FileSystemManager reciever) {
+		super(MenuEntry.APPEND, reciever);
 	}
 
 	/** @see ist.po.ui.Command#execute() */

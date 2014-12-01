@@ -5,11 +5,9 @@ import static ist.po.ui.Dialog.IO;
 
 import ist.po.ui.Command;
 import ist.po.ui.DialogException;
-import ist.po.ui.ValidityPredicate;
 
 import java.io.IOException;
 
-// FIXME: import project-specific classes
 import poof.textui.main.MenuEntry;
 import poof.textui.main.Message;
 import poof.core.FileSystem;
@@ -18,19 +16,19 @@ import poof.core.FileSystemManager;
 /**
  * Open a new file.
  */
-public class New extends Command<FileSystemManager> /* FIXME: select core type for receiver */ {
+public class New extends Command<FileSystemManager> {
 
 	/**
 	 * @param receiver
 	 */
-	public New(FileSystemManager receiver /*FIXME: add receiver declaration: type must agree with the above*/) {
-		super(MenuEntry.NEW, receiver /*FIXME: receiver argument*/);
+	public New(FileSystemManager receiver) {
+		super(MenuEntry.NEW, receiver);
 	}
 
 	/** @see ist.po.ui.Command#execute() */
 	@Override
 	public final void execute() throws DialogException, IOException {
-		//FIXME: implement command
+		
 		if(_receiver.needsSaving()) {
 			
 			if(IO.readBoolean(Message.saveBeforeExit())) {

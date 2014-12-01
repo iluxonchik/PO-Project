@@ -3,18 +3,7 @@ package poof.textui;
 
 import static ist.po.ui.Dialog.IO;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-
-
-
-
-
-// FIXME: import project-specific classes
 import poof.core.FileSystemManager;
-import poof.core.Parser;
 
 /**
  * Class that starts the application's textual interface.
@@ -24,7 +13,6 @@ public class Shell {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// FIXME: create and initialize core objects
 
 		FileSystemManager fsManager = new FileSystemManager();
 		
@@ -35,7 +23,7 @@ public class Shell {
 	
 		
 		
-		poof.textui.main.MenuBuilder.menuFor(fsManager /*FIXME: core object (receiver) argument*/);
+		poof.textui.main.MenuBuilder.menuFor(fsManager);
 		IO.closeDown();
 	}
 

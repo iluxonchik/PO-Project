@@ -4,7 +4,6 @@ package poof.textui.shell;
 import static ist.po.ui.Dialog.IO;
 import ist.po.ui.Command;
 import ist.po.ui.DialogException;
-import ist.po.ui.ValidityPredicate;
 
 import java.io.IOException;
 
@@ -12,7 +11,6 @@ import java.io.IOException;
 
 
 import poof.core.EntryUnknownCoreException;
-// FIXME: import project-specific classes
 import poof.core.FileSystemManager;
 import poof.core.IsNotDirectoryCoreException;
 import poof.textui.EntryUnknownException;
@@ -23,18 +21,18 @@ import poof.textui.shell.Message;
 /**
  * §2.2.4.
  */
-public class ChangeWorkingDirectory extends Command<FileSystemManager> /* FIXME: select core type for receiver */ {
+public class ChangeWorkingDirectory extends Command<FileSystemManager> {
 	/**
 	 * @param receiver
 	 */
-	public ChangeWorkingDirectory(FileSystemManager reciever /*FIXME: add receiver declaration: type must agree with the above*/) {
-		super(MenuEntry.CD, reciever /*FIXME: receiver argument*/);
+	public ChangeWorkingDirectory(FileSystemManager reciever) {
+		super(MenuEntry.CD, reciever);
 	}
 
 	/** @see ist.po.ui.Command#execute() */
 	@Override
 	public final void execute() throws DialogException, IOException {
-		//FIXME: implement command
+
 		String dirName = IO.readString(Message.directoryRequest());
 
 		try {

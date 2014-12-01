@@ -4,15 +4,10 @@ package poof.textui.shell;
 import static ist.po.ui.Dialog.IO;
 import ist.po.ui.Command;
 import ist.po.ui.DialogException;
-import ist.po.ui.ValidityPredicate;
 
 import java.io.IOException;
 
-
-
-
 import poof.core.EntryUnknownCoreException;
-// FIXME: import project-specific classes
 import poof.core.FileSystemManager;
 import poof.core.IsNotFileCoreException;
 import poof.textui.EntryUnknownException;
@@ -23,12 +18,12 @@ import poof.textui.shell.Message;
 /**
  * §2.2.9.
  */
-public class ShowFileData extends Command<FileSystemManager> /* FIXME: select core type for receiver */ {
+public class ShowFileData extends Command<FileSystemManager> {
 	/**
 	 * @param receiver
 	 */
-	public ShowFileData(FileSystemManager receiver /*FIXME: add receiver declaration: type must agree with the above*/) {
-		super(MenuEntry.CAT, receiver /*FIXME: receiver argument*/);
+	public ShowFileData(FileSystemManager receiver) {
+		super(MenuEntry.CAT, receiver);
 	}
 
 	/** @see ist.po.ui.Command#execute() */

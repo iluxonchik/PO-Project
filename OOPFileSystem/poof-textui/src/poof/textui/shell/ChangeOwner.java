@@ -1,10 +1,9 @@
 /** @version $Id: ChangeOwner.java,v 1.3 2014/11/22 14:16:06 ist178134 Exp $ */
 package poof.textui.shell;
 
-import static ist.po.ui.Dialog.IO;
 import ist.po.ui.Command;
 import ist.po.ui.DialogException;
-import ist.po.ui.ValidityPredicate;
+
 
 import java.io.IOException;
 
@@ -14,12 +13,12 @@ import poof.core.FileSystemManager;
 /**
  * §2.2.11.
  */
-public class ChangeOwner extends Command<FileSystemManager> /* FIXME: select core type for receiver */ {
+public class ChangeOwner extends Command<FileSystemManager>{
 	/**
 	 * @param receiver
 	 */
-	public ChangeOwner(FileSystemManager reciever /*FIXME: add receiver declaration: type must agree with the above*/) {
-		super(MenuEntry.CHOWN, reciever /*FIXME: receiver argument*/);
+	public ChangeOwner(FileSystemManager reciever) {
+		super(MenuEntry.CHOWN, reciever);
 	}
 
 	/** @see ist.po.ui.Command#execute() */

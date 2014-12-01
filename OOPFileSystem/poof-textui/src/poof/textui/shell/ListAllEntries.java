@@ -2,18 +2,13 @@
 package poof.textui.shell;
 
 import static ist.po.ui.Dialog.IO;
-
 import ist.po.ui.Command;
 import ist.po.ui.DialogException;
-import ist.po.ui.ValidityPredicate;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.Map;
 
-
 import poof.core.Directory;
-// FIXME: import project-specific classes
 import poof.core.FileSystemManager;
 import poof.core.FileSystemEntitiy;
 

@@ -6,11 +6,9 @@ import static ist.po.ui.Dialog.IO;
 
 import ist.po.ui.Command;
 import ist.po.ui.DialogException;
-import ist.po.ui.ValidityPredicate;
 
 import java.io.IOException;
 
-// FIXME: import project-specific classes
 import poof.core.FileSystemManager;
 import poof.core.EntryUnknownCoreException;
 import poof.textui.EntryUnknownException;
@@ -20,18 +18,18 @@ import poof.textui.shell.Message;
 /**
  * §2.2.2.
  */
-public class ListEntry extends Command<FileSystemManager> /* FIXME: select core type for receiver */ {
+public class ListEntry extends Command<FileSystemManager>{
 	/**
 	 * @param receiver
 	 */
-	public ListEntry(FileSystemManager receiver /*FIXME: add receiver declaration: type must agree with the above*/) {
-		super(MenuEntry.LS_ENTRY, receiver /*FIXME: receiver argument*/);
+	public ListEntry(FileSystemManager receiver) {
+		super(MenuEntry.LS_ENTRY, receiver);
 	}
 
 	/** @see ist.po.ui.Command#execute() */
 	@Override
 	public final void execute() throws DialogException, IOException {
-		//FIXME: implement command
+
 		String dirNameToList = IO.readString(Message.nameRequest());
 		
 		try {
