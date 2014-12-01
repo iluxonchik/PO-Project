@@ -37,7 +37,7 @@ public class CreateDirectory extends Command<FileSystemManager> /* FIXME: select
 		try {
 			_receiver.createDirectory(dirName);
 		} catch(EntryExistsCoreException e) { throw new EntryExistsException(dirName); }
-		catch (AccessDeniedCoreException e) { throw new AccessDeniedException(_receiver.getActiveUser().getName()); }
+		catch (AccessDeniedCoreException e) { throw new AccessDeniedException(e.getUsername()); }
 	}
 
 }
