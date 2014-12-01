@@ -20,18 +20,18 @@ import poof.core.FileSystemEntitiy;
 /**
  * §2.2.1.
  */
-public class ListAllEntries extends Command<FileSystemManager> /* FIXME: select core type for receiver */ {
+public class ListAllEntries extends Command<FileSystemManager> {
 	/**
 	 * @param receiver
 	 */
-	public ListAllEntries(FileSystemManager reciever /*FIXME: add receiver declaration: type must agree with the above*/) {
-		super(MenuEntry.LS, reciever /*FIXME: receiver argument*/);
+	public ListAllEntries(FileSystemManager reciever) {
+		super(MenuEntry.LS, reciever);
 	}
 
 	/** @see ist.po.ui.Command#execute() */
 	@Override
 	public final void execute() throws DialogException, IOException {
-		//FIXME: implement command
+
 		Map<String, FileSystemEntitiy> children = _receiver.listAllEntries();
 		
 		for(Map.Entry<String, FileSystemEntitiy> entry: children.entrySet()) {

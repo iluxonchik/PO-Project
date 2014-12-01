@@ -20,18 +20,17 @@ import poof.core.AccessDeniedCoreException;
 /**
  * §2.2.6.
  */
-public class CreateDirectory extends Command<FileSystemManager> /* FIXME: select core type for receiver */ {
+public class CreateDirectory extends Command<FileSystemManager> {
 	/**
 	 * @param receiver
 	 */
-	public CreateDirectory(FileSystemManager receiver /*FIXME: add receiver declaration: type must agree with the above*/) {
-		super(MenuEntry.MKDIR, receiver /*FIXME: receiver argument*/);
+	public CreateDirectory(FileSystemManager receiver) {
+		super(MenuEntry.MKDIR, receiver);
 	}
 
 	/** @see ist.po.ui.Command#execute() */
 	@Override
 	public final void execute() throws DialogException, IOException {
-		//FIXME: implement command
 		
 		String dirName = IO.readString(Message.directoryRequest());		
 		try {

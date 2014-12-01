@@ -24,18 +24,17 @@ import poof.textui.shell.Message;
 /**
  * §2.2.3.
  */
-public class RemoveEntry extends Command<FileSystemManager> /* FIXME: select core type for receiver */ {
+public class RemoveEntry extends Command<FileSystemManager> {
 	/**
 	 * @param receiver
 	 */
-	public RemoveEntry(FileSystemManager reciever /*FIXME: add receiver declaration: type must agree with the above*/) {
-		super(MenuEntry.RM, reciever /*FIXME: receiver argument*/);
+	public RemoveEntry(FileSystemManager reciever) {
+		super(MenuEntry.RM, reciever);
 	}
 
 	/** @see ist.po.ui.Command#execute() */
 	@Override
 	public final void execute() throws DialogException, IOException {
-		//FIXME: implement command
 		
 		String entryName = IO.readString(Message.nameRequest());
 		try {
@@ -43,8 +42,7 @@ public class RemoveEntry extends Command<FileSystemManager> /* FIXME: select cor
 		} catch (EntryUnknownCoreException e) {
 			throw new EntryUnknownException(entryName);
 		} catch (AccessDeniedCoreException e) {
-			String activeUsername = _receiver.getActiveUser().getUsername();
-			throw new AccessDeniedException(activeUsername);
+			throw new AccessDeniedException(e.getUsername());
 		} catch (IllegalRemovalCoreException e) {
 			throw new IllegalRemovalException();
 		}
