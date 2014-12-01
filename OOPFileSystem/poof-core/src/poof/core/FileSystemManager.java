@@ -56,10 +56,8 @@ public class FileSystemManager {
 				file = (File)entity;
 		}
 		
-		file.appendData(content);
-				
+		activeFileSystem.appendDataToFile(file, content);
 		needsSaving = true;
-	
 	}
 	
 	public void changeEntryPermissions(String entryName, PrivacyMode privacyMode) 

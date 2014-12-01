@@ -27,7 +27,7 @@ public class FileSystem implements Serializable{
 	/** FileSystem's home directory. */
 	private Directory homeDirectory; // convenient to have when creating new users
 	
-	/** The users. */
+	/** Users map. */
 	private HashMap<String, User> users;
 	
 	
@@ -74,7 +74,7 @@ public class FileSystem implements Serializable{
 	 * @param content content to append to the file
 	 */
 	public void appendDataToFile(File file, String content) {
-		// TODO
+		file.appendData(content);
 	}
 	
 	/**
