@@ -30,19 +30,7 @@ public class Shell {
 		
 		String datafile = System.getProperty("import"); //$NON-NLS-1$
 		if (datafile != null) {
-			try {
-				String line;
-				
-				BufferedReader br = new BufferedReader(new FileReader(datafile));
-				fsManager.createFileSystem(); // first, create a new FileSystem
-				Parser p = new Parser(fsManager);
-				
-				while((line = br.readLine() )!= null)
-					p.parse(line);
-				
-				br.close();
-			} catch (FileNotFoundException e) { e.printStackTrace(); } 
-			catch (IOException e) { e.printStackTrace(); }
+			fsManager.initializeFromFile(datafile);
 		}
 	
 		

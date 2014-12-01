@@ -2,9 +2,11 @@ package poof.core;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -168,12 +170,7 @@ public class FileSystemManager {
 		
 		// login the root user
 		setActiveUser(rootUser);
-	
-		/*
-		Parser p = new Parser(this);
-		p.parse("USER|vader|Darth Vader|/home/vader");
-		p.parse("FILE|/home/root/calendar|vader|public|10:00 kill rebels; 12:00 lunch with emperor");
-		*/
+
 		needsSaving = true;
 	}
 	
@@ -309,6 +306,23 @@ public class FileSystemManager {
 			file = (File)fsEntity;
 		
 		return file.getContent();
+	}
+	
+	public void initializeFromFile(String datafile) {
+		/* Initialize the FileSystem from an imported datafile */
+		try {
+			String line;
+			
+			BufferedReader br = new BufferedReader(new FileReader(datafile));
+			createFileSystem(); // first, create a new FileSystem
+			
+			Parser p = new Parser(this);
+			while((line = br.readLine() )!= null)
+				p.parse(line);
+			
+			br.close();
+		} catch (FileNotFoundException e) { e.printStackTrace(); } 
+		catch (IOException e) { e.printStackTrace(); }
 	}
 	
 	// Getters
