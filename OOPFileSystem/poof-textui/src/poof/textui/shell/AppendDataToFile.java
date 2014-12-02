@@ -1,4 +1,4 @@
-/** @version $Id: AppendDataToFile.java,v 1.3 2014/11/17 20:35:10 ist178134 Exp $ */
+/** @version $Id: AppendDataToFile.java,v 1.4 2014/12/01 07:54:05 ist178134 Exp $ */
 package poof.textui.shell;
 
 import static ist.po.ui.Dialog.IO;

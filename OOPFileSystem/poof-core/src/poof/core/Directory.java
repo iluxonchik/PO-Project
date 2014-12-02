@@ -18,9 +18,9 @@ public class Directory extends FileSystemEntitiy {
 	// Constants
 	public static final String ROOT_DIRECTORY_NAME = "/";
 	public static final String HOME_DIRECTORY_NAME = "home";
-	public static final String DIR_SEPARATOR = "/";
 	public static final String PARENT_DIR_NAME = "..";
 	public static final String THIS_DIR_NAME = ".";
+	private static final String DIR_SEPARATOR = "/";
 	
 	public Directory(String name, User owner, Directory parent) { 
 		super(name, owner);

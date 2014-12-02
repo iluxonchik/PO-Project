@@ -1,4 +1,4 @@
-/** @version $Id: RemoveEntry.java,v 1.4 2014/11/30 12:37:55 ist178134 Exp $ */
+/** @version $Id: RemoveEntry.java,v 1.5 2014/12/01 07:54:05 ist178134 Exp $ */
 package poof.textui.shell;
 
 import ist.po.ui.Command;

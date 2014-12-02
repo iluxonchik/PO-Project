@@ -312,6 +312,7 @@ public class FileSystemManager {
 			createFileSystem(); // first, create a new FileSystem
 			
 			Parser p = new Parser(this);
+			
 			while((line = br.readLine() )!= null)
 				p.parse(line);
 			

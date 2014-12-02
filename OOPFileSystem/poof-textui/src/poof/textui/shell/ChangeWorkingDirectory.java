@@ -1,4 +1,4 @@
-/** @version $Id: ChangeWorkingDirectory.java,v 1.3 2014/11/12 08:56:37 ist178134 Exp $ */
+/** @version $Id: ChangeWorkingDirectory.java,v 1.4 2014/12/01 07:54:05 ist178134 Exp $ */
 package poof.textui.shell;
 
 import static ist.po.ui.Dialog.IO;
