@@ -4,11 +4,11 @@
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="poof.core.FileSystem"/>
 <fullyQualifiedTypeName name="poof.core.User"/>
-<fullyQualifiedTypeName name="poof.textui.AccessDeniedException"/>
 <fullyQualifiedTypeName name="poof.textui.UserExistsException"/>
 <fullyQualifiedTypeName name="poof.textui.main.Message"/>
 <fullyQualifiedTypeName name="poof.textui.user.Message"/>
 <fullyQualifiedTypeName name="java.lang.reflect.Constructor"/>
 <fullyQualifiedTypeName name="java.lang.reflect.InvocationTargetException"/>
 <fullyQualifiedTypeName name="poof.core.Directory"/>
+<fullyQualifiedTypeName name="poof.textui.AccessDeniedException"/>
 </qualifiedTypeNameHistroy>

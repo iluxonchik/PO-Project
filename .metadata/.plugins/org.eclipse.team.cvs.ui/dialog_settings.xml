@@ -2,13 +2,15 @@
 <section name="Workbench">
 	<section name="CommitWizard">
 		<item value="500" key="VWeight2"/>
+		<item value="350" key="HWeight1"/>
+		<item value="650" key="HWeight2"/>
 		<item value="500" key="VWeight1"/>
 		<item value="400" key="width"/>
-		<item value="false" key="ShowCompare"/>
+		<item value="true" key="ShowCompare"/>
 		<item value="682" key="height"/>
 	</section>
 	<section name="IgnoreResourcesDialog">
-		<item value="2" key="Action"/>
+		<item value="1" key="Action"/>
 	</section>
 	<section name="CheckoutAsWizard">
 	</section>

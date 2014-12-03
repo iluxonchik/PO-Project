@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CommitComments>	<CommitComment>Parser fixes.</CommitComment>
-	<CommitComment>rel name updated</CommitComment>
-	<CommitComment>Javadoc and rel01.txt added.</CommitComment>
-	<CommitComment>Added methods to fsm</CommitComment>
-	<CommitComment>Added constants.</CommitComment>
-	<CommitComment>updates</CommitComment>
-	<CommitComment>Parsing now sets needsSaving to true</CommitComment>
-	<CommitComment>Bugfix (== was used instead of .equals())</CommitComment>
-	<CommitComment>More debug messages cleaning</CommitComment>
-	<CommitComment>Debug message removed.</CommitComment>
+<CommitComments>	<CommitComment>Trash out</CommitComment>
+	<CommitComment>Final updates</CommitComment>
+	<CommitComment>rel2.txt added</CommitComment>
+	<CommitComment>Some cleanup and refractoring.</CommitComment>
+	<CommitComment>You guessed it! Another bug fix!</CommitComment>
+	<CommitComment>Another day, another bug fix...</CommitComment>
+	<CommitComment>User creation display bug fixed</CommitComment>
+	<CommitComment>Null file printing fixed</CommitComment>
+	<CommitComment>Bugfixes</CommitComment>
+	<CommitComment>Parser fixes.</CommitComment>
 </CommitComments>
