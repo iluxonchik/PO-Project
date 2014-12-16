@@ -2,6 +2,7 @@
 package poof.textui.user;
 
 import static ist.po.ui.Dialog.IO;
+
 import ist.po.ui.Command;
 import ist.po.ui.DialogException;
 

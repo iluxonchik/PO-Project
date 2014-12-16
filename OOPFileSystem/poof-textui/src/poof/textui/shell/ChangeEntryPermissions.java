@@ -2,18 +2,14 @@
 package poof.textui.shell;
 
 import static ist.po.ui.Dialog.IO;
+
 import ist.po.ui.Command;
 import ist.po.ui.DialogException;
 
 import java.io.IOException;
 
-
-
-
-
 import poof.core.AccessDeniedCoreException;
 import poof.core.EntryUnknownCoreException;
-// FIXME: import project-specific classes
 import poof.core.FileSystemManager;
 import poof.core.PrivacyMode;
 import poof.textui.AccessDeniedException;

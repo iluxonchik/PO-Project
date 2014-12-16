@@ -23,7 +23,6 @@ public class FileSystemManager {
 								// to be saved.
 	private final String fileExtension; // extension of files when opening/saving FileSystem
 	
-	
 	public FileSystemManager() {
 		activeFileSystem = null;
 		activeUser = null;
@@ -45,7 +44,7 @@ public class FileSystemManager {
 		
 		if(!hasPrivatePermissions(activeUser, entity))
 			// logged in user has no permissions to alter the file
-			throw new AccessDeniedCoreException(activeUser.getName());
+			throw new AccessDeniedCoreException(activeUser.getUsername());
 		
 		if (entity.isCdiable())
 			// entity is a file
@@ -75,11 +74,15 @@ public class FileSystemManager {
 		needsSaving = true;
 	}
 	
-	public void changeOwner(String entryName, String newOwnerUsername) throws EntryUnknownCoreException, AccessDeniedCoreException{
+	public void changeOwner(String entryName, String newOwnerUsername) throws EntryUnknownCoreException,
+	AccessDeniedCoreException, UserUnknownCoreException{
 		FileSystemEntitiy entry = activeDirectory.getChild(entryName);
 		
 		if (entry == null)
 			throw new EntryUnknownCoreException();
+		
+		if(activeFileSystem.getUser(newOwnerUsername) == null)
+			throw new UserUnknownCoreException();
 		
 		if (!hasPrivatePermissions(activeUser, entry))
 			throw new AccessDeniedCoreException(activeUser.getUsername());

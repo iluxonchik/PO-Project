@@ -43,7 +43,7 @@ public class AppendDataToFile extends Command<FileSystemManager> {
 		} catch (IsNotFileCoreException e) {
 			throw new IsNotFileException(fileName);
 		} catch (AccessDeniedCoreException e) {
-			throw new AccessDeniedException(fileName);
+			throw new AccessDeniedException(e.getUsername());
 		}
 	}
 
